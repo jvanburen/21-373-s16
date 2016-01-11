@@ -1,0 +1,47 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+
+\chapter*{The Integers}
+
+\lecture{1}{2016--01--11}
+
+\begin{notation}
+	$\NN := \{1, 2, 3, \ldots\}$ in this class.
+\end{notation}
+
+\paragraph{Properties:}
+Order, other things.
+Least element in a set $S$: $x\in S$ s.t. $\forall y \in S, x \le y$
+
+Addition $(\ZZ, +)$:
+\begin{itemize}
+	\item \kw{Associativity} $(x+y) +z = x + (y + z)$
+	\item \kw{Identity} $x + 0 = 0 + x = 0$
+	\item \kw{Inversion} $x + (-x) = (-x) + x = 0$
+	\item \kw{Commutativity} $x + y = y + x$
+\end{itemize}
+
+Multiplication $(\ZZ, +, \cdot)$:
+\begin{itemize}
+	\item \kw{Associative}
+	\item \kw{Distributive}
+	\item \kw{Identity} (``1'')
+\end{itemize}
+
+\kw{Integer division}:
+Assume $x$ an integer and $y\in \ZZ^+$ then $\exists!d\in\ZZ, \exists!r\in\ZZ : 0 \le r < y, x = d\cdot y +r$
+
+\begin{definition}
+ 	 $y|x$ ``$y$ divides $x$'' iff $\exists d\in\ZZ : x= d\cdot y$.
+\end{definition}
+E.g. $3\divides 9, 4\ndivides 7$.
+
+\begin{definition}
+ 	$d$ is a \kw{gcd} of $x$ and $y$ if 
+ \begin{itemize}
+	\item $d\divides x, d\divides y$
+	\item If $c\divides x$ and $c\divides y$ then $c\divides d$ 
+\end{itemize}
+\end{definition}
+\end{document}

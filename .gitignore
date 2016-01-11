@@ -1,0 +1,12 @@
+*.log
+*.gz
+*.fls
+*.fdb_latexmk
+*.dvi
+*.aux
+*.out
+*.ilg
+*.ind
+*.py
+*.idx
+*.toc

@@ -1,0 +1,26 @@
+\documentclass[openany,oneside,12pt]{amsbook}
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{subfiles}
+\usepackage{tcolorbox}
+\usepackage[margin=1in]{geometry}
+
+\input{algebra.tex}
+
+\newcommand{\lecture}[2]{\section*{Lecture #1 (#2)}}
+\setlength\parindent{0pt}
+\newtcolorbox{classnote}[2]{colback=#1,colbacktitle=#2,coltitle=black,boxrule=.5pt,parbox=false,oversize,title=Class Note}
+\makeindex
+
+\begin{document}
+	\frontmatter
+	\subfile{title.tex}
+	\tableofcontents
+	\clearpage
+	\mainmatter
+	\subfile{lecture01.tex}
+	\newpage
+	\printindex
+\end{document}
