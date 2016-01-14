@@ -1,0 +1,61 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+
+\lecture{2}{2016--01--13}
+
+\begin{definition}
+	Given $a, b\in\ZZ$, denote by $\ZZ(a, b)$ the set $\{ax+by | x,y\in\ZZ\}$.
+\end{definition}
+
+\begin{theorem}[Euclid, Bezout]
+	 Suppose $a, b\in\ZZ$ are nonzero and let $d$ be the smallest positive element of $\ZZ(a, b)$, then $d$ is the unique positive GCD of $a$ and $b$.
+\end{theorem} 
+\begin{proof}
+	$d$ is a gcd of $a, b$
+	\begin{enumerate}
+		\item (Existance of positive GCD)
+		\begin{enumerate}
+			\item By integer division, $\exists q \in \ZZ, \exists r\in \ZZ$ with $0\le r < d$ such that $a = qd+r$. If $r=0$ then $d|a$, so done.
+			Otherwise, suppose $0 < r < d$, so $r = a-qd$
+			since $d\in\ZZ(a, b)$, we may fix $x, y$ st $d=ax+by$, meaning $r=a-q(ax+by) = a(1-qx) + b(-qy)$, so $r\in \ZZ(a, b)$, meaning $d$ was not the minimal positive element in $\ZZ(a, b)$, RAA.
+			Thus, $d\divides a$
+			\item
+			HW: If $c\divides a$ and $c\divides b$ then $c\divides(ax+by)$ for all $x, y\in\ZZ$ Hence $c\divides d$
+		\end{enumerate}
+		\item (Uniqueness of positive GCD)
+			Suppose $d_1, d_2$ are both positive gcds of $a$ and $b$.
+			$d_1\divides d_2$ and $d_2 \divides d_1$ as they are both gcds. i.e., $\exists m, n \in\ZZ$ such that $d_2=md_1$ and $d_1=nd_2$. As $\sgn(d_1) = \sgn(d_2$), $m \ge 0$ and $n \ge 0$. As $d_1 = mn d_1$, $m = n = 1$. Thus $d_1 = d_2$. 
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	\kw{Relatively prime} $\iff$ $\gcd(a, b) = 1$
+\end{definition}
+
+\begin{theorem}
+	Suppose $p$ is prime and $a, b\in\ZZ$ are nonzero, and $p\divides (ab)$ then $p\divides a$ or $p\divides b$.
+\end{theorem}
+
+\begin{proof}
+	Consider $d = \gcd(p, a)$. Since $d\divides p$, we know $d=p$ or $d = 1$.
+	\begin{itemize}
+		\item[] If $d=p$: By def of GCD, $d\divides p$ and $d\divides a$ ie. $p\divides p$ and $p \divides a$ so we're done.
+		\item[] If $d=1$: Fix integers $x$ and $y$ such that $px+ay=1$. $b=p(xb)+(ab)y$
+		as $p\divides p(xb)$ and $p\divides \underbrace{(ab)}_{\uparrow}y$, $p\divides b$.
+	\end{itemize}
+\end{proof}
+
+\begin{theorem} [Unique Prime Factorization]
+	Suppose that $a > 1$ an integer, $m, n \ge 1$ and $p_1 \le p_2 \le \ldots \le p_m,  q_1 \le q_2\le \ldots \le q_m$ are positive primes.
+\end{theorem} 
+
+Then $m=n$ and $p_i=q_i$ for all $i$. 
+\begin{proof}
+	By induction, it suffices to show $p_1 = q_1$. Suppose not.
+WLOG, assume $p_1 < q_1$. We know that $p_1\divides a$ (as $p_1\divides q_1q_2\ldots q_n$) Hence, $\exists i\le n$ such that $p_i \divides q_i$. since $p_i$ and $q_i$ prime, $p_1 = q_i$. However, $p_1 < q_1 \le q_i = p_1$ so $p_1 < p_2$ contradiction.
+
+Hence $p_1 = q_1$ so by induction, we're done.
+\end{proof}
+
+\end{document}
