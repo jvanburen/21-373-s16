@@ -1,0 +1,120 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+
+\lecture{3}{2016--01--15}
+
+Teaser: Construct numbers of the form $a+b\sqrt{-5}$ with $a, b\in\ZZ$.
+
+Notion of addition still exists: (similar to complex numbers, coefficients remain integers)
+Same with multiplication
+
+Among these ``numbers'', $2$ is irreducible. But, 2 is not prime, as $2\ndivides (1+\sqrt{-5})$ and $2\ndivides(1+\sqrt{-5})$, but $2\divides \underbrace{(1+\sqrt{-5})(1-\sqrt{-5})}_{=6 = 2\cdot 3}.$
+
+
+\chapter*{The Integers (mod $n$)}
+
+For today, $n>0$.
+
+\begin{definition}
+	For $a, b\in\ZZ$ we say $a\equiv b \pmod n$ iff $n\divides(b-a)$.
+\end{definition}
+
+$\equiv$ is an \emph{equivalence relation}
+
+\begin{itemize}
+	\item Reflexivity: $a\equiv a$
+	\item Symmetry: $a\equiv b \iff b\equiv a$
+	\item Transitivity: $a\equiv b \land b\equiv c \implies a \equiv c$
+	\begin{proof}
+	We know that $a\equiv b$ and $b\equiv c$, i.e. $n\divides (b-a)$ and $n\divides (c-b)$
+	We want $a\equiv c$, i.e., $n\divides(c-a)$
+	\[
+		c-a = c+ (-b + b) - a = \underbrace{(c-b) + (b-a)}_{n\text{  divides these}}
+	\]
+	\end{proof}
+\end{itemize}
+
+\begin{definition}
+	Denote by $\bar a$ or $[a]_n$ the \kw{equivalence class} of $a$ with respect to $\equiv\pmod n$
+	(I.e., The set $\{b\in\ZZ:a\equiv b\pmod n\} = \{a+kn:k\in\ZZ\}$).
+\end{definition}
+
+\begin{eg}
+	If $n=2$, there are 2 equivalence classes:
+
+	$\bar 0 = \{\ldots, -4, -2, 0, 2, 4, \ldots \} = \overline{2} = \overline{-36}$
+
+	$\bar 1 = \{\ldots, -3, -1, 1, 3, \ldots\}$
+\end{eg}
+
+\begin{definition}
+	Denote by $\ZZ/n\ZZ$ the collection of all $\equiv\pmod n$ equivalence classes.
+\end{definition}
+
+E.g. $\ZZ/2\ZZ = \{\bar0, \bar1\}$
+
+``Define'' addition and multiplication on $\ZZ/n\ZZ$ as follows:
+
+\[
+	\overline a + \overline b = \overline{a+b}
+\]
+\[
+	\overline a \cdot \overline b = \overline{ab}
+\]
+Makes sense, but we need to check that this definition makes any sense at all (make sure it's \emph{well-defined}). Specifically, we need to make sure that the results of these operations doesn't depend on the representatives of the equivalence classes we chose (e.g. check that $\bar x + \bar z \equiv \bar y + \bar z$ if $x \equiv y$).
+
+For brevity, we just show addition.
+
+\begin{theorem}
+	$+$ and $\cdot$ are well-defined on $\ZZ/n\ZZ$
+\end{theorem}
+\begin{proof}
+	(of $\cdot$)
+	Assume that $a_1, a_2, b_1, b_2\in\ZZ$ and $a_1\equiv a_2\pmod n$ and $b_1\equiv b_2\pmod n$.
+
+	Then, we want to show that $a_1b_1\equiv a_2b_2\pmod n$.
+
+	We know: $n\divides(a_2-a_1)$ and $n\divides(b_2-b_1)$.
+
+	We want: $n\divides(a_2b_2-a_1b_1)$.
+	\begin{align*}
+		a_2b_2 - a_1b_1 &= a_2b_2 + (-a_1b_2 + a_1b_2) - a_1b_1\\
+		&= (a_2b_2-a_1b_2) + (a_1b_2-a_1b_1)\\
+		&= \underbrace{(a_2-a_1)b_2 + a_1(b_2-b_1)}_{n\text{ divides these}}
+	\end{align*}
+	So, $n\divides (a_2b_2 - a_1b_1)$ as desired
+\end{proof}
+
+Remark: This is a special case of a ``quotient construction,'' in which you start with a set and an equivalence relation on it and operations on the set that ``respect'' the equivalence relations (i.e. equivalent inputs yield equivalent outputs)
+
+Moar notes:
+Mutiplicative inverses are uncommon in the integers (only for 1 and $-1$). However, it's ``more prevalent'' in $\ZZ/n\ZZ$ in the following sense:
+\begin{theorem}
+	Suppose $n>0$ is an integer, $a\in\ZZ$ such that $\gcd(n, a) = 1$ (they're coprime).
+	Then there is $b\in\Z$ such that $ab = 1 \pmod n$ (alternatively, $\bar a \cdot \bar b = \bar 1$)
+\end{theorem}
+
+\begin{proof}
+	Use Bezout's theorem (from last lecture)
+	Take integers $x, y$ such that $nx+ay = \gcd(a, n)=1$.
+	Then, $nx = 1-ay$, so $n\divides (1-ay)$, so $1\equiv ay\pmod n$, Choose $b=y$ and we're done ($\bar a \bar b \equiv \bar 1$).
+\end{proof}
+
+\chapter*{Groups}
+
+\begin{definition}
+	We say that $*$ is a \kw{binary operation} on some set $X$ if it is a function $*:X\times X \to X$. (That is, $*$ accepts two (ordered) inputs from $X$ and it outputs one element of $X$.)
+\end{definition}
+
+Remark: usually write $a*b$ for the output of $*$ on the input $(a, b)$.
+
+\begin{definition}
+	A \kw{group} is a set $G$ with a binary operation $*$ (often abbreviated $(G, *)$) satisfying the following 3 axioms.
+\end{definition}
+\begin{enumerate}[i.]
+	\item Associativity: $\forall a, b, c\in G: (a*b) *c = a*(b*c)$
+	\item Identity: There is some $e\in G$ such that $\forall a\in G: a*e = e*a = a$
+	\item Inversion: $\forall a\in G(\exists b\in G(a*b=b*a = e))$ (where $e$ is as described in ii)
+\end{enumerate}
+\end{document}
