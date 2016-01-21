@@ -1,0 +1,91 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+
+\lecture{4}{2016--01--20}
+
+Recall the definition of a group.
+\begin{defn}
+	$(G, *)$ is an \kw{abelian} (commutative) group if it is a group and
+\end{defn}
+\begin{enumerate}
+	\item[iv.] $(G, *)$ is commutative ($\forall x, y\in G: x*y = y*x$)
+\end{enumerate}
+
+Let $(G, *)$ be an arbitrary but fixed group.
+
+\begin{proposition}
+	There is a unique identity element.
+\end{proposition}
+
+\begin{proof}
+	Suppose $e$ and $f$ both satisfy the second group property.
+	we compute $e*f$ in two ways. $e*f = f$ and $e*f = e$, so by transitivity, $e = f$.
+\end{proof}
+
+\begin{proposition}
+	If $a\in G$, $a$ has a unique inverse.
+\end{proposition}
+
+\begin{proof}
+	Suppose that $b$ and $c$ are both inverses for $a$, $b*a = e$, $a*c = e$.
+	Then, \[
+		b = b*e = b*(a*c) = (b*a) * c = e * c = c
+	\]
+\end{proof}
+
+\subparagraph{Notational Conventions} % (fold)
+\label{subp:notational_conventions}
+\begin{itemize}
+	\item We will often just call a group $G$ instead of $(G, *)$
+	\item We abbreviate multiplication ($x*y$) as $x\cdot y$  or just $xy$
+	\item We will often write $xyz$ for $(x * y) * z$ (due to associativity)
+	\item When working with $(\ZZ, +)$, we'll just use $+$
+	\item We'll denote the (unique) identity of $G$ by $1$ or by $e$.
+	\item We'll denote the inverse of $x$ by $\inv x$
+	\item Given an integer exponent $n\in\ZZ$ and $x\in G$, define 
+	\[
+		x^n = \begin{cases}
+			\prod_{i=1}^{n}x, &\text{ if } n > 0\\
+			e, &\text{ if } n = 0\\
+			\prod_{i=1}^{-n}(\inv x), &\text{ if } n < 0\\
+		\end{cases}
+	\]
+\end{itemize}
+
+\subparagraph{Group Examples} % (fold)	
+\label{subp:group_examples}
+``Definition:'' $\QQ = \left\{\frac{a}{b} : a\in\ZZ, b\in\ZZ^+\right\}$
+
+\begin{enumerate}
+	\item $(\ZZ, +)$ is an abelian group
+	\item $(\ZZ, \times)$ is not a group
+
+		Why? 2 has no inverse in $\ZZ.$
+		($\nexists x\in\ZZ : (2x = 1)$)
+	\item $(\QQ, +)$ is an abelian group
+	\item $(\QQ, \times)$ is not a group ($0$ has no inverse)
+	\item $(\QQ \setminus \{0\}, \times)$ is an abelian group.
+	\item $\GL(n)$ is the set of  matricies $A_{n\times n}$ for which $\det A_{n\times n} \ne 0$
+	\item The set $G$ of $2\times 2$ matrices with determinant 1, along with matrix multiplication, is a group.
+		Called the ``special linear group.''
+		\begin{itemize}
+			\item[Closure:]
+			\[
+				\det \left(\smattwo a,b|c,d \cdot\smattwo e,f|g,h \right) = (b c-a d) (f g-e h) = 1
+			\]
+			\item[i.] Associativity: proof left for the reader.
+			\item[ii.] Identity: $\smattwo 1,0|0,1 $
+			\item[iii.] Given $a = \smattwo a,b|c,d $, take $a^{-1} = \smattwo d,-b|-c,a $, which you can verify is still in $G$.
+		\end{itemize}
+		The group is \emph{not} abelian.
+		Take $a = \smattwo 1,1|0,1 , b = \smattwo 1,0|1,1 $. Verify that $ab \ne ba$
+	\item Suppose that $X\ne\vs$ is some set, and denote by $S_X$ the set of bijections $f:X\to X$.
+		Then $(S_X, \circ)$ is a group, where $\circ$ is function composition. ($(f\circ g)$ is the function $x\mapsto f(g(x))$.)
+
+		Identity is $x\mapsto x$. Inversion $\inv f = \inv f$.
+\end{enumerate}
+
+% subparagraph group_examples (end)
+% subparagraph notational_conventions (end)
+\end{document}
