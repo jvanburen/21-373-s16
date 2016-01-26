@@ -1,0 +1,100 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+
+\chapter*{Symmetric Groups}
+\lecture{5}{2016--01--25}
+
+Recall: if $X$ is a set then $S_X$ is the group of bijections on it.
+\begin{definition}
+	$S_X$ (or $\sym_X$) is called the \kw{symmetric group} on $X$.
+\end{definition}
+
+Note: $\circ$ is associative because $(f\circ g) \circ h$ is $$x\overop{\mapsto}{h}(x)\overop\mapsto{g}g(h(x))\overop\mapsto{f}f(g(h(x)))$$
+
+Note: if $X = \{1, \ldots, n\}$, then we usually write \kw{$S_n$} instead of $S_{\{1, \ldots, n\}}$. (Sometimes called \kw{symmetric group of degree $n$}.)
+
+Let's examine $S_3$:
+
+\begin{tabular}{c|ccc}
+elt. & 1 & 2 & 3\\\hline
+$e$ & 1 & 2 & 3\\
+$a$ & 1 & 2 & 3\\
+$b$ & 1 & 3 & 2\\
+$c$ & 2 & 3 & 1\\
+$d$ & 3 & 1 & 2\\
+$f$ & 3 & 2 & 1
+\end{tabular}
+
+The group has $6 = 3!$ elements.
+
+Lets compute $ab$ and $ba$
+
+$ab = a\circ b$, looking it up in the table gives $ab = d$
+ and $ba = c$.
+
+In particular, $S_3$ is not abelian.
+
+
+\begin{definition}
+\label{cycledef}
+	A \kw{cycle} is a permutation $\sigma$ of the following form:
+\end{definition}
+
+There is a sequence $x_1, x_2,\ldots, x_m$ of finitely many (distinct)
+elements of $\{1, 2, \ldots, n\}$ such that $\sigma(x_{i-1}) = x_i$, $\sigma(x_m) = x_1$, and $\sigma(y)= y$, for $y\notin \{x_1, \ldots, x_m\}$.
+
+We call $m$ the \kw{length} of the cycle.
+
+\vspace{0.5em}
+Ex. In $S_3,$ $d = \frac{1\;2\;3}{3\;1\;2}$ is a cycle of length 3, with $x_1 =1, x_2=3, x_3=2$.
+
+\vspace{0.5em}
+Ex. In $S_3$, $a = \frac{1\;2\;3}{1\;3\;2}$ is a cycle of length 2, with $x_1 = 2, x_2= 3$.
+
+\begin{notation}
+	Given a cycle, we can efficiently denote it by $(x_1\,x_2\,x_3\,\ldots\,x_m)$.
+\end{notation}
+
+\begin{eg}
+	In $S_3$, $a = \frac{1\;2\;3}{1\;3\;2}$ would be written as (1 3 2).
+\end{eg}
+
+Let's work in $S_5$.
+
+$\varphi := \frac{1\;2\;3\;4\;5}{3\;4\;1\;5\;2}$ is not a cycle, but it is the ``superposition'' of two cycles (1 3) and (2 4 5). Thus, we may write $\varphi = $(1 3) $\circ$ (2 4 5), or (2 4 5)(1 3).
+
+\begin{theorem}
+	Every permuation in $S_n$ may be written as the product of ``disjoint'' cycles. (The identity is the empty product).
+\end{theorem}
+
+\begin{proof}
+	Sketch:
+	If youa have $e$ then you're done trivially.
+
+	Otherwise, fix the least element $x$ of $\{1, \ldots, n\}$ ``moved'' by $\sigma$ (i.e. $\sigma(x)\ne x$).
+	Look at $x, \sigma(x), \sigma^2(x), \ldots, \sigma^m(x) = \sigma^n(x)$, $n<m$.
+	So, as $\sigma$ is invertible, $\sigma^{m-n}(x) = x$, so $x$ is part of a cycle.
+\end{proof}
+
+\begin{theorem}
+	Cycles can be written as a product of transpositions.
+\end{theorem}
+
+\subsubsection*{General propositions on inversion in groups}
+
+Let $G$ be a group, and let $a, b, x\in G$ be arbitrary.
+
+\begin{itemize}
+	\item $\inv{(\inv a)} = a$
+	\begin{proof}
+		Show that $a$ is the inverse of $\inv a$.
+		Follows from group axiom.
+	\end{proof}
+	\item $(ab)^{1} = \inv b \inv a$
+	\begin{proof}
+		$(ab)(\inv b \inv a) = (a(b\inv b)) \inv a  = (a e) \inv a = a \inv a = e$.
+		Similarly, this works when we multiply from the other side.
+	\end{proof}
+\end{itemize}
+\end{document}
