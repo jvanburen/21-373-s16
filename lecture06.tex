@@ -1,0 +1,136 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+
+\lecture{6}{2016--01--27}
+
+\begin{definition}
+	The \kw{cardinality} (or \kw{order}) of a group $G$ is the number of elements in it, denoted by $|G|$.
+\end{definition}
+
+\begin{eg}\leavevmode
+	\begin{itemize}
+		\item  $|\ZZ| = \infty (= \aleph_0)$
+		\item $|(\ZZ/5\ZZ)| = 5$
+		\item $|S_4| = 4! = 24$
+	\end{itemize}
+\end{eg}
+
+
+\begin{definition}
+	Given a group $G$ and $x\in G$, the \kw{order} of $x$ is the smallest integer $n>0$ such that $x^n=e$. If no such $n$ exists, we say the order is $\infty$.
+
+	We denote by $|x|$ the order of $x$.
+\end{definition}
+
+\begin{eg}
+	In $(\ZZ, +)$:
+	$|0| = 1$, $|5| = \infty$.
+
+	In $S_5$:
+	$|\cyc{1 3}| = 2$, $|\cyc{2 4 5}| = 3$, $|\cyc{1 3}\cyc{2 4 5}| = 6$.
+\end{eg}
+
+\begin{proposition}
+	If $G$ is a \emph{finite}  group, every $x\in G$ has finite order.
+	Moreover, $|x| \le |G|$.
+\end{proposition}
+\begin{proof}
+	Say $|G| = k$. Consider the sequence $x^0, x^1, x^2, \ldots, x^k$.
+	There are $k+1$ items in the sequence. So $\exists m < n$ such that $x^m=x^n$.
+		$x^{n-m} = x^nx^{-m} = x^mx^{-m} = e$.
+		As $0 < n-m \le k$, it follows that $|x|\le n-m \le |G|$.
+\end{proof}
+
+\chapter*{Subgroups} % (fold)
+\label{ssub:subgroups}
+\begin{definition}
+	Suppose $(G, *)$ is a group and $H\subseteq G$ some subset of $G$. 
+	We say $H$ is a \kw{subgroup} of $G$, written $H\le G$ if $(H, *)$ happens to be a group, i.e., the following properties hold:
+\end{definition}
+
+$*$ is a associative binary operator on $H$ (i.e., it's closed) with inverses and an identity element.
+
+\begin{eg}\leavevmode
+	\begin{itemize}
+		\item $\ZZ\le\QQ$ (under addition)
+		\item Even integers $\le \ZZ$ (under addition)
+		\item $n\ZZ \le\ZZ$, where $n\ZZ := \{nx : x\in \ZZ\}$
+
+		Aside: every subgroup of $\ZZ$ is of the form $n\ZZ$
+		\item $\{e, \cyc{1 2}\cyc{3 4}, \cyc{1 3}\cyc{2 4}, \cyc{1 4}\cyc{2 3}\} \le S_4$.
+	\end{itemize}
+\end{eg}
+
+
+\begin{proposition}
+	\label{prop:subgrouphw}
+	(HW): $H\le G$ iff
+	\begin{enumerate}[(a)]
+		\item $H\ne\vs$ (nonempty)
+		\item $\forall x,y\in H (xy\in H)$ (closed under product)
+		\item $\forall x\in H (\inv x\in H)$  (closed under inverses)
+	\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+	Suppose $G$ is a \emph{finite} group.
+	Then $H \le G$ iff $H \ne\vs$ and $\forall x,y\in H: xy\in H$.
+\end{proposition}
+% subsubsection subgroups (end)
+
+\begin{proof}
+	We show that for $H\subseteq G$
+	(a) and (b) $\implies$ (c) (letters from proposition \eqref{prop:subgrouphw})
+
+	Fix $x\in H$.
+	Since $G$ is finite, $|x|$ is finite (in $G$). Say $|x| = n > 0$
+	$x^n = \underbrace{x\cdot x\cdot \ldots \cdot x}_{n\text{ times}} = e_G.$ Hence, $e_G\in H$.
+
+	Examine $x^{n-1}$.
+
+	$x^{n-1} = \begin{cases}
+		x^0 = e & \text{if } n = 1\\
+		\underbrace{x\cdot x\cdot\ldots\cdot x}_{n\text{ times}} &\text{if } n > 1
+	\end{cases}$
+
+	But $x^{n-1} = \inv x$, since $x^{n-1}x = x^n = xx^{n-1} = e$.
+	Thus, (c) holds for $H$.
+\end{proof}
+
+\begin{remark}
+	$\NN = \{0, 1, \ldots\} \subseteq\ZZ$, but $\NN\nleq\ZZ$, despite satisfying (a) and (b).
+\end{remark}
+
+\chapter*{(Left) Coset equivalence} % (fold)
+
+Suppose $G$ is a group and $H\le G$ is a subgroup of $G$. 
+
+\begin{definition}
+	We say $x\sim y \pmod H$ if $\inv x y\in H$.
+\end{definition}
+
+\begin{proposition}
+	$\sim \pmod H$ is an equivalence relation.
+\end{proposition}
+
+\begin{proof}\leavevmode
+	\begin{itemize}
+		\item Reflexivity ($x\sim x$):
+
+		$\inv x x = e\in H$, so $x\sim x$.
+
+		\item Symmetry ($x\sim y \implies y \sim x$):
+
+		We know $\inv x y \in H$. $H$ is closed under inversion, so $H \ni (\inv x y)^{-1} = (\inv y (\inv x)^{-1}) = (\inv y x)$. Thus, $y \sim x$.
+
+		\item Transitivity ($(x\sim y) \land(y \sim z) \implies (x\sim z)$):
+
+		We know $\inv x y \in H$ and $\inv y z \in H$. 
+		
+		Thus, $H \ni (\inv x y)(\inv y z) = \inv x e z = \inv x z$, so $x\sim z$.
+	\end{itemize}
+\end{proof}
+
+% subsubsection  (end)
+\end{document}
