@@ -1,0 +1,170 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+
+\lecture{8}{2016--02--01}
+
+We go to the previous lecture for examples.
+
+Consider
+$G = S_3, H = \{e, \cyc{1 2 3}, \cyc{1 3 2}\} \le G$, $K = \langle\cyc{1 3}\rangle  = \{e, \cyc{1 3}\} \le G$.
+
+\begin{defn}
+	If $G$ is a group and $H\le G$, denote by $G/H$ ($G$ ``mod'' $H$) the collection of (left) cosets of $H$ in $G$.
+\end{defn}
+
+\begin{eg}\leavevmode
+	\begin{enumerate}[(a)]
+		\item $n\ZZ\le\ZZ$, $\ZZ/n\ZZ = \{\bar0, \bar1, \ldots, \overline{n-1}\}$
+		\item $S_3/H = \{eH, \cyc{1 2}H\}$, $\quad eH = H$, $\quad\cyc{1 2}H = \{\cyc{1 2}, \cyc{2 3}, \cyc{1 3}\}$
+		\item $S_3/K$ = $\{\{e, \cyc{1 3}\}, \{\cyc{1 2 3}, {2 3}\}, \{\cyc{1 2}, \cyc{1 3 2}\}\}$
+	\end{enumerate}
+\end{eg}
+
+\section*{Normal Subgroups}
+Fundamental question: When is there ``natural'' group operation on $G/H$?
+Prototype: $\ZZ/n\ZZ$, $\bar x + \bar y = \bar{x+y}$.
+
+Natural Attempt: \[
+	(g_1H)(g_2(H))\overop=?(g_1g_2)H.
+\] This works fine for (b) in the sense that if $g_1H = g_2H$ and $k_1H = k_2H$ then $(g_1k_1)H = (g_2k_2)H$ (verification left to reader).
+
+But it \emph{doesn't} work for (c).
+$e$ and (1 3) both represent $eK$. But they give \emph{different} cosets after multiplication by (1 2 3).
+\begin{itemize}
+	\item $e\cyc{1 2 3} = \cyc{1 2 3}$
+	\item $\cyc{1 3}\cyc{1 2 3} = \cyc{1 2}$.
+\end{itemize}
+
+In general, what would we need to have, in order to have multiplication in $G/H$ be ``well-defined?''
+
+We want:
+$\underbrace{x_1\sim x_2}_{\inv x_1x_2=h\in H}$ and $\underbrace{y_1\sim y_2}_{\inv y_1y_2=k\in H}$ $\implies x_1y_1\sim x_2y_2$.
+Thus, we want $(x_1y_1)^{-1}(x_2y_2)\in H$. 
+	\[
+		(x_1y_1)^{-1}(x_2y_2)
+		=(\inv y_1\inv x_1)(x_2y_2)
+		= \inv y_1(\inv x_1x_2)y_1k
+		=  \underbrace{\inv y_1hy_1}_{\in H}\underbrace{k}_{\in H}
+		\in H
+	\]
+This expression motivates the definition of a \kw{normal subgroup}
+
+\begin{defn}
+	If $G$ is a group, and $N\le G,$ we say $N$ is \kw{normal} if for all $n\in N$, and $g\in G$, we have $\inv gng\in N$. We write this as $N\nsubgrp G.$ 
+\end{defn}
+\begin{remark}
+	For fixed $g\in G$, the map for $x\in G$ \[
+		x\mapsto \inv gxg
+	\]
+	is called \kw{conjugation by $g$}.
+\end{remark}
+
+Thus, $N$ is normal if it is stable under all conjugation.
+
+\begin{theorem}
+	Let $G$ a group $H\le G$. Then the following are equivalent:
+	
+	\begin{enumerate}[(I)]
+		\item $(g_1H)(g_2H) = (g_1g_2)H$ is a well-definied group operation on $G/H$.
+		\item $H\nsubgrp G$.
+	\end{enumerate}
+	\begin{proof}[(II) $\implies$ (I)]
+		$\inv x_1x_2=h, \inv y_1y_2=k$. (Exercise for the reader) % TODO: add proof?
+ 	\end{proof}
+	\begin{proof}[(I) $\implies$ (II)]
+		Suppose $h\in H$ and $g\in H$
+		want $\inv ghg\in H$.
+
+		Note: $e\sim h$ since $\inv eh=h\in H$.
+
+		By (I),we have $ (eg)H =(eH)(gH) = (hH)(gH) = (hg)H$.
+
+		So, $gH = (hg)H$, meaning $g\sim hg$, so $\inv ghg\in H$. \qedhere(thm)
+	\end{proof}
+\end{theorem}
+
+\begin{proposition}
+	If $G$ is abelian, every subgroup is normal.
+\end{proposition}
+
+\begin{proof}
+	Fix $H\le G$, $h\in H$, $g\in G.$
+	Then $\inv ghg = \inv ggh =h\in H$.
+\end{proof}
+
+\begin{proposition}
+	$G\nsubgrp G$ and $\{e\}\nsubgrp G$.
+\end{proposition}
+\begin{proof}
+	$\inv ghg \in G$ and $\inv geg = \inv gg = e\in \{e\}$.
+\end{proof}
+
+\begin{defn}
+	For $A\subseteq G$, denote by $\inv gAg$ the set $\{\inv gag : a\in A\}$.
+
+	Called \kw{the conjugate of $A$ by $G$}.
+\end{defn}
+
+\begin{remark}
+	Thus, $N$ is normal $iff$ $N\le G$ and $\forall g\in G: \inv gNg \subseteq N$.
+\end{remark}
+
+\begin{proposition}
+	$N\nsubgrp G \implies \forall g\in G: \inv gNg=N$
+\end{proposition}
+\begin{proof}
+	Fix $n\in N$. we want $n\in \inv gNg$. (This shows $N\subseteq\inv gNg$.)
+
+	We know by $N\nsubgrp G$ that $m =(\inv g)^{-1}n(\inv g)\in N$.
+	Then $m=gn\inv g$.
+	\begin{claim}
+		$\inv gmg=n$
+	\end{claim}
+	\begin{proof}
+		$\inv g(gn\inv g)g=\cancel{(\inv gg)}n\cancel{(\inv gg)} = n$
+		\qedhere(Claim)
+	\end{proof}
+	\qedhere(Prop)
+\end{proof}
+
+
+\chapter*{Homomorphisms}
+\begin{defn}
+	Suppose $G, H$ are groups and $\varphi:G\to H$ is a function. 
+	We say $\varphi$ is a \kw{homomorphism} if $\forall g_1, g_2\in G: \phi(g_1 *_G g_2) = \varphi(g_1) *_H \varphi(g_2)$.
+\end{defn}
+
+\begin{defn}
+	Suppose $\varphi:G\to H$ is a homomorphism. The \kw{Kernel} of $\phi$ is $\Ker(\varphi) = \{g\in G : \varphi(g) - e_H\} = \varphi^{-1}(\{e_H\})$.
+\end{defn}
+
+\begin{proposition}
+	Suppose $\varphi:G\to H$ is a homomorphism between groups. 
+
+	Then $K=\Ker(\varphi) \nsubgrp G$.
+\end{proposition}
+\begin{proof}
+	\begin{claim}[1]
+		$K \ne \vs$. In fact, $e_G\in K$.
+	\end{claim}
+	\begin{proof}
+		We know that $e_G$ is the unique element of $G$ such that $\forall g\in G(e_Gg=ge_g = g)$.
+
+		So, $\varphi(e_G) = \varphi(e_Ge_G) = \varphi(e_G)\varphi(e_G) = \varphi(e_G)$
+		Multiplying both sides by $\varphi(e_G)^{-1}\in H$
+
+		So $\varphi(e_G) = e_H$.\qedhere(C1)
+	\end{proof}
+
+	\begin{claim}[2]
+		$\forall g\in G \vphi(\inv g) = (\vphi(g))^{-1}$
+	\end{claim}
+	\begin{proof}
+		$\vphi(\inv g)\vphi(g) = \vphi(g\inv g) = \vphi(e_G) = e_H$
+		By symmetry, $\vphi(g)\vphi(\inv g) = e_H$\qedhere(C2)
+	\end{proof}
+	\qedhere(Prop.)
+\end{proof}
+
+\end{document}
