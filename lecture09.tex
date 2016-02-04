@@ -1,0 +1,151 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+
+\lecture{9}{2016--02--03}
+
+\begin{classnote}{orange!10}{orange!25}
+\emph{Midterm 1} is on Friday February 26th (in class)
+\end{classnote}
+
+Last time: showed that the kernel of a homomorphism is a subgroup.
+
+\begin{proposition}
+	$K\nsubgrp G$.
+\end{proposition}
+
+\begin{proof}
+	First we show $K\le G$.
+	\begin{itemize}
+		\item $K \ne \vs$ as $e_G\in K$.
+		\item $\forall g_1, g_2\in K, g_1g_2\in K$:
+		\tabin
+			$\vphi(g_1g_2) = \vphi(g_1)\vphi(g_2) =e_He_H = e_H$
+			So $g_1g_2\in K$
+		\tabout
+		\item $\forall g\in H, \inv g \in K$:
+		\tabin
+			$\vphi(\inv g) = (\vphi(g))^{-1} = \inv e_H = e_H$
+		\tabout
+		So $\inv g \in K$
+	\end{itemize}
+	Thus, $K\le G$.
+	Next, we prove. 
+	$\forall k\in K, \forall g\in G$:
+		\[
+			\vphi(\inv gkg) 
+			= \vphi(\inv g)\vphi(h)\vphi(g) 
+			= (\vphi(g))^{-1}e_H\vphi(g)
+			= e_H
+		\]
+	Hence $\inv gkg\in K$.
+\end{proof}
+
+\begin{defn}
+	If $\vphi :G\to H$ is a group homomorphism, and $h\in H,$ the \kw{fiber above $h$} is the set $\inv\vphi(\{h\})$.
+\end{defn}
+
+Thus, $\Ker(\vphi)$ is the fiber above $e_H$.
+
+\begin{eg}\leavevmode
+\begin{itemize}
+	\item $\vp(\RR, +)\to(\RR^+, \times)$, $\vp(r) = \mathrm{e}^r$
+	$\vp$ is a homomorphism since $\vp(r+s) = \mathrm{e}^{r+s} = \mathrm{e}^r\mathrm{s} = \vp(r)\times \vp(s)$
+
+	$\Ker(\vp) = \{r\in R : \vp(r) = 1\} = \{0\}$.
+
+	The fiber above $s\in \RR^+$: 
+		$\vp(r) = s \iff \mathrm{e}^r=s \iff r = \ln s$. Thus $\inv\vp(\{s\}) = \{\ln s\}$.
+
+	\item $\vp:(\CC\setminus\{0\}, \times)\to(\RR\setminus\{0\}, \times)$,
+		$\vp(a+b\iu) = a^2 + b^2$.
+
+		$\vp$ is a homomorphism (verification left to the reader).
+
+		$\Ker(\vp) = \{a+b\iu : \vp(a+b\iu) = 1\} = \{a+b\iu : a^2 + b^2 = 1\}$,
+		which is the unit circle in the complex plane.
+
+		Fix $r\in\RR\setminus\{0\}$, lets examine the fiber above $r$:
+		\[
+		\{a+b\iu : a^2 + b^2 = r\} = 
+		\begin{cases}
+			\vs &\txtif r < 0\\
+			\text{Circle of radius }\sqrt{r}&\txtif r > 0
+		\end{cases}
+		\]
+	\item Start with a group $G$, normal $N\nsubgrp G$.
+		$\vp:G\to G/N$, $\vp(g) = gN$ is a homomorphism.
+
+		\begin{proof}
+			$\vp(g_1g_2) = (g_1g_2)N = (g_1N)(g_2N) = \vp(g_1)\vp(g_2)$
+		\end{proof}
+
+		$\Ker(\vp) = \{g:\vp(g) = eN\} = \{g:\vp(g) = eN\} = N$.
+\end{itemize} 
+\end{eg}
+
+This leads us to the realization that:
+\begin{proposition}
+	$N\nsubgrp G \iff N = \Ker(\phi)$
+	for some homomorphism $\vp:G\to H$, for any group $H$.
+\end{proposition}
+
+Why do all fibres look alike?
+
+\begin{proposition}
+	If $\phi:G\to H$ is a group homomorphism and $h\in H$,
+	then $\inv\vp(\{h\})$ is either $\vs$ or $gK$ for some $g\in G$, where $K = \Ker(\vp)$
+\end{proposition}
+
+\begin{proof}
+	If $\nexists g\in G$ such that $\vp(g) = h$ then $\inv\vp(\{h\}) = \vs$.
+
+	Else, fix some $g\in G$ such that $\vp(g)=h$
+	\begin{claim}[1]
+		$gK \subseteq \inv\vp(\{h\})$
+	\end{claim} 
+	\begin{proof}
+		Suppose $g' \in \inv\vp(\{h\})$, want $g'\in gK$ (i.e. $\vp(g')=h$).
+		So, $\vp(g \inv{g'}) = (\vp(g))^{-1}\vp(g') = \inv h h=e_H$.
+		Hence $\inv gg'\in K$, so $g'\sim g \pmod(K)$, so $g'\in gK$.
+		\qedhere(C1)
+	\end{proof}
+	\begin{claim}[1]
+		$gK \supseteq \inv\vp(\{h\})$
+	\end{claim} 
+	\begin{proof}
+		Suppose $g' \in gK$, want $\vp(g')=h$.
+		Fix $k\in K$ such that $g'=gk$.
+		$\vp(g') = \vp(gk) - \vp(g)\vp(k) = he_H = h$.
+		\qedhere(C2)
+	\end{proof}
+	Thus, $gK = \inv\vp(\{h\})$, as desired.\qedhere(Prop.)
+\end{proof}
+
+\begin{corollary}
+	If $\vp:G\to H$ is a group homomorphism, the following are equal:
+	\begin{itemize}
+		\item $\vp$ is injective.
+		\item $\Ker(\vp) = \{e_G\}$
+	\end{itemize}
+\end{corollary}
+
+\begin{defn}
+	A map $\vp:G\to H$ between groups is an \kw{isomorphism} if it is a bijective homomorphism.
+	We often say $G\cong H$ if there exists an isomorphism $\phi:G\to H$.
+\end{defn}
+
+Intuition: Isomorphic groups have the ``same operation'' on different sets.
+
+\begin{eg}
+	Let $G = \{a, b\}$ 
+	\begin{tabular}{r|cc}
+		& $a$ & $b$\\\cline{2-3}
+		$a$ & $a$ & $b$\\
+		$b$ & $b$ & $a$
+	\end{tabular}
+	Then, $G\cong \ZZ/2\ZZ$ via $\vp : a\mapsto \bar 0, b\mapsto\bar1$
+\end{eg}
+
+We know $\vp:G\to H$ is an isomorphism if it's a homomorphism, surjective, and $\Ker(\vp) = \{e_G\}$.
+\end{document}
