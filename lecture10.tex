@@ -1,0 +1,107 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+
+\lecture{10}{2016--02--06}
+
+\begin{defn}
+	If $\vp:G\to H$ is a function, denote by $\im(\vp)$, or $\vp(G)$, or $\vp[G]$ the \kw{image} of $G$, i.e., the set $\{h\in H, \exists g\in G: \vp(g) = h\}$.
+\end{defn}
+
+\begin{exercise}
+	Prove: If $\vp:G\to H$ is a group homomorphism then $\vp[G] \le H$.
+\end{exercise}
+
+\begin{theorem}[First Isomorphism Theorem]\index{First Isomorphism Theorem}
+	If $\vp:G\to H$ is a group homomorphism, then $\vp[G]\cong G/\Ker(\vp)$.
+\end{theorem}
+
+\begin{proof}
+	Abbreviate $I:=\vp[G], K:= \Ker(\vp)$.
+	We know for $h\in I$: $\inv\vp(\{h\}) \ne \vs$.
+	Hence, $\inv\vp(\{h\})=gK$ for some $gK\in G/K$.
+	Then, define $\psi:I \to G/K$. $\psi(h) = \inv\vp(\{h\})=gK$.
+
+	\begin{claim}
+		$\psi:I\to G/K$ is a group isomorphism.
+	\end{claim}
+	\begin{proof} We show that $\psi$ is a bijective homomorphism in three parts:
+		\begin{itemize}
+			\item[(a)] $\psi$ is a homomorphism:
+
+			Fix $h_1, h_2\in I$, want $\psi(h_1, h_2) = \psi(h_1)\psi(h_2)$.
+			Fix $g_1, g_2$ such that $\vp(g_1) = h_1, \vp(g_2) = h_2$.
+			Then $\vp(g_1g_2) = h_1h_2$ by def of homomorphism. So, $\psi(h_1h_2) = g_1g_2K = (g_1K)(g_2K) = \psi(h_1)\psi(h_2)$.\qed(a)
+			\item[(b)] $\psi$ is a surjection:
+
+				Fix $gK\in G/K$. Want $h\in I$ with $\psi(h) = gK$
+				Want $h\in I$ with $\psi(h) = gK.$ Choose $h\in \psi(g)$.
+				Then by def, $g\in \inv\vp(\{h\})$. Thus, $\psi(h) = \inv\vp(\{h\})=gK$.\qed(b)
+			\item[(c)] $\psi$ is an injection:
+
+				As remarked, it suffices to show 
+				\[\Ker(\psi) = \{h\in I : \psi(h) = \underbrace{e_GK}_{=e_{G/K}}\} = \{h\in I : \inv\vp(\{h\})\} = \{h\in I : \vp(e_G) = h\} = \{e_H\}
+				\]\qed(c)
+		\end{itemize}
+		\qedhere(Claim)
+	\end{proof}
+	\qedhere(Thm)
+\end{proof}
+
+\begin{defn}
+	A group $G$ is \kw{cyclic} if $\exists x \in G: \csg x = G$. (Where $ \csg x = \{x^n : n\in\ZZ\}$.)
+\end{defn}
+
+\begin{proposition}
+	If $G$ is a cyclic group, then $G\cong\ZZ$, or $G\cong (\ZZ/n\ZZ)$ for some $n\in\ZZ$.
+\end{proposition}
+
+\begin{proof}
+	As $G$ is cyclic, take $x\in G$ such that $\csg x = G$.
+	the map $\vp:(\ZZ, +)\to G$, $\vp(n) = x^n$.
+	By hypothesis, $\csg x = G$.
+	$\vp$ is surjective, so $\im(\vp) = G$.
+	By first isomorphism theorem, $G\cong(\ZZ/\Ker(\vp))$.
+
+	Assume $\nexists n > 0$ such that $x^n = 1_G$ (i.e., the order of $x$ in $G$ is infinite.)
+	Then $\Ker(\vp) = \{n\cdot x^n = e_G\} = \{0\}$. Also $\ZZ/\{0\} \cong\ZZ$ (proof left as exercise).
+	Thus, $G\cong\ZZ$.
+
+	Otherwise, fix the least $n>0$ such that $x^n = e_G$(so $n = |x|$).
+
+	Check (exercise): $\Ker(\vp) = \{m\in\ZZ : x^m = e_G\} = n\ZZ$.
+	Thus $G\cong\ZZ/\Ker(\vp)= \ZZ/n\ZZ$.
+\end{proof}
+
+\begin{corollary}
+	Suppose $p > 1$ is prime and $G$ is a group with $|G| = p$. Then $G\cong(\ZZ/p\ZZ)$.
+\end{corollary}
+\begin{proof}
+	Fix any $x\in G$, $x\ne e^G$. $|x| \ne 1$.
+	Additionally $|x|$ divides $|G|$. Thus $|x| = p$, as $p$ is prime. Then $\csg x = G$.
+\end{proof}
+
+\underline{Our next big motivational question}:
+Given $n\in \NN,$ can we ``classify'' (or list) all groups of cardinality $n$ (up to $\cong$)?
+
+What we know so far:
+
+\begin{tabular}{c|l}
+$n$ & Groups:\\\hline
+0 & None\\
+1 & \{e\}\\
+2 & $\ZZ/2\ZZ$\\
+3 & $\ZZ/3\ZZ$\\
+4 & $\ZZ/4\ZZ, \ldots?$\\
+5 & $\ZZ/5\ZZ$\\
+6 & $\ZZ/6\ZZ, \ldots?$
+\end{tabular}
+
+\begin{defn}
+	$G$, $H$ are groups, build a group of the \kw{direct product} of $G$ and $H$, denoted $G\times H$ with underlying set $\{(g, h) : g\in G, h\in H\}$, and group operation $(g_1, h_1)\cdot(g_2, h_2) = ((g_1\cdot_Gg_2), (h_1\cdot_Hh_2))$
+\end{defn}
+
+\begin{proposition}
+	If $|G| = 2$ then $G\cong\ZZ/4\ZZ$ or $G\cong ((\ZZ/2\ZZ) \times (\ZZ/2\ZZ))$
+\end{proposition}
+\end{document}
