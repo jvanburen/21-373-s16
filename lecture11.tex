@@ -1,0 +1,148 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+
+\lecture{11}{2016--02--08}
+
+\begin{proposition}
+	Suppose $G$ is a group. Then $G/\{e_G\}\cong G$ and $G/G \cong \{e_G\}$.
+\end{proposition}
+
+\begin{proof}
+	Consider the homomorphism $\vp:G\to G$ with $\vp(g) = g$ 
+	$\Ker(\vp) = \{g\in G : \vp(g) = e_G\} = \{e_G\}$, and $\vp[G] = G$.
+
+	Thus, the first isomorphism theorem states that $G/\Ker(G)\cong \vp[G]$.
+
+	Next, consider the homomorphism $\psi:G\to G$, $\psi(g) = e_G$.
+	Then $\Ker(\psi) = G$, $\im(\psi) = \{e_G\}$. By the first isomorphism theorem, $G/G \cong \{e_G\}$.
+\end{proof}
+
+\subsection*{Groups of cardinality 4}
+
+\begin{proposition}
+	If $G$ is a group with $|G| = 4$ then $G \cong \ZZ/4\ZZ$ or $G\cong (\ZZ/2\ZZ \times \ZZ/2\ZZ)$.
+\end{proposition}
+We note that the above groups are not isomorphic because there is no element of order 4 in $(\ZZ/2\ZZ \times \ZZ/2\ZZ)$.
+
+\begin{proof}
+	Possible orders for elements are 1, 2, or 4.
+
+	Two cases:
+	\begin{enumerate}
+		\item
+		$\exists g \in G, |g| = 4$
+		then $G = \csg g$, so (as proved last time) $G\cong\Zn4$.
+		\item
+		$\nexists g\in G, |g| = 4$: 
+
+		So $G = \{e_G, a, b,c \}$, meaning
+		$|e_G| = 1$ and $|a| = |b| = |c| = 2$.
+		So $\forall g\in G(g^2 = e_G)$. Hence $G$ is abelian (hw).
+		What is $ab$? It's not $e_G$ as $\inv a = a \ne b$.
+		It's not $a$ since $b \ne e_G$. It's not $b$ since $a \ne e_G$.
+		So $ab = c$.
+		Thus we may write the multiplication table. 
+
+		Verification that $G\cong \Zn2\times\Zn2$ is left to the reader.
+	\end{enumerate}
+\end{proof}
+
+\begin{remark}
+	More generally, if $p$ prime and $|G| = p^2$ then $G\cong \Zn{p^2}$ or $G\cong \Zn{p}\times\Zn{p}$.
+\end{remark}
+
+
+\begin{proposition}
+	Suppose $G$ is a group and $|G| = 6$. Then $G\cong\Zn6$ or $G\cong S_3$. 
+\end{proposition}
+
+\begin{proof}
+	(Sketch)
+
+	If $\exists x\in G$ with $|x|=G$ then $G = \csg x \cong \Zn6$.
+
+	More subtly, if $\exists a, b\in G$  such that $|a| = 3$ and $|b| = 2$ and $ab = ba$ then $G\cong \Zn6$ (verification that $|ab| = 6$ left as an exercise to the reader).
+
+	WLOG, assume all non-identity elements have order 2 or 3.
+
+	Also, elements of order 3 come in pairs. $|x| = 3, |\inv x| = 3, x\ne\inv x$. So $|\{x : |x| = 3\}| \in \{0, 2, 4\}$ (as it must be even, and $|e_G| = 1 \ne 3$).
+
+	Possible order breakdowns:
+	either (A): 1 2 2 2 2 2 2, (B): 1 2 2 2 3 3, or (C): 1 2 3 3 3 3.
+
+	\begin{claim}[1]
+		(A) can't happen. Why? Assume otherwise, then $\forall x\in G (x^2 =e)$
+		so $G$ is abelian, so $\{1, a, b, ab\}$ is a subgroup, but $4\ndivides 6$. so by Lagrange's theorem, this cannot happen. 
+	\end{claim}
+	
+	\begin{claim}[2]
+		(C) also cannot happen. Why?
+		Assume otherwise, then denote by $x$ the unique element of order 2.
+		THen $\forall g\in G, \inv gxg$ also has order $2$. 
+		as \[
+			\inv gxg\inv gxg = \inv gx^2g = \inv gg = e
+		\]
+		Thus, $\inv gxg$ has order 2. $\forall g\in G$, $\inv gxg = x \implies xg =gx$, contradiction.
+	\end{claim}	
+
+	\begin{claim}[3]
+		(B) forces $G\cong S_3$. Proof of this follows from brute force considering the multiplication table.
+	\end{claim}
+	\qedhere(outline)
+\end{proof}
+
+\chapter*{Group Actions}
+\begin{center}
+	``Groups, like men, shall be judged by their actions.'' -- Unknown
+\end{center}
+
+\begin{defn}
+	Suppose $G$ is a group (not necessarily finite), and $X$ is a set (also not necessarily finite). A \kw{group action} of $G$ on $X$ is formally a function $a :G\times X\to X$ such that $\forall x\in X: a(e_G, x) = x$, and $\forall g, h\in G, x\in X: a(gh, x) = a(g, a(h, x))$.
+\end{defn}
+
+\begin{notation}
+	We write actions like this: 
+	$G\actson X$ ``$G$ acts on $X$,'' and $g\cdot x := a(g, x)$.
+
+	The conditions then become $e_G\cdot x = x$ and $(gh)\cdot x = g\cdot(h\cdot x)$.
+\end{notation}
+Equivalently, Instead of thinking about an action as a function of $(G\times X) \to X$, you can view it as a (``curried'') function of $G \to (X\to X)$.
+
+Say $g\mapsto \sigma_g$ where $\sigma_g\cdot (X\to X)$ is defined by $\sigma_g(x) = g\cdot x = a(g, x)$.
+
+\begin{claim}
+	$\forall g\in G, \sigma_g$ is a permutation of $X$.
+\end{claim}
+\begin{proof}
+	$\sigma_g\circ \sigma_{\inv g}  = \sigma_{\inv g} \circ \sigma_g = \sigma_{e_G} (= x\mapsto x).$
+
+	Why? 
+	\[
+		\sigma_g\circ\sigma_{\inv g}(x) = g\cdot(\inv g\cdot x) = (g\inv g)\cdot x = e_G\cdot x = x = \sigma_{e_G}(x)
+	\]
+	Thus, $\sigma_g$ is a bijection.
+\end{proof}
+
+An action then induces a map $G\to S_X$, $g\mapsto \sigma_g$.
+Note that $\sigma_g\circ\sigma_h = \sigma_{gh}$.
+
+\begin{property}
+	Actions of $G$ on $X$ correspond to homomorphisms $G\to S_X$.
+\end{property}
+
+\begin{eg}
+	Of actions:
+	\begin{enumerate}
+		\item $X = \{1, 2, \ldots, n\}, S_n\actson X$
+		The action is $\sigma\cdot x = \sigma(x)$.
+
+		More generally, if $H\le S_n$, we get an analogous action.
+		\item Let $G$ be the  $2\times2$ invertible matrices over $\RR$ under the operation of matrix multiplication.
+
+		$G\actson \RR^2$ (acts on the Euclidean plane) by applying the matrices' corresponding linear transformation to the vector in $\RR^2$. (Verification left to the reader.)
+		\item $G = (\RR, +)$ $X$ is a circle.
+		$G\actson X$ $r$ ``rotates the circle $r$ radians c.c.w.''
+	\end{enumerate}
+\end{eg}
+\end{document}
