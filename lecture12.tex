@@ -1,0 +1,122 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+
+\lecture{12}{2016--02--10}
+
+Note: group actions can be either left actions or right actions. However, we will only talk about left actions in this course, so we will refer to them exclusively as ``actions.''
+
+
+Alternate def $G\to S_X$.
+
+Important special case: $X = G$, then $G\actson G$ ($G$ acts on itself).
+
+There are three main actions:
+\begin{itemize}
+	\item $G\actson G$ by left multiplication.
+	$\forall g\in G, x\in X (=G), g\cdot x = gx$.
+	\item $G\actson G$ by right multiplication.
+	$g, x\in G, g\cdot x = x\inv g$.
+	\item $G\actson G$ by conjugation.
+	$g\cdot x = g x \inv g$.
+	Note that $gx\inv g$ is simply $x$ conjugated by $\inv g$, so it doesn't matter whether we write $\inv gxg$ or $gx\inv g$.
+\end{itemize}
+
+\begin{theorem}[Cayley]
+	Suppose $G$ is a group. Then there is a set $X$ and a subgroup $H\le S_X$ such that $G\cong H$.
+
+	Moreover, we can choose $X$ to have cardinality $|G|$. (i.e., if $|G| = n$, we can find an isomorphic copy of $G$ inside $S_n$.)
+\end{theorem}
+
+
+\begin{proof}
+	Take $X = G$ and consider the action $G\actson G$ by left multiplication ($g\cdot x = gx$).
+
+	This induces a homomorphism $\vp:G\to S_G, \vp(g) = \lambda_g$ where $\lambda_g(x) = gx$.
+	\begin{claim}
+		$\Ker(\vp) = \{e_G\}$.
+	\end{claim}
+	\begin{proof}[Proof (Claim):]
+	Suppose $g\in G$ such that $\vp(g) = e \in S_G$. so $\lambda_g = e$. 
+
+	In particular, $e_G = \lambda_g(e_G) = ge_G = g$, so $g = e_G$.\qedhere(Claim)
+	\end{proof}
+	By the first isomorphism theorem, $G/\Ker(\vp) \cong \im(\vp)$. Denote by $H$ the image of $\vp$. $H \le S_G$. 
+
+	$G/\Ker(\vp) = G/\{e_G\} \cong G$, so $G\cong H$. \qedhere(Theorem)
+\end{proof}
+
+\begin{eg}
+	A concrete example:
+
+	$G = \Zn2\times\Zn2 = \{1, a, b, c\}$
+
+	% TODO: INSERT MULTIPLICATION TABLES HERE
+
+	$\lambda_b: \begin{cases}
+		1\mapsto 3\\
+		2\mapsto 4\\
+		3\mapsto 1\\
+		4\mapsto 2
+	\end{cases}$
+	Run cycle decomposition on each % to get 
+	% TODO: INSERT CYCLE DECOMPOSITIONS HERE
+
+	$G\cong \{e, \cyc{1 2}\cyc{3 4}, \cyc{1 3}\cyc{2 4}, \cyc{1 4}, \cyc{2 3}\} \le S_4$.
+
+	This is sometimes called the left multiplication permutation representation of a group.
+\end{eg}
+
+\begin{remark}
+	Cayley's theorem is not always ``optimal.'' Sometimes $|G| = n$ and $m < n$ such that $H\le S_m$ and $G\cong H$. 
+\end{remark}
+
+\begin{eg}
+	$\Zn6 = G, |G|=6$.
+	Take $\sigma = \cyc{1 2 3}\cyc{4 5} \in S_5$.
+
+	Then $H = \csg\sigma \cong \Zn6 = G$, but $H \le S_5$ and $5 < 6$.
+\end{eg}
+
+\chapter*{Orbit Equivalence Relations}
+
+\begin{defn}
+	Suppose $G\actson X$. Define a relation $\sim$ on $X$ by $x\sim y$ iff $\exists g\in G: g\cdot x = y$.
+
+	This $\sim$ is called the \kw{orbit equivalence relation}.
+\end{defn}
+
+\begin{proposition}
+	$\sim$ is an equivalence relation.
+\end{proposition}
+
+\begin{proof} 3 properties:
+	\begin{itemize}
+		\item Reflexivity:
+
+		$x\in X$. $e_G\cdot x = x$, so $x\sim x$
+		\item Symmetry: 
+
+		Suppose $x\sim y$.
+		Fix $g\in G$ such that $g\cdot x = y$. Compute $\inv g \cdot y = \inv g \cdot(g\cdot x) = (g\inv g)\cdot x = e_G\cdot x = x$. So $y\sim x$
+		\item Transitivity:
+
+		Suppose $x\sim y, y\sim z$.
+		Fix $g, h\in G$ such that $g\cdot x = y$ and $h\cdot y = z$.
+		So $(hg)\cdot x = h\cdot(g\cdot x) = h\cdot y = z$, so $x\sim z$
+	\end{itemize}
+
+	It follows that $\sim$ is an equivalence relation.
+\end{proof}
+
+\begin{defn}
+	The equivalence classes of $\sim$ are called \kw{orbits}.
+	Write them like $\orbit_x$. Because $\sim$ is an equivalence class, $\{\orbit_x\}_{x\in X}$ partitions $X$.
+\end{defn}
+
+% TODO: INSERT PARTITION DIAGRAM?
+
+\begin{notation}
+	Sometimes we write $G\cdot x$ to denote the orbit of $x$.
+\end{notation}
+\end{document}
