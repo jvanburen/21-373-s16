@@ -1,1 +1,43 @@
-../algebra.tex
+\input{jvb.tex}
+
+\usepackage{titlecaps}
+\renewcommand{\myname}{Jacob Van Buren}
+\renewcommand{\hworganization}{\texttt{jvanbure}}
+\renewcommand{\mysection}{N/A}
+\renewcommand{\hwtitle}{Algebraic Structures}
+
+\newcommand{\addtoindex}[1]{\index{\titlecap{#1}}}
+\newcommand{\kw}[1]{\underline{#1}\addtoindex{#1}}
+\newcommand{\newdef}{\paragraph{Definition}}
+\newcommand{\dom}{\mathrm{dom}}
+\newcommand{\codom}{\mathrm{codom}}
+\newcommand{\sym}{\mathrm{Sym}}
+\newcommand{\thru}[3]{\ensuremath{#1_{#2}, \hdots, #1_{#3}}}
+\newcommand{\thrun}[2]{\ensuremath{#1_{#2}, \hdots, #1_{n}}}
+\DeclareMathOperator{\GL}{\mathrm{GL}}
+\DeclareMathOperator{\Ker}{\mathrm{Ker}}
+\DeclareMathOperator{\lcm}{\mathrm{lcm}}
+\DeclareMathOperator{\im}{\mathrm{Im}}
+\newcommand{\nsubgrp}{\trianglelefteq}
+\newcommand{\nsupgrp}{\trianglerighteq}
+
+\newcommand{\vphi}{\varphi}
+\newcommand{\vp}{\varphi}
+\newcommand{\Zn}[1]{\ensuremath{(\ZZ/{#1}\ZZ)}}
+\newcommand{\csg}[1]{\left\langle{#1}\right\rangle}
+\newcommand{\orbitof}[1]{\mathcal{O}_{#1}}
+\newcommand{\orbit}{\mathcal{O}}
+
+\newcommand{\cyc}[1]{\ensuremath{\text{(#1)}}}
+\newcommand\overop[2]{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily #2}}}{#1}}}
+\renewcommand{\bar}[1]{\overline{#1}}
+
+% The number `e'.
+\def\eu{\ensuremath{\mathrm{e}}}
+% The imaginary unit.
+\def\iu{\ensuremath{\mathrm{i}}}
+% The differential operator.
+\def\du{\ensuremath{\mathrm{d}}}
+
+\newcommand{\actson}{\curvearrowright}
+

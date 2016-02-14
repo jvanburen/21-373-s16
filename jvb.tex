@@ -1,1 +1,274 @@
-/Users/jacob/Dropbox/sharelatex/s16/jvb.tex
+%\ProvidesPackage{jvb}
+%
+% Author: Jacob Van Buren
+% Last Update: 2013-07-17
+% Version: v1.0.2
+% Description:
+%     Collection of helpful formatting macros and commands
+%     Suitable for TeXing algorithms homework
+%
+
+%%%%%%%%%%%%%%%%%%%%% Imports %%%%%%%%%%%%%%%%%%%%%
+\RequirePackage[utf8]{inputenc}
+% \RequirePackage{fixltx2e}
+\RequirePackage[T1]{fontenc}
+%%\RequirePackage[margin=0.5in,top=1in]{geometry}
+%\RequirePackage{algorithm}
+%\RequirePackage{amsfonts}
+%\RequirePackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{cooltooltips}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{mathtools}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{changepage}
+% \usepackage{titlesec}
+
+\usepackage{mathrsfs}
+
+%\usepackage{xstring}
+
+%\setlength{\headheight}{15.2pt}
+
+% Macros, taken from COS 423 template
+\DeclareMathOperator{\BigOm}{\mathcal{O}}
+\newcommand{\BigOh}[1]{\BigOm\left({#1}\right)}
+\DeclareMathOperator{\BigTm}{\Theta}
+\newcommand{\BigTheta}[1]{\BigTm\left({#1}\right)}
+\DeclareMathOperator{\BigWm}{\Omega}
+\newcommand{\BigOmega}[1]{\BigWm\left({#1}\right)}
+\DeclareMathOperator{\LittleOm}{\mathrm{o}}
+\newcommand{\LittleOh}[1]{\LittleOm\left({#1}\right)}
+\DeclareMathOperator{\LittleWm}{\omega}
+\newcommand{\LittleOmega}[1]{\LittleWm\left({#1}\right)}
+
+
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Exp}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\sign}{\mathrm{sign\ }}
+\newcommand{\abs}{\mathrm{abs\ }}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\zo}{\{0, 1\}}
+\newcommand{\SAT}{\mathit{SAT}}
+\renewcommand{\P}{\mathbf{P}}
+\newcommand{\NP}{\mathbf{NP}}
+\newcommand{\coNP}{\co{NP}}
+\newcommand{\co}[1]{\mathbf{co#1}}
+\newcommand{\Pri}[2][]{\ensuremath{\mathop{\mathbf{Pr}}\nolimits_{#1}\left[{#2}\right]}}
+\renewcommand{\Pr}[2][]{\ensuremath{\mathop{\mathbf{Pr}}\limits_{#1}\left[{#2}\right]}}
+\newcommand{\DTIME}[1]{\mathbf{DTIME}\left[#1\right]}
+\newcommand{\POLYLOG}[1]{\mathrm{POLYLOG}\left(#1\right)}
+\newcommand{\OPT}{\ensuremath{\text{OPT}}}
+\newcommand{\suchthat}{\ensuremath{\text{ s.t. }}}
+\newcommand{\xor}{\oplus}
+\DeclareMathOperator{\sgn}{\mathrm{sgn}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{thm}[theorem]{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{invariant}[theorem]{Invariant}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{property}[theorem]{Property}
+
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{notation}{Notation}
+\newtheorem*{remark}{Remark}
+\newtheorem*{eg}{Example}
+\newtheorem*{exercise}{Exercise}
+
+% My Macros
+
+
+%sets
+\def \setN {\mathbb{N}}
+\def \setQ {\mathbb{Q}}
+\def \setR {\mathbb{R}}
+\def \setZ {\mathbb{Z}}
+\def \setC {\mathbb{C}}
+\def \NN {\mathbb{N}}
+\def \QQ {\mathbb{Q}}
+\def \RR {\mathbb{R}}
+\def \ZZ {\mathbb{Z}}
+\def \CC {\mathbb{C}}
+\def \vs {\emptyset}
+\def \pset {\mathbb{P}}
+\def \tabin {\begin{adjustwidth}{1cm}{0pt}}
+\def \tabout {\end{adjustwidth}}
+\def \divides {\ensuremath{\mkern2mu|\mkern1mu}}
+\def \ndivides {\ensuremath{\mkern1mu{\not{|}}\mkern3mu}}
+
+%linear algebra (TeX macros)
+
+\def\matthree #1,#2,#3|#4,#5,#6|#7,#8,#9 {\left(\begin{array}{ccc}#1&#2&#3\\#4&#5&#6\\#7&#8&#9\end{array}\right)}
+
+\def\mattwo #1,#2|#3,#4 {\left(\begin{array}{cc}#1&#2\\#3&#4\end{array}\right)}
+\def\mattwothree #1,#2,#3|#4,#5,#6 {\left(\begin{array}{ccc}#1&#2&#3\\#4&#5&#6\end{array}\right)}
+\def\mattwofour #1,#2,#3,#4|#5,#6,#7,#8 {\left(\begin{array}{cccc}#1&#2&#3&#4\\#5&#6&#7&#8\end{array}\right)}
+\def\matfourtwo #1,#2|#3,#4|#5,#6|#7,#8 {\left(\begin{array}{cc}#1&#2\\#3&#4\\#5&#6\\#7&#8\end{array}\right)}
+\def\matthreetwo #1,#2|#3,#4|#5,#6 {\left(\begin{array}{cc}#1&#2\\#3&#4\\#5&#6\end{array}\right)}
+
+
+\def\smattwo #1,#2|#3,#4 {\left(\begin{smallmatrix}#1&#2\\#3&#4\end{smallmatrix}\right)}
+\def\smattwothree #1,#2,#3|#4,#5,#6 {\left(\begin{smallmatrix}#1&#2&#3\\#4&#5&#6\end{smallmatrix}\right)}
+\def\smattwofour #1,#2,#3,#4|#5,#6,#7,#8 {\left(\begin{smallmatrix}#1&#2&#3&#4\\#5&#6&#7&#8\end{smallmatrix}\right)}
+\def\smatthreetwo #1,#2|#3,#4|#5,#6 {\left(\begin{smallmatrix}#1&#2\\#3&#4\\#5&#6\end{smallmatrix}\right)}
+
+\def\pmattwo #1,#2|#3,#4 {\left(\begin{array}{cc}#1&#2\\#3&#4\end{array}\right)}
+
+\def\matthreefracs #1,#2,#3|#4,#5,#6|#7,#8,#9 {\left(\begin{array}{ccc}#1&#2&#3\\#4&#5&#6\\[3pt]#7&#8&#9\end{array}\right)}
+
+%vertical
+\def\vectwo #1,#2               {\left(\begin{matrix}#1\\#2\end{matrix}\right)}
+\def\vectwosmall #1,#2          {\left(\begin{matrix}#1&#2\end{matrix}\right)}
+\def\vecthree #1,#2,#3          {\left(\begin{matrix}#1\\#2\\#3\end{matrix}\right)}
+\def\vecfour #1,#2,#3,#4        {\left(\begin{array}{c}#1\\#2\\#3\\#4\end{array}\right)}
+\def\vecfourrow #1,#2,#3,#4     {\left(\begin{matrix}#1&#2&#3&#4\\\end{matrix}\right)}
+\def\vecfive #1,#2,#3,#4,#5     {\left(\begin{matrix}#1\\#2\\#3\\#4\\#5\end{matrix}\right)}
+\def\vecsix #1,#2,#3,#4,#5,#6   {\left(\begin{matrix}#1\\#2\\#3\\#4\\#5\\#6\end{matrix}\right)}
+
+%horizontal
+\def\hvectwo #1,#2              {\left\langle #1,#2\right\rangle}
+\def\hvecthree #1,#2,#3         {\left\langle #1,#2,#3\right\rangle}
+\def\hvecfour #1,#2,#3,#4       {\left\langle #1,#2,#3,#4\right\rangle}
+\def\hvecfive #1,#2,#3,#4,#5    {\left\langle #1,#2,#3,#4,#5\right\rangle}
+\def\hvecsix #1,#2,#3,#4,#5,#6  {\left\langle #1,#2,#3,#4,#5,#6\right\rangle}
+
+
+\def\ij{\mkern1mui\mkern1mu}
+\def\mstart{\left(\begin{array}}%{c c ...etc... c}
+\def\mend{\end{array}\right)}
+\def\smstart{\left(\begin{smallmatrix}}
+\def\smend{\end{smallmatrix}\right)}
+\def\vstt{\left(\begin{array}{c}}
+\def\vend{\end{array}\right)}
+\def\becomes{\;\raise.17ex\hbox{\ensuremath{\scriptstyle\sim}}\;}
+\def\stbox{\mkern2mu\rule[.2ex]{2pt}{2pt}\mkern2mu}
+\def\RAA{\ensuremath{\mathit{R.A.A.}}}
+\def\Span#1{\ensuremath{\mathrm{Span}\left(#1\right)}}
+\newcommand\closure{\ensuremath{\mathscr{C}}}
+\newcommand{\txtif}{\ensuremath{\text{if }}}
+\newcommand{\txtow}{\ensuremath{\text{otherwise}}}
+\newcommand{\txtelse}{\ensuremath{\text{else }}}
+
+\def\tr#1{{#1}^\mathrm{T}}
+\def\inv#1{{#1}^{-1}}
+\def \tabin {\begin{adjustwidth}{1cm}{0pt}}
+\def \tabout {\end{adjustwidth}}
+
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\len}{|}{|}
+\DeclarePairedDelimiter{\set}{\{}{\}}
+\DeclarePairedDelimiter{\paren}{(}{)}
+\DeclarePairedDelimiter{\brackets}{[}{]}
+
+
+\newcommand{\setnextsection}[1]{\setcounter{section}{#1}\addtocounter{-1}}
+\newcommand{\skipsection}{\addtocounter{section}{1}\setcounter{subsection}{0}}
+\newcommand{\setnextsubsection}[1]{\setcounter{subsection}{#1}\addtocounter{-1}}
+\newcommand{\setnextsubsubsection}[1]{\setcounter{subsubsection}{#1}\addtocounter{-1}}
+\renewcommand{\thesubsubsection}{\thesubsection\,(\alph{subsubsection})}
+
+
+\def\noalignspacing{%
+    \setlength{\abovedisplayskip}{0pt}%
+    \setlength{\belowdisplayskip}{0pt}%
+    \setlength{\abovedisplayshortskip}{0pt}%
+    \setlength{\belowdisplayshortskip}{0pt}%
+}
+% \newenvironment{smallign*}{%
+%     \bgroup%
+%     \setlength{\abovedisplayskip}{0pt}%
+%     \setlength{\belowdisplayskip}{0pt}%
+%     \setlength{\abovedisplayshortskip}{0pt}%
+%     \setlength{\belowdisplayshortskip}{0pt}%
+%     \begin{align*}%
+% }{%
+%     \end{align*}%
+%     \egroup%
+% }
+
+\newcommand{\mcaption}[3][1 1 0]{\cooltooltip[#1]{Subject}{#3}{}{}{#2}}
+%makes mouseover captions
+%Usage: \mcaption{text}{caption to display}
+
+
+%%%%%%%%%%%%%%%%%% Header Macros %%%%%%%%%%%%%%%%%
+\newcommand{\myname}{redefine $\backslash$myname}
+\newcommand{\hworganization}{redefine $\backslash$hworganization}
+\newcommand{\hwtitle}{redefine $\backslash$hwtitle}
+\newcommand{\hwnum}{redefine $\backslash$hwnum}
+\newcommand{\assigndate}{redefine $\backslash$assigndate}
+\newcommand{\duedate}{redefine $\backslash$duedate}
+\newcommand{\mysection}{redefine $\backslash$mysection}
+
+% Header styles
+\fancypagestyle{algshw}{
+ \fancyhf{}
+ \fancyhead[L]{
+  \myname\\
+  {\hworganization}
+ }
+ \fancyhead[C]{
+  \textbf{
+   \hwtitle
+  }\\
+  \textbf{
+   \hwnum
+  }
+ }
+ \fancyhead[R]{
+  Given: \assigndate\\
+  Due: \duedate
+ } 
+ \fancyfoot[C]{
+  Page \thepage\ of \pageref{LastPage}
+ }
+ \renewcommand{\headrulewidth}{0.6pt}
+ \renewcommand{\footrulewidth}{0.4pt}
+}
+
+\fancypagestyle{cmuhw}{
+ \fancyhf{}
+ \fancyhead[L]{
+  \myname\\
+  {\hworganization}
+ }
+ \fancyhead[C]{
+  \textbf{
+   \hwtitle
+  }\\
+  \textbf{
+   \hwnum
+  }
+ }
+ \fancyhead[R]{
+  Section: \mysection\\
+  Due: \duedate
+ }
+ \fancyfoot[C]{
+  Page \thepage\ of \pageref{LastPage}
+ }
+ \renewcommand{\headrulewidth}{0.6pt}
+ \renewcommand{\footrulewidth}{0.4pt}
+}
+
+
