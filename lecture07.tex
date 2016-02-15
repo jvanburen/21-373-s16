@@ -14,7 +14,7 @@ Given $x, y\in G$, $x\sim y \pmod H$ iff \[
 Last time: we showed it was an equivalence relation.
 
 What are the equivalence classes of $\sim\pmod H$?
-We examine 
+We examine
 
 \begin{align*}
 	[x] &= \{y\in G: x\sim y\pmod H\}\\
@@ -45,7 +45,7 @@ Examples:
 	\item $G = S_3 = \{e, \cyc{1 2}, \cyc{1 3}, \cyc{2 3}, \cyc{1 2 3}, \cyc{1 3 2}\}$
 	Take $H = \{e, \cyc{1 2 3}, \cyc{1 3 2}\} \le S_3$ (the cyclic subgroup of (1 2 3)).
 
-	So what are the cosets? $eH = \{eh: h\in H\} = \{h : h \in H\} = H$. 
+	So what are the cosets? $eH = \{eh: h\in H\} = \{h : h \in H\} = H$.
 	(In general, $eH$ is always just $H$). (Even more generally, $xH = H$ whenever $x\in H$.)
 
 	Another coset is (1 2)$H$.
@@ -56,7 +56,7 @@ Examples:
 		 	\cyc{1 2}&e &= \cyc{1 2}\\
 			\cyc{1 2}&\cyc{1 2 3} &= \cyc{2 3}\\
 			\cyc{1 2}&\cyc{1 3 2} &= \cyc{1 3}\\
-		 \end{array} 
+		 \end{array}
 		 \right\} = \{\cyc{1 2}, \cyc{2 3}, \cyc{1 3}\}
 	\]
 	We note that $\cyc{1 2}H = \cyc{2 3}H = \cyc{1 3}H$, as each of those
@@ -76,7 +76,7 @@ Examples:
 		\begin{array}{ll}
 		 	\cyc{1 2 3} \;e &= \cyc{1 2 3}\\
 			\cyc{1 2 3} \;\cyc{1 3} &= \cyc{2 3}\\
-		 \end{array} 
+		 \end{array}
 		 \right\} = \{\cyc{1 2 3}, \cyc{2 3}\}
 	\]
 	Next coset after that is  $\cyc{1 2}K = \{\cyc{1 2}, \cyc{1 3 2}\}$.
@@ -96,9 +96,9 @@ In the last two examples, it wasn't a coincidence that each coset was of the sam
 
 	\begin{claim}[1]
 	 	$\varphi$ is surjective.
-	 \end{claim} 
+	 \end{claim}
 	 \begin{proof}
-	 	Suppose $y \in xH$. 
+	 	Suppose $y \in xH$.
 
 	 	By definition of $xH$, $\exists h\in H$ such that $y=xh$. so $y=\varphi(h)$.\qedhere(C1)
 	 \end{proof}
@@ -112,11 +112,11 @@ In the last two examples, it wasn't a coincidence that each coset was of the sam
 
 		Thus, $\inv x(xh_1) = \inv x(xh_2)\implies h_1=h_2$ as desired. \qedhere(C2)
 	 \end{proof}
-	
+
 	Thus $\varphi$ is a bijection, meaning $|xH| = |H|$ as desired.\qedhere(Prop.)
 \end{proof}
 
-\begin{theorem}[Lagrange]
+\begin{theorem}[Lagrange]\index{Lagrange's Theorem}
 	Suppose that $G$ is a finite group and $H\le G$.
 
 	Then $|H|$ divides $|G|$.
