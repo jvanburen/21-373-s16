@@ -1,0 +1,90 @@
+\documentclass[notes.tex]{subfile}
+
+\begin{document}
+
+\lecture{14}{2016--02--15}
+We will continue referencing the \nameref{OST} for the rest of the week
+
+\begin{eg}
+	Fix $p\ge 2$ prime and $c\in \ZZ^+ = \{1, 2, 3, \ldots\}$.
+	How many distinct (up to rotation) necklaces can you make of length $p$ out of $c$ colors of beads?
+	%TODO: insert illustration of isomorphic necklaces with (p=5, c=3) and show that flipping is not allowed.
+
+	More formally, let $X= \{\text{sequences of length } p \text{ with entries in } \{1,2,\ldots, c\}\}$.
+	\tabularnewline
+	Also, let $G  = \Zn p$ act on $X$ by ``rotating the indices'' $\pmod p$.
+
+	For example, if $x = (1,2,1,2,3)\in X$, then $\bar 1\cdot x = (3,1,2,1,2), \bar 3\cdot x = (1,2,3,1,2)$.
+
+	Question: How many orbits does this action have?
+
+	We know by the \nameref{OST} that for any $x\in X$, $|\orbit_x|\cdot|G_x| = |G| = p$. Thus $\{|\orbit_x|, |G_x|\} = {1, p}$.
+	Thus, let us pick an arbitrary necklace $x\in X$ and examine $\orbit_x$ and $G_x$.
+	\begin{itemize}
+		\item[Case 1:] $|\orbit_x| = 1$. Then $|G_x| = p$. So $g\cdot x=x$ for \emph{all} $g\in \Zn p$. This necessitates that every bead in $x$ is the same as the next one, meaning all the beads on $x$ are the same color. As there are $c$ colors, there are exactly $c$-many possible distinct $x\in X$ in this case. 
+		\item[Case 2:] $|\orbit_x| = p$. Then $|G_x| = 1$. All other $x\in X$ fall into this case. $|X| = c^p$ as there are $p$ places with $c$ choices each. Thus there are $c^p - c$ necklaces falling into this case.
+	\end{itemize}
+
+	Thus, the total number of orbits is $c+\frac{c^p}{p}$. Furthermore, this implies that $\frac{c^p}{p}$ is an integer, as it is counting something.
+\end{eg}
+
+Next, we make necklaces out of group elements.
+
+\begin{theorem}[Cauchy]
+	\addtoindex{Cauchy's Theorem}
+	\label{cauchy}
+	Suppose that $G$ is a finite group $|G|=n$ and $p\ge 2$ is a prime such that $p\divides n$. Then $\exists g\in G$ such that $|g| = p$.	
+\end{theorem}
+\begin{proof}
+	Let $X$ be the set of sequences $(g_1, g_2, \ldots, g_p)$ of length $p$ with elements from $G$, such that $\prod_{i=1}^pg_i = e_G$.
+	\begin{claim}[1]
+		$|X|=n^{p-1}$
+	\end{claim}
+	\begin{proof}
+		Fix $g_1, \ldots, g_{p-1}$. Then $g_p = (g_1g_2\ldots g_{p-1})^{-1}$ is the unique way to land in $X$. \qedhere(C1)
+	\end{proof}
+	\begin{claim}[2]
+		Suppose $(g_1, g_2, \ldots, g_p)\in X$. Then $(g_p, g_1, g_2, \ldots g_{p-1}) \in X$.
+	\end{claim}
+	\begin{proof}
+		We know $\prod_{i=1}^pg_i = e_G$. Multiplying both sides on the right by $\inv g_p$ gives $\prod_{i=1}^{p-1}g_i = \inv{g_p}$. Then, we multiply on the left by $g_p$. to get $g_p\prod_{i=1}^{p-1}g_i = e_G$. Note that this is simply conjugating by $g_p$.\qedhere(C2)
+	\end{proof}
+	Let $H=\Zn p$, $H \actson X$ by ``rotation.'' So, $\bar 1 \cdot(g_1, g_2, \ldots, g_p) = (g_p, g_1, \ldots, g_{p-1})$. By claim 2, we note that this is a group action. By the \nameref{OST} , we have for every $x\in X, |\orbit_x|\cdot|H_x| = |H| = |\Zn p| = p$. So for every $x\in X, \orbit_x = 1 \text{ or }p$.
+
+	Let's say $k_1$ is the number of orbits of cardinality 1, and $k_p$ is the number of orbits of cardinality $p$.
+
+	Hence, $1\cdot k_1 + p\cdot k_p = |X| = n^{p-1}$, so $k-1 = n^{p-1} - p\cdot k_p$. Thus $p\divides k$.
+	\begin{claim}[3]
+		$k_1 \ge 1$.
+	\end{claim}
+	\begin{proof}
+		$(\underbrace{e_G, e_G, \ldots, e_G}_{p \text{ times}}) \in X$\qedhere(C3)
+	\end{proof}
+	Thus, by claim 3 and the fact that $p\divides k$, $k_1\ge p$. In particular, $k_1\ge 2$. So there is some $x\in X$ with $x\ne(e_G, e_G, \ldots, e_G)$ such that $\orbit_x=1$. So $x=(\underbrace{g, g, \ldots, g}_{p \text{ times}})$ with $g\ne e_G$. 
+	$x\in X \implies \prod_{i=1}^p g = e_G \implies g^p = e_G$. Thus $|g| = p$, so we're done.\qedhere(Cauchy)
+\end{proof}
+
+\begin{remark}
+	The above theorem is \emph{false} if $p$ were to be composite.
+\end{remark}
+
+Lead in to next lecture: Conjugation.
+
+Let $G\actson G$ by conjugation. $\forall g\in G, \forall x\in G: g\cdot x = gx\inv g$
+
+If $x\in G$, what is $G_x$ (under conjugation)?
+\[
+	G_x 
+	= \{g\in G : g\cdot x = x\} 
+	= \{g\in G: gx\inv g = x\} 
+	= \{g\in G:gx =xg\}
+\]
+In other words, $G_x = \{g\in G:g\text{ commutes with } x\}$.
+
+\begin{defn}
+	The \kw{center} of $G$, denoted $Z(G)$\addtoindex{$Z(G)$} is the set $\{x\in G: \forall g\in G (gx = xg)\}$.
+\end{defn}
+
+So $x\in Z(G) \iff G_x = G$ (for conjugation). This is also equivalent to saying $\orbit_x = \{x\}$.
+
+\end{document}
