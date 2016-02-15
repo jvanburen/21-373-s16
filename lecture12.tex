@@ -22,7 +22,7 @@ There are three main actions:
 	Note that $gx\inv g$ is simply $x$ conjugated by $\inv g$, so it doesn't matter whether we write $\inv gxg$ or $gx\inv g$.
 \end{itemize}
 
-\begin{theorem}[Cayley]
+\begin{theorem}[Cayley]\index{Cayley's Theorem}
 	Suppose $G$ is a group. Then there is a set $X$ and a subgroup $H\le S_X$ such that $G\cong H$.
 
 	Moreover, we can choose $X$ to have cardinality $|G|$. (i.e., if $|G| = n$, we can find an isomorphic copy of $G$ inside $S_n$.)
@@ -37,11 +37,11 @@ There are three main actions:
 		$\Ker(\vp) = \{e_G\}$.
 	\end{claim}
 	\begin{proof}[Proof (Claim):]
-	Suppose $g\in G$ such that $\vp(g) = e \in S_G$. so $\lambda_g = e$. 
+	Suppose $g\in G$ such that $\vp(g) = e \in S_G$. so $\lambda_g = e$.
 
 	In particular, $e_G = \lambda_g(e_G) = ge_G = g$, so $g = e_G$.\qedhere(Claim)
 	\end{proof}
-	By the first isomorphism theorem, $G/\Ker(\vp) \cong \im(\vp)$. Denote by $H$ the image of $\vp$. $H \le S_G$. 
+	By the first isomorphism theorem, $G/\Ker(\vp) \cong \im(\vp)$. Denote by $H$ the image of $\vp$. $H \le S_G$.
 
 	$G/\Ker(\vp) = G/\{e_G\} \cong G$, so $G\cong H$. \qedhere(Theorem)
 \end{proof}
@@ -59,7 +59,7 @@ There are three main actions:
 		3\mapsto 1\\
 		4\mapsto 2
 	\end{cases}$
-	Run cycle decomposition on each % to get 
+	Run cycle decomposition on each % to get
 	% TODO: INSERT CYCLE DECOMPOSITIONS HERE
 
 	$G\cong \{e, \cyc{1 2}\cyc{3 4}, \cyc{1 3}\cyc{2 4}, \cyc{1 4}, \cyc{2 3}\} \le S_4$.
@@ -68,7 +68,7 @@ There are three main actions:
 \end{eg}
 
 \begin{remark}
-	Cayley's theorem is not always ``optimal.'' Sometimes $|G| = n$ and $m < n$ such that $H\le S_m$ and $G\cong H$. 
+	Cayley's theorem is not always ``optimal.'' Sometimes $|G| = n$ and $m < n$ such that $H\le S_m$ and $G\cong H$.
 \end{remark}
 
 \begin{eg}
@@ -95,7 +95,7 @@ There are three main actions:
 		\item Reflexivity:
 
 		$x\in X$. $e_G\cdot x = x$, so $x\sim x$
-		\item Symmetry: 
+		\item Symmetry:
 
 		Suppose $x\sim y$.
 		Fix $g\in G$ such that $g\cdot x = y$. Compute $\inv g \cdot y = \inv g \cdot(g\cdot x) = (g\inv g)\cdot x = e_G\cdot x = x$. So $y\sim x$

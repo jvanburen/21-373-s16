@@ -8,9 +8,9 @@
 	Given $a, b\in\ZZ$, denote by $\ZZ(a, b)$ the set $\{ax+by | x,y\in\ZZ\}$.
 \end{definition}
 
-\begin{theorem}[Euclid, Bezout]
+\begin{theorem}[Euclid, Bezout]\index{B\'ezout's identity}
 	 Suppose $a, b\in\ZZ$ are nonzero and let $d$ be the smallest positive element of $\ZZ(a, b)$, then $d$ is the unique positive GCD of $a$ and $b$.
-\end{theorem} 
+\end{theorem}
 \begin{proof}
 	$d$ is a gcd of $a, b$
 	\begin{enumerate}
@@ -25,7 +25,7 @@
 		\end{enumerate}
 		\item (Uniqueness of positive GCD)
 			Suppose $d_1, d_2$ are both positive gcds of $a$ and $b$.
-			$d_1\divides d_2$ and $d_2 \divides d_1$ as they are both gcds. i.e., $\exists m, n \in\ZZ$ such that $d_2=md_1$ and $d_1=nd_2$. As $\sgn(d_1) = \sgn(d_2$), $m \ge 0$ and $n \ge 0$. As $d_1 = mn d_1$, $m = n = 1$. Thus $d_1 = d_2$. 
+			$d_1\divides d_2$ and $d_2 \divides d_1$ as they are both gcds. i.e., $\exists m, n \in\ZZ$ such that $d_2=md_1$ and $d_1=nd_2$. As $\sgn(d_1) = \sgn(d_2$), $m \ge 0$ and $n \ge 0$. As $d_1 = mn d_1$, $m = n = 1$. Thus $d_1 = d_2$.
 	\end{enumerate}
 \end{proof}
 
@@ -34,7 +34,7 @@
 \end{definition}
 
 \begin{theorem}
-	Suppose $p$ is prime and $a, b\in\ZZ$ are nonzero, and $p\divides (ab)$ then $p\divides a$ or $p\divides b$.
+	If $p$ is prime, $a, b\in\ZZ$ are nonzero, and $p\divides (ab)$, then $p\divides a$ or $p\divides b$.
 \end{theorem}
 
 \begin{proof}
@@ -47,10 +47,11 @@
 \end{proof}
 
 \begin{theorem} [Unique Prime Factorization]
+\index{Unique Prime Factorization}
 	Suppose that $a > 1$ an integer, $m, n \ge 1$ and $p_1 \le p_2 \le \ldots \le p_m,  q_1 \le q_2\le \ldots \le q_m$ are positive primes.
-\end{theorem} 
+\end{theorem}
 
-Then $m=n$ and $p_i=q_i$ for all $i$. 
+Then $m=n$ and $p_i=q_i$ for all $i$.
 \begin{proof}
 	By induction, it suffices to show $p_1 = q_1$. Suppose not.
 WLOG, assume $p_1 < q_1$. We know that $p_1\divides a$ (as $p_1\divides q_1q_2\ldots q_n$) Hence, $\exists i\le n$ such that $p_i \divides q_i$. since $p_i$ and $q_i$ prime, $p_1 = q_i$. However, $p_1 < q_1 \le q_i = p_1$ so $p_1 < p_2$ contradiction.
