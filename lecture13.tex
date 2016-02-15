@@ -108,18 +108,15 @@
 		$\sim \cong \approx$
 	\end{claim}
 	\begin{proof}
-		First show $g\sim h \implies g\approx h$.
+		First show $g\sim h \implies g\approx h$, then show $g\approx h \implies g\sim h$.
 		\begin{itemize}
-			\item Suppose $\inv gh\in G_x$.
-				$(\inv gh)\cdot x = x$.
+			\item Suppose $\inv gh\in G_x$, then
+				$(\inv gh)\cdot x = x$, so
 				$\inv g \cdot (h \cdot x) = x$.
-				Act by g: 
-					$g\cdot (\inv g \cdot (h \cdot x)) = g\cdot x$.
-					$(g\inv g)\cdot (h\cdot x) = g\cdot x$
-					$h\cdot x = g\cdot x$, so $g\approx h$.
-					%TODO: understand and clean up
-			\item Next show $g\approx h \implies g\sim h$.
 
+				Act by $g$ on both sides. 
+					$g\cdot x = g\cdot (\inv g \cdot (h \cdot x)) = (g\inv g)\cdot (h\cdot x) = h\cdot x$, so $g\approx h$.
+			\item 
 			Suppose $g\cdot h = h \cdot x$. Act by $\inv g$ on both sides. $\inv g \cdot (g\cdot h) = \inv g (h\cdot x)$.
 
 			$x = e_G\cdot x = (\inv gh)\cdot x$, thus $\inv gh \in G_x$.
