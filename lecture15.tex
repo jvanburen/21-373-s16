@@ -1,0 +1,102 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{15}{2016--02--17}
+\begin{classnote}{orange!10}{orange!25}
+Midterm coming up: Februrary 26th in class (1:30-2:20pm)
+
+Class Plans: Up to spring break, we'll continue talking about groups
+
+After spring break, we'll start ring theory.
+\end{classnote}
+
+\begin{defn}
+	$G\actson X$ $x\in X$ is a \kw{fixed point} of the action if $\forall g\in G (g\cdot x) = x$. (This is equivalent to saying $G_x = G$, or $\orbit_x = \{x\}$.)
+\end{defn}
+
+\begin{eg}\leavevmode
+	\begin{enumerate}[(A)]
+		\item $\Zn n$ acts by ``rotation'' on ``$c^n$'' = sequences of length $n$ with elements in $\{1, 2, \ldots, c\}$. Then the fixed points are the constant sequences.
+		\item $G\actson G$ by left or right multiplication and $G\ne \{e_G\}$, then there are \emph{no} fixed points. (Take $g\ne e_G$, then $g\cdot h = gh \ne h$.)
+		\item $G\actson G$ by conjugation. $g\cdot x = gx\inv g$. Then $x$ is a fixed point iff $x\in Z(G)$, i.e., $\forall g\in G (xg = gx)$, $x$ commutes with everything in $G$.
+	\end{enumerate}
+\end{eg}
+
+\begin{defn}
+	Given a prime $p\ge 2$, we say that a finite group $G$ is a $p$-group if $|G| = p^k$ for some $k\in\NN^+$.
+\end{defn}
+
+\begin{proposition}
+	The following are equivalent:
+	\begin{enumerate}
+		\item $G$ is a $p$-group
+		\item Every subgroup $H\le G$ is a $p$-group
+		\item Every $g\in G$ has $|g| = p^i$ for some $i\in\NN$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Left to the reader.
+\end{proof}
+
+\begin{theorem}[Fixed-Point Lemma]
+\addtoindex{Fixed-Point Lemma}\label{FPL}
+	Suppose $p$ prime, $G$ is a $p$-group and $G\actson X$, and let $F$ be the number of fixed points. Then, $F \equiv |X| \pmod p$.
+\end{theorem}
+\begin{proof}
+	Say $|G| = p^k$.
+	By the \nameref{OST}, for $x\in X$, $|\orbit_x|\cdot|G_x| = p^k$.
+	so $|\orbit_x| \in \{1, p, p^2, \ldots, p^k\}$.
+
+	For $0 \le i \le k$, denote by $n_{p_i}$  the number of orbits of size $p^i$.
+	\[
+		|X| = \sum_{i=0}^k p^i\cdot n_{p^i}
+	\] as the orbits partition $X$. %TODO: insert illustration?
+	Thus, $|X| - n_1 = \sum_{i=1}^k p^i\cdot n_{p^i}$, so $p\divides (|X| - n_1)$. It follows that $n_1\equiv |X|\pmod p$, as desired. \qedhere(Lem)
+\end{proof}
+
+\begin{corollary}
+	Suppose $p$ prime and $G\ne\{e\}$ is a $p$-group. Then $|Z(G)|\ge p$.
+\end{corollary}
+\begin{proof}
+	$|Z(G)| = $ number of fixed points of $G\actson G$ by conjugation. Thus, by the \nameref{FPL}, $|Z(G)|\cong |G| \pmod p$. So, $|Z(G)|$ is a multiple of $p$.
+
+	\begin{claim}
+		$|Z(G)| \ne 0$. This is true as $e_G\in Z(G)$.
+	\end{claim}
+	Thus, $|Z(G)|\ge p$. \qedhere(Cor)
+\end{proof}
+
+\begin{proposition}
+	Suppose $p$ prime, $G$ is a group with $|G| = p^2$.
+	Then, $G\cong \Zn{p^2}$ OR $G\cong (\Zn p\times \Zn p)$.
+\end{proposition}
+
+\begin{proof}
+	If $\exists g\in G$ with $|g| = p^2$ then $\csg{g} = G$, so $G\cong \Zn{p^2}$.
+
+	Otherwise, all non-identity elements of $G$ have order $p$. 
+
+	Since $|Z(G)| \ge p\ge 2$, we may fix non-identity $h\in Z(G)$ The set $\csg h$ has cardinality $p$. Now pick $k\in G\setminus \csg h$.
+	Put $H := \csg h$ and $K := \csg k$, both with cardinality $p$.
+
+	\begin{claim}
+		The map $\vp:(\Zn p\times \Zn p) \to G$ with $\vp(\bar i, \bar m) = h^ik^m$ is an isomorphism. ($\bar i$ and $\bar m$ are residue classes of $\Zn p$.) Note that if $i, j \in \bar i$, then $h^i = h^j$, so $h^i(h^j)^{-1} = h^{i-j} = h^{pa} = e_G$.
+	\end{claim}
+	\begin{proof}
+		First we show $\vp$ is a homomorphism, i.e., $\vp(\bar i + \bar j, \bar m + \bar n) = (h^ik^m)(h^jk^n) = \vp(\bar i, \bar m)\vp(\bar j, \bar n)$.
+			
+		It is apparent that $\vp(\bar i + \bar j, \bar m + \bar n) = h^{i+j}k^{m+n} = h^ih^jk^mk^n$. However, as $h$ is in the center of $G, $ $h$ and $k$ commute, so $h^ih^jk^mk^n = h^ik^mh^jk^n$ as desired.
+
+		Next we show that $\vp$ is an isomorphism by showing it is also a bijection.
+
+		Since $|(\Zn p\times \Zn p)| = |G| = |p^2|$, to show $\vp$ is bijective, it suffices to show that $\vp$ is \emph{injective}. In turn, it is sufficient to prove $\Ker(\vp) = \{e_G\}.$ 
+
+
+			As we proved in a homework, $H\cap K \le H$, so $|H\cap K|$ is 1 or $p$.
+			$k\notin H \cap K$, so $|H\cap K| \lneq |K|$. Thus, as the cardinality of the intersection must divide $p^k$, the intersection has cardinality 1, meaning $H\cap K = \{e_G\}$
+
+		Suppose $\bar i, \bar m \in \Zn p$ with $\vp(\bar i, \bar m) = e_G$. Then $h^ik^m = e_G$. Thus, $\underbrace{h^i}_{\in H} = \underbrace{k^{-m}}_{\in K}$.
+		 Since $h^i = k^{-m}\in H\cap K$, $h^i = k^{-m} = e_G$. So $i, m$ are multiples of $p$. Hence, $(\bar i, \bar m) = (\bar 0, \bar 0)$. Thus $\Ker(\vp) = \{e_G\}$, so $\vp$ is injective as desired, meaning $\vp$ is an isomorphism. \qedhere(prop)
+	\end{proof}
+\end{proof}
+\end{document}
