@@ -12,20 +12,20 @@
 	 Suppose $a, b\in\ZZ$ are nonzero and let $d$ be the smallest positive element of $\ZZ(a, b)$, then $d$ is the unique positive GCD of $a$ and $b$.
 \end{theorem}
 \begin{proof}
-	$d$ is a gcd of $a, b$
+	$d$ is a GCD of $a, b$
 	\begin{enumerate}
-		\item (Existance of positive GCD)
+		\item (Existence of positive GCD)
 		\begin{enumerate}
 			\item By integer division, $\exists q \in \ZZ, \exists r\in \ZZ$ with $0\le r < d$ such that $a = qd+r$. If $r=0$ then $d|a$, so done.
 			Otherwise, suppose $0 < r < d$, so $r = a-qd$
 			since $d\in\ZZ(a, b)$, we may fix $x, y$ st $d=ax+by$, meaning $r=a-q(ax+by) = a(1-qx) + b(-qy)$, so $r\in \ZZ(a, b)$, meaning $d$ was not the minimal positive element in $\ZZ(a, b)$, RAA.
 			Thus, $d\divides a$
 			\item
-			HW: If $c\divides a$ and $c\divides b$ then $c\divides(ax+by)$ for all $x, y\in\ZZ$ Hence $c\divides d$
+			Homework: If $c\divides a$ and $c\divides b$ then $c\divides(ax+by)$ for all $x, y\in\ZZ$ Hence $c\divides d$
 		\end{enumerate}
 		\item (Uniqueness of positive GCD)
-			Suppose $d_1, d_2$ are both positive gcds of $a$ and $b$.
-			$d_1\divides d_2$ and $d_2 \divides d_1$ as they are both gcds. i.e., $\exists m, n \in\ZZ$ such that $d_2=md_1$ and $d_1=nd_2$. As $\sgn(d_1) = \sgn(d_2$), $m \ge 0$ and $n \ge 0$. As $d_1 = mn d_1$, $m = n = 1$. Thus $d_1 = d_2$.
+			Suppose $d_1, d_2$ are both positive GCDs of $a$ and $b$.
+			$d_1\divides d_2$ and $d_2 \divides d_1$ as they are both GCDs. i.e., $\exists m, n \in\ZZ$ such that $d_2=md_1$ and $d_1=nd_2$. As $\sgn(d_1) = \sgn(d_2$), $m \ge 0$ and $n \ge 0$. As $d_1 = mn d_1$, $m = n = 1$. Thus $d_1 = d_2$.
 	\end{enumerate}
 \end{proof}
 
@@ -40,7 +40,7 @@
 \begin{proof}
 	Consider $d = \gcd(p, a)$. Since $d\divides p$, we know $d=p$ or $d = 1$.
 	\begin{itemize}
-		\item[] If $d=p$: By def of GCD, $d\divides p$ and $d\divides a$ ie. $p\divides p$ and $p \divides a$ so we're done.
+		\item[] If $d=p$: By def of GCD, $d\divides p$ and $d\divides a$ i.e. $p\divides p$ and $p \divides a$ so we're done.
 		\item[] If $d=1$: Fix integers $x$ and $y$ such that $px+ay=1$. $b=p(xb)+(ab)y$
 		as $p\divides p(xb)$ and $p\divides \underbrace{(ab)}_{\uparrow}y$, $p\divides b$.
 	\end{itemize}
