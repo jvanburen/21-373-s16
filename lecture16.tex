@@ -1,0 +1,111 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{16}{2016--02--19}
+\begin{classnote}{orange!10}{orange!25}
+	Review sheet for Midterm 1 will be posted this afternoon.
+
+	(Exam on February 26th in class).
+\end{classnote}
+
+Conjugation in $S_n$.
+
+\begin{eg}
+	Suppose $\sigma = \cyc{1 3 4}\cyc{2 5}\in S_5$ and $\tau=\cyc{1 2 3 4 5}\in S_5$.
+	What is $\tau\sigma\inv\tau$?
+
+	Compute $\inv\tau=\cyc{1 5 4 3 2}$.
+
+	So, $\tau\sigma\inv\tau = \cyc{1 2 3 4 5}\cyc{1 3 4}\cyc{2 5}\cyc{1 5 4 3 2} = \cyc{1 3}\cyc{2 4 5}$
+\end{eg}
+
+\begin{proposition}
+	Suppose $\sigma, \tau \in S_n$.
+	Fix $a, b\in \{1,2,\ldots, n\}$.
+	Supose $\sigma' := \tau\sigma\inv \tau$.
+	If $\sigma(a) = b$ then $\sigma'(\tau(a)) = \tau(b)$
+\end{proposition}
+\begin{proof}
+	$\sigma'(\tau(a)) = (\tau\sigma\inv \tau\tau)(a) = (\tau\sigma)(a) = \tau(b)$.
+\end{proof}
+But why is this useful?
+Conjugation in $S_n$ is ``relabeling.'' 
+Revisiting the previous example:
+$\sigma = \cyc{1 3 4}\cyc{2 5}$
+$\tau\sigma\inv\tau = $ ($\tau(1)$ $\tau(3)$ $\tau(4)$)($\tau(3)$ $\tau(5)$) = (2 4 5)(3 1) = (1 3)(2 4 5).
+
+We've shown: Whenever $\sigma, \sigma'$ are conjugate in $S_n$, then $\sigma, \sigma'$ have the same \kw{cycle type} (i.e. the same number of cycles of each length).
+
+\begin{defn}
+	The \kw{cycle type} of a permutation is the number of cycles of each length in the permutation's cycle decomposition
+\end{defn}
+
+\begin{theorem}
+	$\sigma, \sigma'\in S_n$ are conjugate (in $S_n$) if and only if they have the same cycle type.
+\end{theorem}
+\begin{proof}[Sketch]
+	We know that conjugate $\implies$ same cycle type.
+	For the converse, suppose $\sigma, \sigma'$ have the same cycle type.
+
+	Shuffle the cycles (because they're disjoint) in $\sigma$ to line up with those of $\sigma$. 
+
+	Then take the permutation that takes the elements in the cycles of $\sigma$ to the corresponding elements in the cycles of $\sigma'$. (Also, make sure that fixed points are sent to fixed points.)
+
+	This generates a permutation $\tau$ such that $\tau\sigma\inv\tau = \sigma'$, so $\sigma$ and $\sigma'$ are conjugate.
+	\qedhere(sketch)
+	%TODO: INSERT THE PICTURE
+\end{proof}
+
+\begin{eg}
+	$\sigma = \cyc{1 3}\cyc{2 5 6}\cyc{4 7}\in S_7$
+	$\sigma' = \cyc{1 5 7}\cyc{2 3}\cyc{4 6}\in S_7$.
+
+	Thus, by our last theorem, they are conjugate.
+
+	Shuffle $\sigma'$ to corespond with $\sigma$:
+
+	$\sigma = \cyc{1 3}\cyc{2 5 6}\cyc{4 7}$
+
+	$\sigma' = \cyc{2 3}\cyc{1 5 7}\cyc{4 6}$
+
+	Thus, $\tau=\cyc{1 2}\cancel{\cyc{3}}\cancel{\cyc{4}}\cancel{\cyc{5}}\cyc{6 7}$.
+
+	Note that we could have shuffled the cycles differently and come up with a different $\tau$.
+\end{eg}
+
+\begin{eg}
+	Compute the size of every conjugacy class in $S_4.$ (Where the conjugacy classes are the orbits of $S_4\actson S_4$ by conjugation).
+
+	By our previous theorem we only have to check each cycle type.
+
+	\begin{tabular}{r|l}
+	Cycle Types: & How many with that type?\\\hline
+	($\cdot$ $\cdot$ $\cdot$ $\cdot$) & $3!=6$\\
+	($\cdot$ $\cdot$ $\cdot$) & $\binom43\cdot 2! = 8$\\
+	($\cdot$ $\cdot$) ($\cdot$ $\cdot$) & $\binom42\cdot\binom22\cdot\frac{1}{2!} \cdot 1!\cdot 1! = 3$\\
+	($\cdot$ $\cdot$) & $\binom42\cdot 1! = 6$\\
+	$e$ & 1\\
+	Total: & 24
+	\end{tabular}
+\end{eg}
+	
+\begin{eg}
+	How many elements of $S_5$ commute with $\sigma = \cyc{1 4}\cyc{3 5}$?
+	Use the \nameref{OST}!
+
+	$S_5\actson S_5$ by conjugation.
+	$\orbit_\sigma = $ the conjugacy class of $\sigma.$
+
+	$G_\sigma = \{g\in S_5 : g\sigma\inv g = \sigma\} = \{g\in S_5 : g\sigma = \sigma g\}$.
+	The \nameref{OST} says taht $|\orbit_\sigma|\cdot|G_\sigma| = |S_5|$ Thus, as $|\orbit_\sigma| = 15$ and $|S_5| = 120$ so $|G_\sigma| = \frac{120}{15} = 8$.
+
+\end{eg}
+
+\begin{eg}
+	How many elements of $S_9$ commute with $\sigma = \cyc{1 2}\cyc{3 4}\cyc{5 6}\cyc{7 8 9}$?
+
+	The size of $\sigma$'s conugacy class is $ n =\binom92\binom72\binom52\frac{1}{3!}1!1!1!2!$
+
+	Thus, the number of elements of $S_9$ commuting with $\sigma$ is $\frac{9!}{n} = $
+\end{eg}
+\end{document}
