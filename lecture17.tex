@@ -1,0 +1,134 @@
+\documentclass[notes.tex]{subfiles}
+
+
+\begin{document}
+\lecture{17}{2016--02--22}
+
+\begin{defn}
+	If $A, B \subseteq G$, where $G$ is a group ($A$ and $B$ not necessarily). Then put $AB := \{ab : a\in A, b\in B\}$.
+	We note that unless the group is abelian, order still matters.
+
+	Caveat: If $H, K\le G$ are subgroups, then $HK$ is typically \emph{not} a subgroup.
+\end{defn}
+
+\begin{proposition}
+	If $G$ is a finite group and $H, H\le G$ are subgroups, then $|HK| = \frac{|H|\cdot |K|}{|H\cap K|}$.
+\end{proposition}
+\begin{proof}
+	Note that $HK = \{hk: h\in H, k\in K\} = \bigcup_{h\in H}hK$.
+	So $|HK| = n\cdot |K|,$ where $n$ is the number of left cosets of $K$ meeting $H.$
+
+	\begin{claim}
+		For $h_1, h_2\in H$: $h_1K = h_2K \iff \inv h_1h_2 \in H\cap K$
+	\end{claim}
+	\begin{proof}
+		($\implies$): If $h_1K = h_2K,$ then by definition of coset equaliy, we know that $\inv h_1h_2\in K$. As $H$ is a subgroup of $G$, $\inv h_1h_2\in H$ also.
+
+		($\Longleftarrow$): If $\inv h_1h_2\in H\cap K,$ it's in $K$, so $h_1K = h_2K$. 
+		\qedhere(Claim)
+	\end{proof}
+	Note that $H\cap K\le H$. So the number of cosets of $H\cap K$ in $H$ is $\frac{|H|}{|H\cap K|}$.
+	Thus, $n = \frac{|H|}{|H\cap K|}$, meaning that $|HK| = \frac{|H|\cdot |K|}{|H\cap K|}$, as desired.
+\end{proof}
+
+\begin{remark}
+	The proposition is especially useful when $H\cap K = \{e_G\}$. In this case, you get $|HK| = |H|\cdot|K|$.
+	This happens, for example, when 
+	\begin{itemize}
+		\item $|H|, |K|$ are relatively prime
+		\item $|H| = |K| = p$ prime, and $H\ne K$.
+	\end{itemize}
+\end{remark}
+
+\begin{corollary}
+	\label{congtodp}
+	Suppose $G$ is a finite group, and $H, K\le G$ such that 
+	\begin{enumerate}
+		\item $|G| = |H|\cdot |K|$
+		\item $H\cap K = \{1\}$.
+		\item $\forall h\in K, \forall k\in K: hk = kh$.
+	\end{enumerate}
+	Then $G\cong H\times K$.
+\end{corollary}
+\begin{proof}
+	Consider the map $\vp:H\times K\to G$ with $\vp((h, k)) = hk$.
+
+	\begin{claim}[1]
+		$\vp$ is a homomorphism.
+	\end{claim}
+	\begin{proof}[1]
+		Suppose $(h_1, k_1), (h_2, k_2) \in H\times K$.
+		First compute $\vp((h_1, k_1)(h_2, k_2)) = \vp((h_1h_2, k_1k_2)) = h_1h_2k_1k_2$.
+		Then compute
+		\begin{align*}
+		 	&\vp((h_1, k_1))\vp((h_2, k_2))\\
+		 	&= (h_1k_1, h_2k_2) \\
+		 	&= h_1(k_1h_2)k_2 \\
+		 	\shortintertext{As $hk = kh$ by assumption}
+		 	&= h_1h_2k_1k_2\\
+		 	&=\vp((h_1, k_1)(h_2, k_2))
+		 \end{align*}
+		 So $\vp$ is a homomorphism.\qedhere(C1)
+	\end{proof}
+	\begin{claim}[2]
+		$\vp$ is a bijection. 
+	\end{claim}
+	\begin{proof}[2]
+		Node $|G| = |H|\cdot|K| = |H\times K|$, which are both finite. So, it suffices to show that $\vp$ is a surjection.
+
+		$\vp[H\times K] = \{hk:h\in H, k\in K\} = HK$, and $|HK|=\frac{|H|\cdot|K|}{H\cap K}$. Thus $\im(\vp) = G$, so $\vp$ is surjective.\qedhere(C2)
+	\end{proof}
+	It follows that $\vp$ is an isomorphism, so $G\cong H\times K$ as desired.\qedhere(Cor)
+\end{proof}
+
+\begin{theorem}
+	Suppose $G$ is finite and $H, K\nsubgrp G$, such that:
+	\begin{itemize}
+		\item $|G| = |H|\cdot|K|$
+		\item $H\cap K = \{e_G\}$
+	\end{itemize}
+	Then $G\cong H\times K$.
+\end{theorem}
+\begin{proof}
+	By corollary \ref{congtodp}, it suffices to show that $\forall h\in H, \forall k\in K: hk=kh$.
+	Consider $hk\inv h\inv k$ (called the commutator).
+	\begin{claim}[1]
+		$hk\inv h\inv k \in H$
+	\end{claim}
+	Which is proved by inserting parentheses as follows:
+	\[
+		\underbrace{h}_{\in H}\underbrace{(k\inv h\inv k)}_{\in H} \in H,
+	\]
+	where the second containment holds because $H$ is normal.
+
+	\begin{claim}[2]
+		$hk\inv h\inv k \in K$. This is true because$(hk\inv h)\inv k \in K$, as $K$ is normal.
+	\end{claim}
+	Thus, $hk\inv h\inv k \in H\cap K = \{e_G\}$.
+	So, $hk\inv h\inv k = e_g \implies hk=kh.$\qedhere(Thm)
+\end{proof} 
+
+Next, we act on the set of subgroups by conjugation.
+\begin{proposition}
+	Let $G$ be a group $H\le G$ a subgroup, $g\in G$. Then $gH\inv g = \{gh\inv g:h\in H\}$ is a subgroup of $G$. Moreover, $gH\inv g\cong H$.
+\end{proposition}
+
+\begin{proof}
+	Put $H' = gH\inv g$.
+
+	$H'$ is nonempty as $ge_G\inv g = e_G\in H'$.
+
+	$H'$ is closed under products because if $gh_1\inv g, gh_2\inv g \in H'$, then $(gh_1h\inv g)(gh_2\inv g) = g(h_1h_2)\inv g\in H'$.
+
+	$H'$ is closed under inverses as if $gh\inv g\in H$, then $(gh\inv g)^{-1} = (\inv g)^{-1}\inv h\inv g = gh\inv g \in H'$
+
+	\begin{claim}
+		$\vp:H\to H'$, $\vp(h) = gh\inv g$ is an isomorphism.
+	\end{claim}
+	The proof is left as an exercise to the reader.
+\end{proof}
+
+Hence, $G$ acts on $\{H : H\le G\}$ by conjugation $g\cdot H = gH\inv g$.
+
+In addition, $H$ is a fixed point of this action exactly when $H\nsubgrp G$.
+\end{document}
