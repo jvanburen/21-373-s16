@@ -9,7 +9,7 @@
 \end{proposition}
 
 \begin{proof}
-	Consider the homomorphism $\vp:G\to G$ with $\vp(g) = g$ 
+	Consider the homomorphism $\vp:G\to G$ with $\vp(g) = g$
 	$\Ker(\vp) = \{g\in G : \vp(g) = e_G\} = \{e_G\}$, and $\vp[G] = G$.
 
 	Thus, the first isomorphism theorem states that $G/\Ker(G)\cong \vp[G]$.
@@ -34,7 +34,7 @@ We note that the above groups are not isomorphic because there is no element of 
 		$\exists g \in G, |g| = 4$
 		then $G = \csg g$, so (as proved last time) $G\cong\Zn4$.
 		\item
-		$\nexists g\in G, |g| = 4$: 
+		$\nexists g\in G, |g| = 4$:
 
 		So $G = \{e_G, a, b,c \}$, meaning
 		$|e_G| = 1$ and $|a| = |b| = |c| = 2$.
@@ -42,7 +42,7 @@ We note that the above groups are not isomorphic because there is no element of 
 		What is $ab$? It's not $e_G$ as $\inv a = a \ne b$.
 		It's not $a$ since $b \ne e_G$. It's not $b$ since $a \ne e_G$.
 		So $ab = c$.
-		Thus we may write the multiplication table. 
+		Thus we may write the multiplication table.
 
 		Verification that $G\cong \Zn2\times\Zn2$ is left to the reader.
 	\end{enumerate}
@@ -54,7 +54,7 @@ We note that the above groups are not isomorphic because there is no element of 
 
 
 \begin{proposition}
-	Suppose $G$ is a group and $|G| = 6$. Then $G\cong\Zn6$ or $G\cong S_3$. 
+	Suppose $G$ is a group and $|G| = 6$. Then $G\cong\Zn6$ or $G\cong S_3$.
 \end{proposition}
 
 \begin{proof}
@@ -73,18 +73,18 @@ We note that the above groups are not isomorphic because there is no element of 
 
 	\begin{claim}[1]
 		(A) can't happen. Why? Assume otherwise, then $\forall x\in G (x^2 =e)$
-		so $G$ is abelian, so $\{1, a, b, ab\}$ is a subgroup, but $4\ndivides 6$. so by Lagrange's theorem, this cannot happen. 
+		so $G$ is abelian, so $\{1, a, b, ab\}$ is a subgroup, but $4\ndivides 6$. so by Lagrange's theorem, this cannot happen.
 	\end{claim}
-	
+
 	\begin{claim}[2]
 		(C) also cannot happen. Why?
 		Assume otherwise, then denote by $x$ the unique element of order 2.
-		Then, $\forall g\in G, \inv gxg$ also has order $2$. 
+		Then, $\forall g\in G, \inv gxg$ also has order $2$.
 		as \[
 			\inv gxg\inv gxg = \inv gx^2g = \inv gg = e
 		\]
 		Thus, $\inv gxg$ has order 2. $\forall g\in G$, $\inv gxg = x \implies xg =gx$, contradiction.
-	\end{claim}	
+	\end{claim}
 
 	\begin{claim}[3]
 		(B) forces $G\cong S_3$. Proof of this follows from brute force considering the multiplication table.
@@ -102,12 +102,12 @@ We note that the above groups are not isomorphic because there is no element of 
 \end{defn}
 
 \begin{notation}
-	We write actions like this: 
+	We write actions like this:
 	$G\actson X$ ``$G$ acts on $X$,'' and $g\cdot x := a(g, x)$.
 
 	The conditions then become $e_G\cdot x = x$ and $(gh)\cdot x = g\cdot(h\cdot x)$.
 \end{notation}
-Equivalently, Instead of thinking about an action as a function of $(G\times X) \to X$, you can view it as a (``curried'') function of $G \to (X\to X)$.
+Equivalently, instead of thinking about an action as a function of $(G\times X) \to X$, you can view it as a (``curried'') function of $G \to (X\to X)$.
 
 Say $g\mapsto \sigma_g$ where $\sigma_g\cdot (X\to X)$ is defined by $\sigma_g(x) = g\cdot x = a(g, x)$.
 
@@ -117,7 +117,7 @@ Say $g\mapsto \sigma_g$ where $\sigma_g\cdot (X\to X)$ is defined by $\sigma_g(x
 \begin{proof}
 	$\sigma_g\circ \sigma_{\inv g}  = \sigma_{\inv g} \circ \sigma_g = \sigma_{e_G} (= x\mapsto x).$
 
-	Why? 
+	Why?
 	\[
 		\sigma_g\circ\sigma_{\inv g}(x) = g\cdot(\inv g\cdot x) = (g\inv g)\cdot x = e_G\cdot x = x = \sigma_{e_G}(x)
 	\]
