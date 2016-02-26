@@ -30,11 +30,11 @@ Last time: showed that the kernel of a homomorphism is a subgroup.
 		So $\inv g \in K$
 	\end{itemize}
 	Thus, $K\le G$.
-	Next, we prove. 
+	Next, we prove.
 	$\forall k\in K, \forall g\in G$:
 		\[
-			\vphi(\inv gkg) 
-			= \vphi(\inv g)\vphi(h)\vphi(g) 
+			\vphi(\inv gkg)
+			= \vphi(\inv g)\vphi(h)\vphi(g)
 			= (\vphi(g))^{-1}e_H\vphi(g)
 			= e_H
 		\]
@@ -50,11 +50,11 @@ Thus, $\Ker(\vphi)$ is the fiber above $e_H$.
 \begin{eg}\leavevmode
 \begin{itemize}
 	\item $\vp(\RR, +)\to(\RR^+, \times)$, $\vp(r) = \mathrm{e}^r$
-	$\vp$ is a homomorphism since $\vp(r+s) = \mathrm{e}^{r+s} = \mathrm{e}^r\mathrm{s} = \vp(r)\times \vp(s)$
+	$\vp$ is a homomorphism since $\vp(r+s) = \mathrm{e}^{r+s} = \mathrm{e}^r\mathrm{e}^s = \vp(r)\times \vp(s)$
 
 	$\Ker(\vp) = \{r\in R : \vp(r) = 1\} = \{0\}$.
 
-	The fiber above $s\in \RR^+$: 
+	The fiber above $s\in \RR^+$:
 		$\vp(r) = s \iff \mathrm{e}^r=s \iff r = \ln s$. Thus $\inv\vp(\{s\}) = \{\ln s\}$.
 
 	\item $\vp:(\CC\setminus\{0\}, \times)\to(\RR\setminus\{0\}, \times)$,
@@ -67,7 +67,7 @@ Thus, $\Ker(\vphi)$ is the fiber above $e_H$.
 
 		Fix $r\in\RR\setminus\{0\}$, lets examine the fiber above $r$:
 		\[
-		\{a+b\iu : a^2 + b^2 = r\} = 
+		\{a+b\iu : a^2 + b^2 = r\} =
 		\begin{cases}
 			\vs &\txtif r < 0\\
 			\text{Circle of radius }\sqrt{r}&\txtif r > 0
@@ -81,7 +81,7 @@ Thus, $\Ker(\vphi)$ is the fiber above $e_H$.
 		\end{proof}
 
 		$\Ker(\vp) = \{g:\vp(g) = eN\} = \{g:\vp(g) = eN\} = N$.
-\end{itemize} 
+\end{itemize}
 \end{eg}
 
 This leads us to the realization that:
@@ -100,23 +100,23 @@ Why do all fibers look alike?
 \begin{proof}
 	If $\nexists g\in G$ such that $\vp(g) = h$ then $\inv\vp(\{h\}) = \vs$.
 
-	Else, fix some $g\in G$ such that $\vp(g)=h$
-	\begin{claim}[1]
-		$gK \subseteq \inv\vp(\{h\})$
-	\end{claim} 
-	\begin{proof}
-		Suppose $g' \in \inv\vp(\{h\})$, want $g'\in gK$ (i.e. $\vp(g')=h$).
-		So, $\vp(g \inv{g'}) = (\vp(g))^{-1}\vp(g') = \inv h h=e_H$.
-		Hence $\inv gg'\in K$, so $g'\sim g \pmod(K)$, so $g'\in gK$.
-		\qedhere(C1)
-	\end{proof}
+	Else, fix some $g\in G$ such that $\vp(g)=h$.
 	\begin{claim}[1]
 		$gK \supseteq \inv\vp(\{h\})$
-	\end{claim} 
+	\end{claim}
+	\begin{proof}
+		Suppose $g' \in \inv\vp(\{h\})$ (i.e. $\vp(g')=h$). Want $g'\in gK$.
+    So, $\vp(g \inv{g'}) = \vp(g)\vp(\inv{g'}) = \vp(g)\vp(g')^{-1} = h \inv h=e_H$.
+		Hence $g \inv{g'} \in K$, so $g'\sim g \pmod K$, so $g'\in gK$.
+		\qedhere(C1)
+	\end{proof}
+	\begin{claim}[2]
+		$gK \subseteq \inv\vp(\{h\})$
+	\end{claim}
 	\begin{proof}
 		Suppose $g' \in gK$, want $\vp(g')=h$.
 		Fix $k\in K$ such that $g'=gk$.
-		$\vp(g') = \vp(gk) - \vp(g)\vp(k) = he_H = h$.
+		$\vp(g') = \vp(gk) = \vp(g)\vp(k) = he_H = h$.
 		\qedhere(C2)
 	\end{proof}
 	Thus, $gK = \inv\vp(\{h\})$, as desired.\qedhere(Prop.)
@@ -138,7 +138,7 @@ Why do all fibers look alike?
 Intuition: Isomorphic groups have the ``same operation'' on different sets.
 
 \begin{eg}
-	Let $G = \{a, b\}$ 
+	Let $G = \{a, b\}$
 	\begin{tabular}{r|cc}
 		& $a$ & $b$\\\cline{2-3}
 		$a$ & $a$ & $b$\\

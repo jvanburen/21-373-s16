@@ -40,7 +40,7 @@ In general, what would we need to have, in order to have multiplication in $G/H$
 
 We want:
 $\underbrace{x_1\sim x_2}_{\inv x_1x_2=h\in H}$ and $\underbrace{y_1\sim y_2}_{\inv y_1y_2=k\in H}$ $\implies x_1y_1\sim x_2y_2$.
-Thus, we want $(x_1y_1)^{-1}(x_2y_2)\in H$. 
+Thus, we want $(x_1y_1)^{-1}(x_2y_2)\in H$.
 	\[
 		(x_1y_1)^{-1}(x_2y_2)
 		=(\inv y_1\inv x_1)(x_2y_2)
@@ -51,7 +51,7 @@ Thus, we want $(x_1y_1)^{-1}(x_2y_2)\in H$.
 This expression motivates the definition of a \kw{normal subgroup}
 
 \begin{defn}
-	If $G$ is a group, and $N\le G,$ we say $N$ is \kw{normal} if for all $n\in N$, and $g\in G$, we have $\inv gng\in N$. We write this as $N\nsubgrp G.$ 
+	If $G$ is a group, and $N\le G,$ we say $N$ is \kw{normal} if for all $n\in N$, and $g\in G$, we have $\inv gng\in N$. We write this as $N\nsubgrp G.$
 \end{defn}
 \begin{remark}
 	For fixed $g\in G$, the map for $x\in G$ \[
@@ -64,7 +64,7 @@ Thus, $N$ is normal if it is stable under all conjugation.
 
 \begin{theorem}
 	Let $G$ a group $H\le G$. Then the following are equivalent:
-	
+
 	\begin{enumerate}[(I)]
 		\item $(g_1H)(g_2H) = (g_1g_2)H$ is a well-defined group operation on $G/H$.
 		\item $H\nsubgrp G$.
@@ -131,16 +131,16 @@ Thus, $N$ is normal if it is stable under all conjugation.
 
 \chapter*{Homomorphisms}
 \begin{defn}
-	Suppose $G, H$ are groups and $\varphi:G\to H$ is a function. 
+	Suppose $G, H$ are groups and $\varphi:G\to H$ is a function.
 	We say $\varphi$ is a \kw{homomorphism} if $\forall g_1, g_2\in G: \phi(g_1 *_G g_2) = \varphi(g_1) *_H \varphi(g_2)$.
 \end{defn}
 
 \begin{defn}
-	Suppose $\varphi:G\to H$ is a homomorphism. The \kw{Kernel} of $\phi$ is $\Ker(\varphi) = \{g\in G : \varphi(g) - e_H\} = \varphi^{-1}(\{e_H\})$.
+	Suppose $\varphi:G\to H$ is a homomorphism. The \kw{Kernel} of $\phi$ is $\Ker(\varphi) = \{g\in G : \varphi(g) = e_H\} = \varphi^{-1}(\{e_H\})$.
 \end{defn}
 
 \begin{proposition}
-	Suppose $\varphi:G\to H$ is a homomorphism between groups. 
+	Suppose $\varphi:G\to H$ is a homomorphism between groups.
 
 	Then $K=\Ker(\varphi) \nsubgrp G$.
 \end{proposition}
