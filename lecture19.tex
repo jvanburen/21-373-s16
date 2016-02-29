@@ -66,7 +66,7 @@ Fact/Exercise:
 		Fix $k, \ell $ such that $x, y \in H_i$ and $h_1 = g^kx, h_2 = g^\ell y$.
 
 		Since $g\in N(H_i), \exists z\in H_i$ such that $g^{-\ell}xg^\ell = z$.
-		So, $h_1h_2 = g^kxg^\ell y = g^{k+\ell}\underbrace{zy}_{\in H_i} \in H_{i+1}$ 
+		So, \[h_1h_2 = g^kxg^\ell y = g^{k+\ell}\underbrace{zy}_{\in H_i} \in H_{i+1}\] 
 	\end{itemize}
 	\qedhere(C2)
 	\end{proof}
@@ -98,17 +98,16 @@ Proof will come next lecture, first let's see an example.
 		\item There are (up to isomorphism) exactly two groups $G$ with cardinality $99 = 3^2\cdot 11$.
 		Sylow 3-subgroup has cardinality 9. $n_3 = $\#~of subgroups of cardinality 9.
 
-		$n_3 \divides 11\implies n_3\in \{1, \cancel{11}\}$, as $n_3 \equiv 1\pmod 3$, it can't be 11, so $n_3 = 1$
+		$n_3 \divides 11\implies n_3\in \{1, 11\}$. As $n_3 \equiv 1\pmod 3$, it can't be 11, so $n_3 = 1$
 
-		$n_{11} = $ \# of subgroups of cardinality 11. $n_11 \divides 9$ and $n_11\cong 1 \pmod 11$ means that $n_{11} = 1$.
+		$n_{11} = $ \# of subgroups of cardinality 11. $n_{11} \divides 9$ and $n_{11}\cong 1 \pmod 11$ means that $n_{11} = 1$.
 
 		Fix unique $H, k\nsubgrp G$ with $|H| = 9, |K| = 11, H\cap K = \{e\}$.
 		So $G \cong H\times K$.
 
 		Case 1: $H\cong \ZZ/9\ZZ$. Then $G\cong \ZZ_9\times \ZZ_{11} \cong \ZZ_{99}$.
 
-		Case 2: $H\cong \ZZ_3\times \ZZ_3$ then $G \cong \ZZ_3\times\ZZ_3 \times \ZZ_11\cong \ZZ_3\cong \ZZ_{33}$
+		Case 2: $H\cong \ZZ_3\times \ZZ_3$ then $G \cong \ZZ_3\times\ZZ_3 \times \ZZ_11\cong \ZZ_3\cong \ZZ_{33}$.
 	\end{enumerate}
-	
 \end{eg}
 \end{document}
