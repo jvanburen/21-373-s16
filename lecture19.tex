@@ -1,0 +1,114 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{19}{2016--02--29}
+
+\begin{defn}
+	Let $H\le G$ be groups. The \kw{normalizer} of $H$ in $G$ is $N_G(H) =N(H) = \{g\in G:\inv gHg = H\} = \{g\in G:gH\inv g = H\}$
+\end{defn}
+Fact/Exercise:
+\begin{enumerate}
+	\item $N(H) \le G$
+	\item $H\nsubgrp N(H)$
+\end{enumerate}
+\begin{theorem}[Sylow]
+\label{sylow1}
+\label{sylow}
+	Suppose that $G$ is a finite group, $p$ is prime, and $p^i$ divides $|G|$ for some $i\in \ZZ$.
+	Then $\exists H\le G$ such that $|H| = p^i$.
+\end{theorem}
+
+\begin{proof}
+	Proceed by induction on $i$.
+
+	If $i=0$ then trivial as $H = \{e\}$, the trivial subgroup.
+	If $i=1$ then this is true by \nameref{cauchy}.
+
+	Our stategy is to suppose we have $H_i\le G$ of cardinality $|H_i| = p^i$.
+	and $p^{i+1}$ divides $|G|$. We will find $H_{i+1} \supseteq H_{i}$ with $H_{i+1}\le G$ and $|H_{i+1}| = p^{i+1}$.
+
+	Intuition: Consider the cosets of $H_i$ in $G$. We're going to pick out $p$ cosets of $H_i$ $g_1H g_2H, \ldots, g_pH$ such that $\bigcup_{i=1}^p g_iH$ is a subgroup of $G.$
+
+	Let $X = G/H_i = \{gH_i : g\in G\}$. Note that $|X| = \frac{|G|}{|H_i|} = \frac{p^zm}{p^i} (\text{where }z > i) \equiv 0 \pmod p$.
+
+	Let $H_i\actson X$ by left multiplication.
+	$h\cdot (gH_i) = (hg)H_i$.
+
+	\begin{claim}[1]
+		$gH_i \in X$ is a fixed point of the action iff $g\in N(H_i)$.
+	\end{claim}
+	\begin{proof}
+		$gH_i$ is a fixed point iff $\forall h\in H_i (h\cdot(gH_i) = gH_i)$
+		iff $(hg)H_i = gH_i$
+		iff $\inv ghg \in H_i$.
+
+		Thus, $\inv gH_ig \in H_i$ so, as they are finite sets with the same cardinality and conjugation is an injective map, $\inv gH_ig = H_i$, meaning $g\in N(H_i)$
+		\qedhere(C1)
+	\end{proof}
+	By \nameref{FPL}, since $H_i$ is a $p$-group, we know that \#~fixed~points~$\equiv |X| \pmod p$.
+	The number of cosets fixed by the action is a multiple of $p$. This is equivalent to saying $p$ divides $|N(H_i)/H_i|$ (i.e., the number of cosets represented in the normalizer is a multiple of $p$).
+	Since $H_i \nsubgrp N(H_)i$, $N(H_i)/H_i$ is a quotient group. So by \nameref{cauchy}, we may take $g\in N(H_i)$ such that $|gH_i| = p$ in $N(H_i)/H_i$.
+
+	Intuition: As we cycle through the powers of $g$, we get the cosets we're going to choose.
+
+	Finally, let $H_{i+1} = \bigcup_{k=0}^{p-1} g^kH_i = \{g^kh:h\in H, 0\le k < p\}$.
+
+	Note that $|H_{i+1}| = p^{i+1}$ as it's a union of $p$ disjoint cosets of cardinality $p^k$.
+
+	\begin{claim}[2]
+		$H_{i+1}$ is a subgroup of $G$.
+	\end{claim}
+	\begin{proof}\leavevmode
+	\begin{itemize}
+		\item $e_G\in H_{i+1}$ 
+		\item $h_1, h_2\in H_{i+1} \implies h_1h_2\in H_{i+1}$
+
+		Fix $k, \ell $ such that $x, y \in H_i$ and $h_1 = g^kx, h_2 = g^\ell y$.
+
+		Since $g\in N(H_i), \exists z\in H_i$ such that $g^{-\ell}xg^\ell = z$.
+		So, $h_1h_2 = g^kxg^\ell y = g^{k+\ell}\underbrace{zy}_{\in H_i} \in H_{i+1}$ 
+	\end{itemize}
+	\qedhere(C2)
+	\end{proof}
+	\qedhere(Thm)
+\end{proof}
+
+\begin{defn}
+	For $p$ prime, $H\le G$ (finite),is a Sylow $p$-subgroup if $|H|$ is the largest power of $p$ dividing $|G|$.
+	i.e., if, $|G| = p^km, \gcd(p, m) = 1$. Then $|H| = p^k$.
+\end{defn}
+
+\begin{theorem}[Sylow 2]
+\label{sylow2} Any two Sylow $p$-subgroups of $G$ (finite) are conjugate.
+\end{theorem}
+Proof will come later.
+
+\begin{theorem}[Sylow 3]
+	\label{sylow3}
+	If $|G| = p^km, \gcd(p, m) = 1$, then the number of Sylow $p$-subgroups $n_p$ satisfies $n_p \divides m$ and $n_p\equiv 1 \pmod p$. 
+\end{theorem}
+
+Proof will come next lecture, first let's see an example.
+\begin{eg}\leavevmode
+	\begin{enumerate}[A)]
+		\item Every group $G$ with $|G| = 15 = 3\cdot 5$ is cyclic.
+
+		$n_3 \divides 5 \implies n_3 \in \{1, 5\}$ and $n_3 \equiv 1 \pmod 3$, so $n_3 = 1$.
+		$n_5 = 1$. Thus, $\exists H, K\nsubgrp G$ with $|H| = 3, |K| = 5$. So, by Corollary \ref{congtodp}, $G\cong H\times K$.
+		\item There are (up to isomorphism) exactly two groups $G$ with cardinality $99 = 3^2\cdot 11$.
+		Sylow 3-subgroup has cardinality 9. $n_3 = $\#~of subgroups of cardinality 9.
+
+		$n_3 \divides 11\implies n_3\in \{1, \cancel{11}\}$, as $n_3 \equiv 1\pmod 3$, it can't be 11, so $n_3 = 1$
+
+		$n_{11} = $ \# of subgroups of cardinality 11. $n_11 \divides 9$ and $n_11\cong 1 \pmod 11$ means that $n_{11} = 1$.
+
+		Fix unique $H, k\nsubgrp G$ with $|H| = 9, |K| = 11, H\cap K = \{e\}$.
+		So $G \cong H\times K$.
+
+		Case 1: $H\cong \ZZ/9\ZZ$. Then $G\cong \ZZ_9\times \ZZ_{11} \cong \ZZ_{99}$.
+
+		Case 2: $H\cong \ZZ_3\times \ZZ_3$ then $G \cong \ZZ_3\times\ZZ_3 \times \ZZ_11\cong \ZZ_3\cong \ZZ_{33}$
+	\end{enumerate}
+	
+\end{eg}
+\end{document}
