@@ -1,0 +1,91 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{20}{2016--03--02}
+\begin{proof}[Proof of \nameref{sylow2}]
+	Fix two Sylow $p$-subgroups $P, Q\le G$ such that $|P| = |Q| = p^k$.
+	Let $X = G/P$ and let $Q\actson X$ by left multiplication, i.e., $\forall h\in Q: h\cdot (gP) = (hg)P$.
+
+	Note that $|X| = \frac{p^km}{p^k} = m \not\equiv 0\pmod p$.
+	Since $Q$ is a $p$-group, by \nameref{FPL}, the number of fixed points is equivalent to $|X|$ mod $p$, so we can choose a fixed point $gP\in X$. We know that for any $h\in Q, h\cdot(gP) = gP$, so $(hg)P = gP$, meaning $\inv ghg\in P$.
+
+	As $h\in Q$ was arbitrary, $\inv gQg\subseteq P$. As $|\inv gQg| = |P| = p^k,$ it follows that $\inv gQg=P$.
+\end{proof}
+
+We prove both parts of \nameref{sylow3} separately, as they are somewhat dissimilar
+\begin{proof}[Proof of \nameref{sylow3} (a)]
+	Let $X = \{H\le G : |H| = p^k\}$ be the set of all Sylow $p$-subgroups of $G$. so $|X| = n_p$.
+	Let $G\actson X$ by conjugation, i.e., $g\cdot H = gH\inv g$.
+	For convenience, fix some designated Sylow $p$-subgroup $P\in X$ (which exists by \nameref{sylow1}).
+
+	This time we're going to use the \nameref{OST}
+
+	By \nameref{sylow2}, we know that $\orbit_P = X$, so $|\orbit_P| = n_p$. By the \nameref{OST}, we know that $|\orbit_P|\cdot|G_P| = |G|$, so $n_p = |G|/|G_p|$. Note also that $|G| = p^km$. 
+
+	Note that $P\le G_P$ since $\forall g\in P, gP\inv g = P$.
+	So, by \nameref{lagrange},
+	we know that $|P|$ divides $|G_P|$, so say $|G_p| = p^k\ell.$ Thus, $n_p = \frac{p^km}{p^k\ell} = \frac{m}{\ell}$. This shows that $m = n_p\ell$, meaning that $n_p$ divides $m$ as desired.
+\end{proof}
+
+\begin{proof}[Proof of \nameref{sylow3} (b)]
+	Again let $X = \{H\le G : |H| = p^k\}$ be the set of all Sylow $p$-subgroups of $G$. so $|X| = n_p$.
+	Fix $P\in X$ (which exists by \nameref{sylow1}).
+	Let $P\actson X$ by conjugation.
+
+	We know that $P\in X$ is a fixed point of $P\actson X$.
+
+	\begin{claim}
+		$P$ is the only fixed point.
+	\end{claim}
+	\begin{proof}[Proof (Claim)]
+		Suppose $Q\in X$ is a fixed point. Want to show $Q = P$.
+		So, $\forall g\in P$ $\inv gQg = Q$, i.e., $P \le N(Q)$.
+		We also know that $Q\le N(Q)$. So, $P, Q$ are both Sylow $p$-subgroups of $N(Q)$. By \nameref{sylow2}, $\exists h\in N(G)$ st
+		$Q = \inv hQh = P$. Hence, $Q=P$.
+		\qedhere(Claim)
+	\end{proof}
+
+	So the number of fixed points of $P\actson X$ is 1. $P$ is a $p$-group, so by the \nameref{FPL}, we have $n_p = |X| \equiv 1\pmod p$ 
+	\qedhere(Sylow 3b)
+\end{proof}
+
+\begin{eg}
+	Let's classify all \emph{abelian} groups $G$ with cardinality 108 (up to isomorphism). First we note that $108 =2^2\cdot 3^3$
+
+	By \nameref{sylow1}, there exist $H, K\le G$ such that $|H| = 2^2$ and $|K| = 3^3$.
+
+	Since $G$ is abelian, $H\nsubgrp G$ and $K\nsubgrp G$.
+
+	Also, $H\cap K = \{e\}$ by \nameref{lagrange} (since $\gcd(2^2, 3^3)=1$). So by \nameref{congtodp}, $G\cong H\times K$. 
+
+	(We write $\ZZ_n$ for $\ZZ/n\ZZ$, although some number theorists would beg to differ.)
+
+	First $H$. $H$ is isomorphic to either $\ZZ_4$ or $\ZZ_2\times\ZZ_2$.
+
+	Next, $K$. $|K| = 27$ and it's abelian (because it's a subgroup of $G$.)
+
+	Case 1 ($\exists k\in K$ such that $|k| = 27$):
+	\tabin
+		In this case, $K\cong\ZZ_{27}$
+	\tabout
+	Case 2 (No element of order 27, but $\exists k\in K$ such that $|k| = 9$):
+	\tabin
+		We posit that we may take $g\in K/\csg{k}$ with $|g| = 3$. (Existance left as an exercise to the reader).
+
+		$\csg{g}\cap \csg{k} = \{e\}$.
+		Thus, by \nameref{congtodp}, $K\cong \ZZ_9\times \ZZ_3$
+	\tabout
+	Case 3 (All elements have order 3):
+	\tabin
+		Exercise: use Sylow's theorem to show $K\cong (\ZZ_3\times\ZZ_3)\times\ZZ_3$
+	\tabout
+
+	These cases are exhaustive, so we have 6 options.
+
+	Thus, $G$ could be isomorphic to the direct product of any tuple in 
+	$\{\ZZ_4, \ZZ_2\times\ZZ_2\} \times \{\ZZ_27, \ZZ_9\times \ZZ_3, \ZZ_3\times\ZZ_3\times\ZZ_3\}$
+\end{eg}
+
+Cool note: we won't get to this, but every finite abelian group is isomorphic to the direct product of a direct product of cyclic groups.
+
+\end{document}
