@@ -1,0 +1,138 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{21}{2016--$\pi$}
+\chapter*{Ring Theory}
+
+\begin{defn}
+	A \kw{ring} is a set $R$ equipped with the binary operations $+$ and $\times$ such that the following axioms are true:
+\end{defn}
+\begin{enumerate}
+	\item $(R, +)$ is an abelian group
+	\item $\times$ is associative over $R$
+	\item $\times$ distributes over $+$ i.e., $a\times (b + c) = (a\times b) + (c\times d)$, also, $(a + b)\times c = (a\times c) + (b \times c)$
+\end{enumerate}
+\begin{notation}
+	We follow the following conventions:
+	\begin{itemize}
+		\item We usually don't write $\times$. Instead we write expressions like $(a\times b) + c$ as $ab + c$.
+		\item The ring $R$ has the additive identity 0.
+		\item we denote the additive inverse of an element $b\in R$ by $-b$
+	\end{itemize}
+\end{notation}
+
+\begin{defn}
+	A ring $R$ is \kw{commutative} if $\times$ is commutative ($\forall a,b\in R (a\times b = b\times a)$)
+\end{defn}
+
+\begin{defn}
+	The ring $R$ has an \kw{identity} (or a \kw{1}) if $\exists 1\in R (\forall a\in R (1a = a1 = a))$ 
+\end{defn}
+
+\begin{remark}
+	If $R$ has a 1, then it is unique. Why? If $1, e$ are both $\times$ identities, then $1 = 1e = e$.
+\end{remark}
+
+\begin{defn}
+	If $R$ has a 1 with $1\ne 0$ we say $R$ is a \kw{division ring} if $(R\setminus\{0\}, \times)$ is also a group. (i.e., for all $a\in R, a\ne 0(\exists b\in R), b\ne 0$ st $ab = ba = 1$ ($b= \frac{1}{a}$))
+\end{defn}
+
+\begin{defn}
+	$R$ is a \kw{field} if it is a commutative division ring.
+\end{defn}
+\begin{eg}
+	$\QQ$ is a field
+\end{eg}
+
+\begin{proposition}
+	Let $R$ be a ring. Then $\forall a\in R, 0a = a0 = 0.$
+\end{proposition}
+\begin{proof}\leavevmode
+\begin{align*}
+	0 &= 0+ 0\\
+	\shortintertext{Multiply by $a$}
+	0a &= (0+0)a = 0a + 0a\\
+	\shortintertext{Add $-0a$ to both sides}
+	0 &= 0a\qedhere
+\end{align*}
+\end{proof}
+
+\begin{remark}
+	If $R$ has a 1 with $1=0$ then $R = \{0\}$. Why? $\forall a\in R, a = 1a = 0a = 0$.
+\end{remark}
+
+\begin{proposition}\leavevmode
+\begin{enumerate}
+	\item $(-a)b = a(-b) = -(ab)$
+	\item $(-a)(-b) = ab$
+	\item If $1\in R$ then $-a = (-1)a$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+	To show $(-a)b = -(ab)$
+	we check $(-a)b + ab = 0$.
+
+	$(-a)b + ab = (-a + a)b = 0b = 0$. Thus, $(-a)b = -(ab)$.
+
+	The rest are left as an exercise.
+\end{proof}
+
+\begin{defn}
+	$R$ is a ring, $a\in R$ is a \kw{zero-divisor} if:
+	\begin{enumerate}
+		\item $a\ne 0$
+		\item $\exists b\ne 0$ such that $ab = 0$ or $ba = 0$
+	\end{enumerate}
+\end{defn}
+
+\begin{defn}
+	$R$ ring with a $1\ne 0$, $u\in R$ is a \kw{unit} if $\exists v\in R$ such that $uv = vu = 1$.
+\end{defn}
+\begin{remark}
+	Denote by $R^\times$ the set of units. Then $(R^\times, \times)$ forms a group.
+\end{remark}
+
+\begin{remark}
+	Since $0\ne 1$ 0 is never a unit since $0v = 0 \ne 1$.
+\end{remark}
+
+\begin{proposition}
+	No zero-divisor is a unit
+\end{proposition}
+\begin{proof}
+	Towards a contradiction, suppose $a\ne 0$ is both a zero-divisor and a unit.
+	Fix $b\ne 0$ and $v\in R$ such that $ab = 0$ and $va = 1$ (if $ba = 0$ use $av = 1$)
+	$b = 1b = (va)b = vab = v(ab) = v0 = 0$
+	So $b=0$ contradiction
+\end{proof}
+\begin{eg}\leavevmode
+\begin{enumerate}
+	\item $(\ZZ, +, \times)$ with the usual $+$ and $\times$ is a commutatve ring with a $1\ne 0$.
+	$\ZZ$ has no 0-divisors.
+	The units are $\ZZ^\times = \{1, -1\}$.
+	\item $\QQ$ are a commutative ring with a $1\ne 0$.
+	$\QQ$ has no 0-divisors. The units are $\QQ^\times = \QQ\setminus \{0\}$. So $\QQ$ is a field.
+	\item $R = \ZZ/n\ZZ$ with modular arithmetic and $\overline a \times\overline b = \overline{ab}$. If $n>1$ then $R$ is a ring. $R$ has a 1, namely $\overline1$. $\bar1\ne\bar0$. Commutative.
+	\begin{claim}[C1]
+		Suppose $\bar a\ne \bar 0$ with $\gcd(a, n) = d\ne 1$.
+		Then, $\bar a$ is a zero-divisor.
+	\end{claim}
+	\begin{proof}[Pf of C1]
+		Choose $b = \frac{n}{d}$ such that $0 < b < n$.
+		So $\bar b \ne \bar 0$. But $\bar a\bar b = \overline{\left(\frac{a}{d}\times d\right)\times \frac{n}{d}} = \overline{\frac{a}{d}\times n} = \overline0$.\qedhere(C1)
+	\end{proof}
+	\begin{claim}[C2]
+		Suppose $\bar a\ne \bar 0$ with $\gcd(a, n) = 1$. Then $a$ is a unit. 
+	\end{claim}
+	\begin{proof}[Pf of C2]
+		Fix $x, y\in \ZZ$ such that $ax + ny = 1$. 
+		$\bar x\bar a = \bar a \bar x = \overline{ax} = \bar 1\pmod n$\qedhere(C2)
+	\end{proof}
+	\begin{corollary}
+		If $p$ prime then $\ZZ/p\ZZ$ is a field because everything is relatively prime to $p$.
+	\end{corollary}
+\end{enumerate}
+\end{eg}
+
+
+\end{document}
