@@ -22,9 +22,9 @@
 		For $h_1, h_2\in H$: $h_1K = h_2K \iff \inv h_1h_2 \in H\cap K$
 	\end{claim}
 	\begin{proof}
-		($\implies$): If $h_1K = h_2K,$ then by definition of coset equaliy, we know that $\inv h_1h_2\in K$. As $H$ is a subgroup of $G$, $\inv h_1h_2\in H$ also.
+		($\implies$): If $h_1K = h_2K,$ then by definition of coset equality, we know that $\inv h_1h_2\in K$. As $H$ is a subgroup of $G$, $\inv h_1h_2\in H$ also.
 
-		($\Longleftarrow$): If $\inv h_1h_2\in H\cap K,$ it's in $K$, so $h_1K = h_2K$. 
+		($\Longleftarrow$): If $\inv h_1h_2\in H\cap K,$ it's in $K$, so $h_1K = h_2K$.
 		\qedhere(Claim)
 	\end{proof}
 	Note that $H\cap K\le H$. So the number of cosets of $H\cap K$ in $H$ is $\frac{|H|}{|H\cap K|}$.
@@ -33,7 +33,7 @@
 
 \begin{remark}
 	The proposition is especially useful when $H\cap K = \{e_G\}$. In this case, you get $|HK| = |H|\cdot|K|$.
-	This happens, for example, when 
+	This happens, for example, when
 	\begin{itemize}
 		\item $|H|, |K|$ are relatively prime
 		\item $|H| = |K| = p$ prime, and $H\ne K$.
@@ -42,7 +42,7 @@
 
 \begin{corollary}
 	\label{congtodp}
-	Suppose $G$ is a finite group, and $H, K\le G$ such that 
+	Suppose $G$ is a finite group, and $H, K\le G$ such that
 	\begin{enumerate}
 		\item $|G| = |H|\cdot |K|$
 		\item $H\cap K = \{1\}$.
@@ -71,10 +71,10 @@
 		 So $\vp$ is a homomorphism.\qedhere(C1)
 	\end{proof}
 	\begin{claim}[2]
-		$\vp$ is a bijection. 
+		$\vp$ is a bijection.
 	\end{claim}
 	\begin{proof}[2]
-		Node $|G| = |H|\cdot|K| = |H\times K|$, which are both finite. So, it suffices to show that $\vp$ is a surjection.
+		Note $|G| = |H|\cdot|K| = |H\times K|$, which are both finite. So, it suffices to show that $\vp$ is a surjection.
 
 		$\vp[H\times K] = \{hk:h\in H, k\in K\} = HK$, and $|HK|=\frac{|H|\cdot|K|}{H\cap K}$. Thus $\im(\vp) = G$, so $\vp$ is surjective.\qedhere(C2)
 	\end{proof}
@@ -106,7 +106,7 @@
 	\end{claim}
 	Thus, $hk\inv h\inv k \in H\cap K = \{e_G\}$.
 	So, $hk\inv h\inv k = e_g \implies hk=kh.$\qedhere(Thm)
-\end{proof} 
+\end{proof}
 
 Next, we act on the set of subgroups by conjugation.
 \begin{proposition}

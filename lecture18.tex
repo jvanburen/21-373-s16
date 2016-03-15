@@ -9,7 +9,7 @@
 \begin{proof}
 	Let $p=3, q =5$, The general case proof is left as an exercise.
 
-	Note: $\Zn p \times \Zn q$ ic cyclic because $|(h, k)| = \lcm (p, q) = pq$ (as they're relatively prime).
+	Note: $\Zn p \times \Zn q$ is cyclic because $|(h, k)| = \lcm (p, q) = pq$ (as they're relatively prime).
 
 	So now there is enough to show that $G\cong \Zn p \times \Zn q$.
 	By \nameref{cauchy}, we may take subgroups $H, K\le G$ with $|H| = p$ and $|K| = q$.
@@ -25,13 +25,13 @@
 
 	\paragraph{Case 2} $|\orbit_H| = 5$ I.e., there are 5 distinct subgroups of the form $kH\inv k, k\in K$. Then $G = \bigcup_{S\in \orbit_H}S \cup K$, as each pair of subgroups in $\orbit_H$ has intersection $e_G$. Also $K$ exists, so the subgroups of $G$ are either in $\orbit_H$ or equal to $K$.
 	Thus, $K$ is the \emph{unique} subgroup of $G$ of cardinality 5. In particular, $\forall g\in G: gK\inv g$ also has cardinality 5, so $gk\inv g = K$, hence $K\nsubgrp G$.
-	Let $H\actson K$ by conjugation. $h\cdot k = hk\inv h \in K$. 
-	
+	Let $H\actson K$ by conjugation. $h\cdot k = hk\inv h \in K$.
+
 	\begin{claim}[1]
 		$\exists k_0\in K$ such that $k_0\ne e_G$ and $\forall h\in H: hk_0\inv h = k_0$
-	\end{claim} 
+	\end{claim}
 	\begin{proof}
-		Let $p$ be the number of fixed points. 
+		Let $p$ be the number of fixed points.
 		By \nameref{FPL},$ p\equiv |K|\pmod 3$.
 		However, $|K|\not\equiv 1\pmod 3$, so $p \ge 2$.
 		Thus, there exists a non-identity fixed point ($k_0$)\footnote{Note that this is where we needed the hypothesis that $q\not\equiv 1\pmod p$.}.
@@ -40,7 +40,7 @@
 
 	So, $\forall h\in H: hk_0 = k_0h$.
 	Since $k_0\ne e$, $|k_0| = 5$, hence $K = \csg{k_0}$.
-	Since $hk_0^n = k_0^nh$, and $h$ was arbitrary, we know that 
+	Since $hk_0^n = k_0^nh$, and $h$ was arbitrary, we know that
 	$\forall h\in K, \forall k\in K: hk=kh$. Thus, $G\cong H\times K$.
 	\qedhere(Thm).
 \end{proof}
