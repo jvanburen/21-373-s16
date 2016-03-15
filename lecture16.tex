@@ -22,14 +22,14 @@ Conjugation in $S_n$.
 \begin{proposition}
 	Suppose $\sigma, \tau \in S_n$.
 	Fix $a, b\in \{1,2,\ldots, n\}$.
-	Supose $\sigma' := \tau\sigma\inv \tau$.
+	Suppose $\sigma' := \tau\sigma\inv \tau$.
 	If $\sigma(a) = b$ then $\sigma'(\tau(a)) = \tau(b)$
 \end{proposition}
 \begin{proof}
 	$\sigma'(\tau(a)) = (\tau\sigma\inv \tau\tau)(a) = (\tau\sigma)(a) = \tau(b)$.
 \end{proof}
 But why is this useful?
-Conjugation in $S_n$ is ``relabeling.'' 
+Conjugation in $S_n$ is ``relabeling.''
 Revisiting the previous example:
 $\sigma = \cyc{1 3 4}\cyc{2 5}$
 $\tau\sigma\inv\tau = $ ($\tau(1)$ $\tau(3)$ $\tau(4)$)($\tau(3)$ $\tau(5)$) = (2 4 5)(3 1) = (1 3)(2 4 5).
@@ -47,7 +47,7 @@ We've shown: Whenever $\sigma, \sigma'$ are conjugate in $S_n$, then $\sigma, \s
 	We know that conjugate $\implies$ same cycle type.
 	For the converse, suppose $\sigma, \sigma'$ have the same cycle type.
 
-	Shuffle the cycles (because they're disjoint) in $\sigma$ to line up with those of $\sigma$. 
+	Shuffle the cycles (because they're disjoint) in $\sigma$ to line up with those of $\sigma$.
 
 	Then take the permutation that takes the elements in the cycles of $\sigma$ to the corresponding elements in the cycles of $\sigma'$. (Also, make sure that fixed points are sent to fixed points.)
 
@@ -88,7 +88,7 @@ We've shown: Whenever $\sigma, \sigma'$ are conjugate in $S_n$, then $\sigma, \s
 	Total: & 24
 	\end{tabular}
 \end{eg}
-	
+
 \begin{eg}
 	How many elements of $S_5$ commute with $\sigma = \cyc{1 4}\cyc{3 5}$?
 	Use the \nameref{OST}!
