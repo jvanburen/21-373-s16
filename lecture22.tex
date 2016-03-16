@@ -1,0 +1,114 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{22}{2016--03--16}
+
+\begin{remark}[This is simply a digression. You are \emph{not} responsible for this material.]
+	Can we ``test'' whether two groups are isomorphic?
+	What is ``group data?'' Typically, in practice, it's some sort of combinatorial presentation. We realize groups as words in some (typically finite) alphabet with ``substitution rules.'' (Relations to automata theory.)
+	Letters are usually called generators, substitution rules called relations, the entire thing is called a presentation.
+	Typical data: List of letters and substitution rules 
+	$\langle \underbrace{x, y, z, \ldots}_{\text{letters}} | \underbrace{x^2 = \epsilon, yzy = z^2, \text{etc...}}_{\text{rules}} \rangle$. Group action is typically concatenation (allowing ``inverses'' of letters). Examples:
+	\begin{eg}\leavevmode
+		\begin{itemize}
+			\item $G = \langle x | \cdot \rangle \cong \ZZ$
+			\item $G = \langle x | x^n = \epsilon \rangle \cong \ZZ/n\ZZ$
+			\item $G = \langle x, y | xy = yx \rangle \cong \ZZ \times \ZZ$
+			$(a, b)\mapsto x^a, y^b$ is an isomorphism
+			\item $G = \langle x, y | x^2 = \epsilon, y^m=\epsilon, yx = xy^{-1} \rangle \cong D_{2m}$.
+			$(x^iy^j)(x^ky^\ell) = x^?y^?$
+			\item $G = \langle x, y | x^2=\epsilon, y^5=\epsilon, xyx=y^2, xy^4xy^3x = y^3$
+			Let's look at $y$. $y=x^2yx^2= x(xyx)x=x(y^2)x=xyyx=xyx^2yx=(xyx)(xyx)=y^4=y^2yy=y^2y^4y^4 = y^{10}= (y^5)^2 = \epsilon$ We also know that $\epsilon=y^3 = x\epsilon x \epsilon x = x^3 = xx^2= x$. Thus, $G\cong\{e\}$.
+		\end{itemize}
+		\begin{theorem}[Novikov, Adyan-Rabin]
+			There is no computer program which upon input some presentation of a group correctly answers $G\overop{\cong}{?}\{e\}$.
+		\end{theorem}
+		\begin{proof}
+			Reduce to halting problem.
+		\end{proof}
+	\end{eg}
+	The best know algorithm for testing isomorphism given the multiplication table is $\mathcal{O}(n^{\frac12\log n})$
+
+	Now, back to ring theory.
+\end{remark}
+
+\begin{eg}\leavevmode
+	\begin{enumerate}
+		\item[4] $\QQ[\sqrt{-5}]$ = elements that look like $a + b\sqrt5, a\in\QQ, b\in\QQ$.
+
+		$(a + b\sqrt{-5}) + (c + d\sqrt{-5}) = (a + c) + (b + d)\sqrt{-5}$
+
+		$(a + b\sqrt{-5}) \times (c + d\sqrt{-5}) = (ac - 5bd) + (ad + bc)\sqrt{-5}$
+
+		It's a ring because $0 = 0 + 0\sqrt{-5}$
+
+		$1 = 1 + 0\sqrt{-5}$.
+
+		$1\ne 0$
+
+		It's also commutative (check left to reader).
+
+		Every non-zero element is a unit ($u$ is a unit iff $\exists v (uv = vu = 1)$)
+
+		$(a+b\sqrt{-5})\left(\frac{a-b\sqrt{-5}}{a^2+5b^2}\right)$
+
+		\item[5] $\QQ[x]$ = polynomials of $x$ with rational coefficients. Typical elements are $p(x) = 5, q(x) = x-7, r(x) = x^{17} - \frac{2}{3} + \frac{1}{7}$. $+, \times$ as usual.
+		Checking the other ring properties left as an exercise.
+
+		Polynomials have no zero divisors. $p(x)q(x) = 0 \iff p(x)=0 \text{ or } q(x) = 0$. Takes a little bit of work to show.
+
+		$x$ is \emph{not} a unit. No solution to $xp(x) = 1$ (can formalize by looking at the degree of each side).
+		\item[6] $2\times 2$ matrices over $\QQ$.
+		$\smattwo a,b|c,d ,\quad a,b,c,d\in\QQ$ with normal $+, \times$. \emph{Not} commutative ($AB \ne BA$) in general.
+		$\mathsf{0} = \smattwo 0,0|0,0 $, 
+		$\mathsf{1} = \smattwo 1,0|0,1 $.
+
+		\begin{claim}[1]
+			If $\det A \ne 0$ then $A$ is a unit.
+		\end{claim}
+		\begin{proof}
+			$A = \smattwo a,b|c,d , \inv A = \frac{1}{\det A} \smattwo d,-b|-c,a $.
+		\end{proof}
+		\begin{claim}[2]
+			If $\det A = 0$ then $A$ is a zero-divisor.
+		\end{claim}
+		\begin{proof}
+			$\smattwo a,b|c,d \smattwo d,-b|-c,a = \mathsf{0}$
+		\end{proof}
+	\end{enumerate}
+\end{eg}
+
+\begin{defn}
+	If $R$ is a ring which
+	\begin{enumerate}
+		\item is commutative
+		\item has a $1\ne 0$
+		\item has no zero-divisors
+	\end{enumerate}
+	then we say $R$ is an \kw{integral domain} (abbr. \kw{ID}).
+	(note: integral means like the integers, not like in calculus.)
+\end{defn}
+
+\begin{proposition}
+	Suppose $R$ is an ID, $a,b,c\in R$ such that $a\ne \mathsf0$ and $ab=ac$. Then $b=c$.
+\end{proposition}
+\begin{proof}
+	$0=ab-ac = a(b-c)$. Since $a$ is not a zero-divisor (because R is an ID) we know that $b-c = 0$ Thus, $b=c$ as desired.
+\end{proof}
+
+\begin{remark}
+	``There's a result that says every finite integral domain is a field, but I don't think we need that''
+\end{remark}
+
+\begin{defn}
+	If $(R, +, \times)$ is a ring and $S\subseteq R$, we say that $S$ is a \kw{subring} if $(S, +, \times)$ is a ring with the same operations. (In particular, $(S, +) \le (R, +)$.)
+\end{defn}
+
+\begin{defn}
+	If $(R, +_R, \times_R), (S, +_S, \times_S)$ are rings, we say that $\vp:R\to S$ is a \kw{ring homomorphism} (or just homomorphism if ``ring'' is clear from the context) if for all $r_1, r_2\in R$:
+	\begin{itemize}
+		\item $\vp(r_1+_Rr_2) = \vp(r_1) +_S \vp(r_2)$
+		\item $\vp(r_1\times_R r_2) = \vp(r_1) \times_S \vp(r_2)$
+	\end{itemize}
+\end{defn}
+\end{document}
