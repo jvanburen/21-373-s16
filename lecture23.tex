@@ -1,0 +1,132 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{23}{2016--03--18}
+\begin{classnote}{orange!10}{orange!25}
+Midterm 2 will be in three weeks: April 8th or 11th.
+
+There will be both group theory and ring theory.
+\end{classnote}
+
+\begin{property}[Subring Criteria]
+	Suppose $(R, +, \times)$ is a ring. Then $S\subseteq R$ is a subring iff it satisfies the following properties:
+	\begin{itemize}
+		\item Non-emptiness
+		\item Closure under $+$
+		\item Closure under $-$
+		\item Closure under $\times$
+	\end{itemize}
+	Note that if we already know that $(S, +) \le (R, +)$, then we only need to check closure under $\times$.
+\end{property}
+
+\begin{eg}
+	$5\ZZ$ is a subring of $\ZZ$.
+	Already checked $(5\ZZ, +) \le (\ZZ, +)$.
+	Closure under $\times$:
+	Suppose $5m, 5n\in 5\ZZ$. Then $(5m)(5n) = 25mn = 5(5mn) \in5\ZZ$.
+\end{eg}
+\begin{eg}
+	$\ZZ/5\ZZ$ is \emph{not} a subring of $\ZZ.$
+
+	Note that it's not even a subgroup of $\ZZ$ (with the operation of addition)
+\end{eg}
+
+\begin{eg}[Non-example]
+	$\vp:\ZZ\to\ZZ$, $z\mapsto2z$. Is \emph{not} a homomorphism.
+	$\vp(1\times 1) =\vp(1) = 2\ne 4 = 2\times 2 = \vp(1)\times\vp(1)$
+	(In fact the only two homomorphism $\ZZ\to\ZZ$ are $z\mapsto z, z\mapsto 0$)
+\end{eg}
+
+\begin{eg}
+	The map $\vp:\ZZ\to \ZZ/3\ZZ, \vp(z) = \bar z\pmod 3$
+\end{eg}
+
+\begin{remark}
+	Many authors demand that all rings have a multiplicative identity \one. Some of them demand that homomorphisms preserve the \one ($\vp(\one_R) = \one_S$).
+\end{remark}
+
+
+\begin{defn}
+	If $(R, +_R,\times_R), (S, +_S, \times_S)$ are rings, define the \kw{direct product} ${(R, +_R,\times_R)\times (S, +_S, \times_S)}$ on the set $R\times S$ with $(r,s) + (r', s') = (r+_Rr', s+_Ss')$ $(r, s)\times (r', s') = (r\times_R r', s\times_S s')$
+\end{defn}
+
+\begin{eg}
+	$\ZZ\times\ZZ$ is a ring with $\one=(1, 1)$.
+	The map $\vp:\ZZ\to\ZZ\times\ZZ, \vp(z) = (z, 0)$ is a ring homomorphism., but $\vp(1) = (1, 0)$ is \emph{not} the identity of $\ZZ\times\ZZ$.
+\end{eg}
+
+\begin{defn}
+	$\vp:R\to S$ is a ring homomorphism. Define the \kw{kernel} $\Ker(\vp)\subseteq R$ by $r\in \Ker(\vp) \iff \vp(r) = \zero_S$ 
+\end{defn}
+
+\begin{proposition}
+	Suppose $\vp:R\to S$ is a ring homomorphism. Put $K=\Ker(\vp)$. Then:
+	\begin{enumerate}
+		\item $K$ is a subring of $R$
+		\item $\forall a\in K, \forall r\in R (ar\in K \land ra\in K)$ (because $\vp(ar) = \vp(a)\vp(r) = 0\vp(r) = 0$)
+	\end{enumerate}
+\end{proposition}
+\begin{proof}[proof of (a)]
+	We already know that $(K, +) \le (R, +)$. Thus, we only need to check closure under $\times$.
+	Fix $a, b\in K$ sp $\vp(a) = \vp(b) = 0$. Want $ab\in K$ $\vp(ab) = \vp(a)\vp(b) = 0\cdot 0 = 0$. Thus $ab\in K$, as desired.
+\end{proof}
+
+\begin{defn}
+	Let $R$ be a ring, $I\subseteq R$. We say $I$ is an \kw{ideal} of $R$ if:
+	\begin{enumerate}
+		\item $I$ is a subring of $R$
+		\item $\forall r\in R (rI\subseteq I \land Ir \subseteq I)$
+		Where $rI = \{ra : a\in I\}$ and $Ir = \{ar: a\in I\}$
+	\end{enumerate}
+\end{defn}
+
+\begin{proposition}
+	If $\vp:R\to S$ is a ring homomorphism then $\Ker(\vp)$ is an ideal of $R$.
+\end{proposition}
+
+\begin{proposition}[Ideal Criteria]
+	\label{idealcrit}
+	If $I\subseteq R$, $R$ is a ring then $I$ is an ideal iff:
+	\begin{enumerate}
+		\item $I\ne \vs$
+		\item $\forall a, b\in I (a+b\in I)$
+		\item $\forall a\in I (-a\in I)$
+		\item $\forall a\in I (\forall r\in R (ar\in I \land ra \in I))$ 
+	\end{enumerate}
+\end{proposition}
+(Note that the last criterion is stronger than closure under $\times$ in $I$.)
+
+\begin{eg}
+	$5\ZZ$ is an ideal of $\ZZ$. 
+
+	We've alredy checked it's a subring.
+	Fix arbitrary $5m\in 5\ZZ$ and $z\in Z$.
+	Then $(5m)z = 5(mz) \in 5\ZZ$.
+	$z(5m) = 5(zm) \in 5\ZZ$. Thus, as our choices were arbitrary, $5\ZZ$ is an ideal
+\end{eg}
+
+\begin{eg}[Non-example]
+$R = 2\times 2$ matrices with entries in $\QQ$.
+$I = \{A\in R : \det A = 0\}$
+Note that it satisfies the last ideal criterion. However, it is not closed under addition. ($\smattwo 1,0|0,0 + \smattwo 0,0|0,1 = I_2$ and $\det I_2 \ne 0$)
+\end{eg}
+
+\begin{defn}
+	If $R$ is a ring, $I$ is a subring, define $R/I = \{r+I : r\in R\}$ (this is exactly $(R, +)/(I, +)$).
+\end{defn}
+
+Note $(r + I) + (s + I) = (r + s) + I$ is a well-defined abelian group operation on $R/I$.
+
+\begin{proposition}
+	If $I$ is an ideal of $R$, the map $(r + I)(s + I) = rs + I$ is well-defined.
+\end{proposition}
+\begin{proof}
+	Suppose $r + I = r' + I$ ($r - r' \in I$), $s + I = s' + I$ ($s - s' \in I$)
+
+	Want to show that $rs + I = r's' + I$ (i.e., $rs-r's' \in I$)
+
+	$rs - r's' = rs(-rs' + rs') - r's' = \underbrace{r(s-s')}_{\in I} + \underbrace{(r-r')s'}_{\in I}\in I$
+\end{proof}
+
+
+\end{document}
