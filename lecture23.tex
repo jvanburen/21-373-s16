@@ -61,12 +61,12 @@ There will be both group theory and ring theory.
 
 \begin{proposition}
 	Suppose $\vp:R\to S$ is a ring homomorphism. Put $K=\Ker(\vp)$. Then:
-	\begin{enumerate}
+	\begin{enumerate}[(A)]
 		\item $K$ is a subring of $R$
 		\item $\forall a\in K, \forall r\in R (ar\in K \land ra\in K)$ (because $\vp(ar) = \vp(a)\vp(r) = 0\vp(r) = 0$)
 	\end{enumerate}
 \end{proposition}
-\begin{proof}[proof of (a)]
+\begin{proof}[Proof of (A)]
 	We already know that $(K, +) \le (R, +)$. Thus, we only need to check closure under $\times$.
 	Fix $a, b\in K$ sp $\vp(a) = \vp(b) = 0$. Want $ab\in K$ $\vp(ab) = \vp(a)\vp(b) = 0\cdot 0 = 0$. Thus $ab\in K$, as desired.
 \end{proof}

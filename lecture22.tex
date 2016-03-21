@@ -1,14 +1,21 @@
 \documentclass[notes.tex]{subfiles}
 
+\newtcolorbox{digression}{colback=gray!10,colbacktitle=gray!25,coltitle=black,boxrule=.5pt,parbox=false,oversize,title=Digression}
+
 \begin{document}
 \lecture{22}{2016--03--16}
 
-\begin{remark}[This is simply a digression. You are \emph{not} responsible for this material.]
+\begin{digression}
+	This is simply a digression. You are \emph{not} responsible for this material.
+
 	Can we ``test'' whether two groups are isomorphic?
 	What is ``group data?'' Typically, in practice, it's some sort of combinatorial presentation. We realize groups as words in some (typically finite) alphabet with ``substitution rules.'' (Relations to automata theory.)
 	Letters are usually called generators, substitution rules called relations, the entire thing is called a presentation.
+
 	Typical data: List of letters and substitution rules 
-	$\langle \underbrace{x, y, z, \ldots}_{\text{letters}} | \underbrace{x^2 = \epsilon, yzy = z^2, \text{etc...}}_{\text{rules}} \rangle$. Group action is typically concatenation (allowing ``inverses'' of letters). Examples:
+	$\langle \underbrace{x, y, z, \ldots}_{\text{letters}} | \underbrace{x^2 = \epsilon, yzy = z^2, \text{etc...}}_{\text{rules}} \rangle$. 
+
+	The group action is typically concatenation (also allowing ``inverses'' of letters).
 	\begin{eg}\leavevmode
 		\begin{itemize}
 			\item $G = \langle x | \cdot \rangle \cong \ZZ$
@@ -20,9 +27,9 @@
 			\item $G = \langle x, y | x^2=\epsilon, y^5=\epsilon, xyx=y^2, xy^4xy^3x = y^3$
 			Let's look at $y$. $y=x^2yx^2= x(xyx)x=x(y^2)x=xyyx=xyx^2yx=(xyx)(xyx)=y^4=y^2yy=y^2y^4y^4 = y^{10}= (y^5)^2 = \epsilon$ We also know that $\epsilon=y^3 = x\epsilon x \epsilon x = x^3 = xx^2= x$. Thus, $G\cong\{e\}$.
 		\end{itemize}
-		\begin{theorem}[Novikov, Adyan-Rabin]
+		\begin{theorem*}[Novikov, Adyan-Rabin]
 			There is no computer program which upon input some presentation of a group correctly answers $G\overop{\cong}{?}\{e\}$.
-		\end{theorem}
+		\end{theorem*}
 		\begin{proof}
 			Reduce to halting problem.
 		\end{proof}
@@ -30,7 +37,7 @@
 	The best know algorithm for testing isomorphism given the multiplication table is $\mathcal{O}(n^{\frac12\log n})$
 
 	Now, back to ring theory.
-\end{remark}
+\end{digression}
 
 \begin{eg}\leavevmode
 	\begin{enumerate}
