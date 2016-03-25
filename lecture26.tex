@@ -1,0 +1,118 @@
+\documentclass[notes.tex]{subfiles}
+
+\newtcolorbox{fire}{colback=red!15,colbacktitle=orange!25,coltitle=black,boxrule=.5pt,parbox=false,oversize,title=Fire Alarm}
+
+\begin{document}
+\lecture{26}{2016--03--25}
+\begin{classnote}{orange!10}{orange!25}
+	Exam 2 will be on Monday April 11th
+
+	(Also HW 9 is posted, don't forget they mention that $R$ has a $\one\ne\zero$)
+\end{classnote}
+
+\begin{defn}
+	If $R$ is a commutative ring, $R[x] = $ polynomials with coefficients in $R$ = $\sum_{i=0}a_ix^i$. (Note that if $R$ has no \one then $x^0$ doesn't exists so just write it as $a_0 + \sum_{i=1}a_ix^i$).
+\end{defn}
+
+\begin{property}
+	\[
+		\left(\sum_{k=0}^ma_kx^k\right)
+		\times\left(\sum_{k=0}^nb_kx^k\right) 
+		= \sum_{k=0}^{m+n}\left(\left(\sum_{i=0}^ka_ib_{k-i}\right)x^k\right)
+	\]
+\end{property}
+
+Last time: we showed that given a commutative ring $R$ with a \one, and an ideal $I\subseteq R$.
+\begin{itemize}
+	\item $I$ is maximal $\iff R/I$ is a field.
+	\item $I$ is prime $\iff R/I$ is an ID.
+\end{itemize}
+The first point generalizes $\Zn p$ is a field for prime $p$.
+The ``other'' way to make a field out of $\ZZ$ is ``$\QQ$.''
+
+\section*{Field of Fractions}
+\begin{theorem}
+	Suppose $R \ne \{0\}$ is a commutative ring
+	with no zero-divisors. Then there is a field $Q$ with a subring $R'\subseteq Q$ with $R\cong R'$
+\end{theorem}
+\begin{proof}[Proof (sketchy)]
+\footnote{Side note to the reader: if you've ever constructed the rationals from the integers before, we'll be following approximately that sort of procedure.}
+
+Put $D := R \setminus\{0\}$. $D$ satisfies:
+\begin{itemize}
+	\item $D\ne \zero$ (because $R\ne\{\zero\}$)
+	\item $\zero\notin D$
+	\item $D$ contains no zero-divisors
+	\item $\forall a, b\in D (ab\in D)$
+\end{itemize}
+$D$ will be the set of valid ``denominators'' in our construction.
+
+Formally define $F = R\times D = \{(r, d) : r\in R, d\in D\}$.
+
+Think of $(r, d)$ as ``$\frac{r}{d}$''.
+
+Define $\approx$ on $F$ by $(r, d) \approx (s, e) \iff re = sd$.
+
+Exercise: Prove that $\approx$ is an equivalence relation.
+
+Denote by $Q$ the set $F/\approx$ of equivalence classes of $\approx$.
+
+Write $\frac{r}{d}$ for the equivalence class $[(r, d)]_\approx$.
+
+So, $\frac{r}{d} = \frac{s}{e} \iff (r, d)\approx(s, e) \iff re = sd$.
+
+Formally ``define'' addition and multiplication in $Q$ by
+\begin{align*}
+	\frac{a}{b} + \frac{c}{d} &= \frac{ad+cb}{bd} 
+	& \frac{a}{b} \times \frac{c}{d} &= \frac{ac}{bd}
+\end{align*}
+Note that $bd\in D$ because $D$ is closed under multiplication.
+
+\begin{claim}[1]
+	Addition in $Q$ is well-defined
+\end{claim}
+\begin{proof}[Proof that addition is well defined (C1)]
+	We need to show if $\frac{a}{b} = \frac{a'}{b'}, \frac{c}{d}= \frac{c'}{d'}$ (i.e., $ab' = a'b$ and $cd' = c'd$), then $\frac{a}{b} + \frac{c}{d} = \frac{a'}{b'}+\frac{c'}{d'}$. I.e., $\frac{ad+cb}{bd} = \frac{a'd'+c'b'}{b'd'}$, i.e., $(ad+cb)b'd' = (a'd'+c'b')bd$.
+
+	\begin{align*}
+		(ad+cb)b'd' &= adb'd' + cbb'd'\\
+		&= (ab')dd' + (cd')bb'\\
+		&= (a'b)dd' + (c'd)bb'\\
+		&= a'd'bd + c'b'bd\\
+		&=(a'd'+c'b')bd
+	\end{align*}
+\end{proof}
+\begin{claim}[2]
+	Multiplication in $Q$ is well-defined
+\end{claim}
+\begin{proof}[Proof that multiplication is well defined (C2)]
+	The proof is left as an exercise to the reader.\qedhere(C2)
+\end{proof}
+
+\begin{claim}[3]
+	$(Q, +, \times)$ is a ring
+\end{claim}
+\begin{proof}[Proof of Claim 3]
+	$(Q, +)$ is an abelian group as we already know that $+$ is commutative and associative.
+
+	\paragraph{Subclaim} $\forall d, d'\in D$, $\frac{\zero}{d} = \frac{\zero}{d'}$.
+	\paragraph{Pf (subclaim)} $\zero d' = \zero = \zero d$\qed
+
+	Let $\zero_Q$ denote the unique element of $Q$ of the form $\frac{\zero}{d}$ for $d\in D$.
+	Check: $\frac{\zero}{d} + \frac{a}{b} = \frac{0b+ad}{db} \overop?=\frac{a}{b}$ Note that $adb = abd,$ so the final equality holds.
+
+	Thus, $\frac{\zero}{d} = \zero_Q$ is the additive identity.
+
+	We assert that $-\left(\frac{a}{b}\right) = \frac{-a}{b}$.
+
+	Next, we show that $\times$ is an associative binary operator on $Q$ and that the distributive property holds.
+
+	\begin{fire}
+		Unfortunately at this point, the fire alarm went off. It is left to the reader to complete the proof or look up the remainder of it in the textbook.
+	\end{fire}
+\end{proof}
+
+\qedhere(Thm)
+\end{proof}
+
+\end{document}
