@@ -33,7 +33,7 @@ Suppose $\vp: R\to S$ is a ring homomorphism. Then $R/\Ker(\vp)\cong \vp[R]$.
 	To verify that $\Psi$ is a ring isomorphism, we just need it to preserve $\times$.
 
 	Fix $r_1+K, r_2+K \in R/K$. $\Psi((r_1+K)(r_2+K)) = \Psi(r_1r_2 + K) = \vp(r_1r_2) = \vp(r_1) \vp(r_2) = \Psi(r_1+K)\Psi(r_2 + K)$
-\end{proof} 
+\end{proof}
 
 Ideals are the same thing as kernels of homormorphisms.
 
@@ -56,7 +56,7 @@ More on ideals:
 
 	Closed under $+$: Fix $i+j, i'+j' \in I+J$. Then $(i+j) + (i'+j') = (i+i') + (j+j') \in I+J$
 
-	Closed under $-$: Fix $i+j\in I+J$. Then $-(i+j) = (-i)+(-J) \in I+J$
+	Closed under $-$: Fix $i+j\in I+J$. Then $-(i+j) = (-i)+(-j) \in I+J$
 
 	Closed under $\times$ by $R$:
 	Fix $i+j\in I+J$ and $r\in R$.
@@ -123,7 +123,7 @@ More on ideals:
 \begin{proof}
 	($\Longrightarrow$): Suppose $R$ is a field and $I\subseteq R$ is an ideal. If $I = \{\zero\}$ then we're done. Otherwise, $\exists r\ne \zero$ with $r\in I$. Since $r$ is a unit, $I = R$.
 
-	($\Longleftarrow$): Suppose $R$ has only $\{\zero\}$ and $R$ for its ideals. Fix $\zero\ne r\in R$. Want to show that $r$ is a unit. 
+	($\Longleftarrow$): Suppose $R$ has only $\{\zero\}$ and $R$ for its ideals. Fix $\zero\ne r\in R$. Want to show that $r$ is a unit.
 	Look at $(r)$. We know $r\in (r),$ so $r\ne \zero$.  Hence $(r) = R$. We also know that $(r) = rR$ by our assumptions along with proposition~\ref{prop:unitideal}. So, $\exists s\in R$ such that $rs = \one$. We also have $sr = \one$. Thus $r$ is a unit.
 \end{proof}
 \end{document}
