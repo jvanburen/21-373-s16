@@ -1,0 +1,136 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{27}{2016--03--28}
+\section*{Polynomials Over Integral Domains}
+First, we're going to focus on polynomials over fields.
+Typical polynomial in $R[x]$ looks like $p(x) = \sum_k^na_kx^k$ with $a_k\in R$ and $n\in \NN_0$.
+
+Questions: Can we factor them? Uniquely? Can we ``solve'' polynomial equations, etc.
+
+\begin{defn}\leavevmode
+	\begin{itemize}
+		\item Each $a_k$ is a \kw{coefficient}
+		\item Each $a_kx^k$ is a \kw{term}
+		\item The largest $k$ with $a_k\ne0$ (if it exists) is called the \kw{degree} of $p(x)$ (denoted $\deg p$)
+		\item If all $a_k = 0$ we leave the degree undefined (but we can consider it to be $-\infty$ for various reasons that ``we're not going to get into'')
+		\item If $\deg p = n$ we call $a_n, a_nx^n$ the \kw{leading coefficient} and the \kw{leading term}, respectively.
+		\item If the leading coefficient is 1, we say $p$ is \kw{monic}.
+	\end{itemize}
+\end{defn}
+
+\begin{proposition}
+	Let $R$ be an integral domain, $p(x), q(x)\in R[x]$ both non-zero. Then, $\deg(p(x)q(x)) = \deg p + \deg q$.
+\end{proposition}
+\begin{proof}
+	Suppose $\deg p = m, \deg q = n$. Apply the definition of multiplication.
+	The leading term of the products is therefore $a_mb_nx^{m+n}$. ($a_mb_n\ne \zero$ because $R$ is an integral domain).
+\end{proof}
+
+\begin{corollary}
+	$R$ is an integral domain.
+	\begin{enumerate}
+		\item Units of $R[x]$ are exactly the units of $R$ (viewed as a degree 0 polynomial.)
+		\item $R[x]$ is an ID.
+	\end{enumerate}
+\end{corollary}
+\begin{proof}\leavevmode
+	\begin{enumerate}
+		\item Suppose $p$ is a unit. Fix $q\in R[x]$ such that $p(x)q(x) = \one$. $\deg(\one) = 0$. So, $\deg(pq) = \deg(p) + \deg(q) = 0$
+		Hence, $\deg p = \deg q = 0.$ Thus, $p(x) = a_0, q(x) = b_0$. $a_0b_0 = \one$, so $a_0, b_0$ are units in $R$.
+		\item Analogous.
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}[Division Algorithm for Polynomials over fields]
+	\label{thm:polydivalg}
+	Suppose $F$ is a field, $a(x), b(x)\in F[x]$ with $b(x)\ne 0$. Then, there are $q(x), r(x) \in F[x]$ such that
+	\begin{itemize}
+		\item $a(x) = q(x)b(x) + r(x)$
+		\item $r = \zero$ or $\deg r < \deg b$
+	\end{itemize}
+	(Also $q$ and $r$ are unique, proof left as an exercise.)
+\end{theorem}
+\begin{proof}
+	We proceed by induction on $m = \deg a$. 
+
+	If $a=\zero,$ then $q=r=\zero$.
+
+	Suppose the theorem is true for all $a'$ (with the same $b$) with $\deg(a') < m$.
+
+	Case 1 ($\deg a < \deg b$):
+	\tabin
+		$a = \zero b + a$ 
+	\tabout
+	Case 2 ($\deg a \ge \deg b$):
+	\tabin
+		Denote by $n$ the degree of $b$.
+		Fix leading terms $a_mx^m$ of $a(x)$ and $b_nx^n$ of $b(x)$.
+
+		Define $a'(x) = a(x) - \frac{a_m}{b_n}x^{m-n}b(x)$.
+
+		\begin{claim}
+			$\deg a' < \deg a$
+			(or $a'=\zero$)
+		\end{claim}
+		\begin{proof}[Proof (Claim)]
+			Coefficients above $m$ are $\zero$. What about the coefficient of $x^m$? It equals $a_m - \frac{a_m}{b_n}b_n = \zero$.
+
+			So, $\deg(a') < n$ (or $a' = \zero$)
+		\end{proof}
+		So, by induction, $\exists q', r'\in F[x]$ such that
+		\begin{itemize}
+			\item $a'(x) = q'(x)b(x) + r'(x)$
+			\item $r'=\zero$ or $\deg r' < \deg b$
+		\end{itemize}
+		We know \begin{align*}
+			a(x)&=a'(x) + \frac{a_m}{b_n}x^{m-n}b(x)\\
+			&= q'(x)b(x) + r'(x) + \frac{a_m}{b_n}x^{m-n}b(x)\\
+			&= \underbrace{\big(q'(x) + \frac{a_m}{b_n}x^{m-n}\big)}_{q(x)}b(x) + r'(x)
+		\end{align*}.
+	\tabout
+\end{proof}
+
+We needed $F$ to be a field. Consider $a(x) = 3x+1, b(x) = 2$ in $\ZZ[x]$.
+
+\begin{defn}
+	An ID $R$ is a \kw{Euclidean domain} (\kw{ED}) if there is a function $N:R\to \NN$ such that $\forall a, b\in R, b\ne \zero$ $\exists q , r\in R $ with
+	\begin{itemize}
+	 	\item $a=qb+r$
+	 	\item $r=0$ or $N(r) < N(b)$ 
+	 \end{itemize} 
+\end{defn}
+
+\begin{notation}
+	$N$ (as described above) is called a $\kw{norm}$.
+	\begin{itemize}
+		\item $q$ is the \kw{quotient}
+		\item $r$ is the \kw{remainder}
+	\end{itemize}
+\end{notation}
+
+\begin{eg}\leavevmode
+	\begin{itemize}
+		\item $R = \ZZ$, $N(z) = \abs z$
+		\item $F[x]$ with $F$ a field, $N(p) = \deg p$
+		\item $F$ a field, $N$ any function.
+	\end{itemize}
+\end{eg}
+
+\begin{defn}
+	An ID $R$, is a \kw{principal ideal domain} (\kw{PID}) if every ideal is principal (i.e., $I\subseteq R$ an ideal $\implies \exists a\in R (I = (a) = aR)$)
+\end{defn}
+
+\begin{proposition}
+	Every Euclidean domain is a principal ideal domain.
+\end{proposition}
+\begin{proof}
+	Fix ED $R$, $I\subseteq R$ an ideal. If $I = \{\zero\}$ then $I = (\zero)$. If $I \ne \{\zero\}$, fix $a := \arg\min_{a\in I\setminus\{\zero\}} N(a)$.
+	\begin{claim}
+		$I=(a)$
+	\end{claim}
+	\begin{proof}[Proof of Claim]
+		$(a)\subseteq I$, need $I\subseteq (a)$ Fix $s\in I$. By ED, $\exists q, r\in R$ such that $s=qa+r$ with $N(r) < N(a)$ or $r=0$. $r = s-qa\in I$. Thus, as $a$ was minimal, $r=0$. Thus $s=qa \in (a)$
+	\end{proof}
+\end{proof}
+\end{document}
