@@ -52,7 +52,7 @@ Questions: Can we factor them? Uniquely? Can we ``solve'' polynomial equations, 
 	(Also $q$ and $r$ are unique, proof left as an exercise.)
 \end{theorem}
 \begin{proof}
-	We proceed by induction on $m = \deg a$. 
+	We proceed by induction on $m = \deg a$.
 
 	If $a=\zero,$ then $q=r=\zero$.
 
@@ -60,7 +60,7 @@ Questions: Can we factor them? Uniquely? Can we ``solve'' polynomial equations, 
 
 	Case 1 ($\deg a < \deg b$):
 	\tabin
-		$a = \zero b + a$ 
+		$a = \zero b + a$
 	\tabout
 	Case 2 ($\deg a \ge \deg b$):
 	\tabin
@@ -96,9 +96,9 @@ We needed $F$ to be a field. Consider $a(x) = 3x+1, b(x) = 2$ in $\ZZ[x]$.
 \begin{defn}
 	An ID $R$ is a \kw{Euclidean domain} (\kw{ED}) if there is a function $N:R\to \NN$ such that $\forall a, b\in R, b\ne \zero$ $\exists q , r\in R $ with
 	\begin{itemize}
-	 	\item $a=qb+r$
-	 	\item $r=0$ or $N(r) < N(b)$ 
-	 \end{itemize} 
+    \item $a=qb+r$
+    \item $r=0$ or $N(r) < N(b)$
+  \end{itemize}
 \end{defn}
 
 \begin{notation}
