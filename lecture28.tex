@@ -1,0 +1,118 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{28}{2016--03--30}
+\begin{remark}
+	$R$ commutative ring, $a\in R$.
+
+	The map $\mathit{eval}_a:R[x]\to R$ $p(x) \mapsto p(a)$ is a homomorphism of rings.
+\end{remark}
+
+Let's go back to EDs. EDs are PIDs in particular $F[x]$ with $F$ a field.
+
+\begin{eg}
+	$\ZZ[x]$ is \emph{NOT} a PID. We'll show this by contradiction.
+
+	Look at $I = \{p(x)\in\ZZ[x] : \text{ constant term is even}\}$ $I = \mathit{eval}_0^{-1}(2\ZZ)$ hence an ideal.
+	Suppose $I$ were principal, say $I = (p(x))$. First $2\in I$ (constant 2 polynomial. 2 is a multiple of $p(x)$) $p(x)$ cannot be $\pm 1$ as otherwise $(p(x)) = \ZZ[x]$ so $p(x) = \pm 2$. We also know $x \in I$. But there is no $q(x)$ such that $x = 2q(x)$. Thus $\pm2$ can't generate it. Thus $I$ is not principle.
+
+	Variant: if $R[x]$ is a PID, then $R$ is a field.
+\end{eg}
+
+
+\begin{defn}
+	Let $R$ be a commutative ring and $a,b\in R$ we say $a$ \kw{divides} $b$, or $a\divides b$, if $\exists r\in R (ar = b)$.
+\end{defn}
+
+\begin{proposition}
+	For $a, b\in R$, $R$ commutative with a $\one\ne\zero$, the following are equal:
+	\begin{enumerate}
+		\item $a\divides b$
+		\item $b\in (a)$
+		\item $(b)\subseteq (a)$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	($1\implies 2$):
+	\tabin
+		$a\divides b$ $\exists r\in R$ $ar=b$, $ar\in I$ for all ideals $I$ with $a\in I$. Hence $b=ar \in (a)$.
+	\tabout
+	($2\implies 3$):
+	\tabin
+		$(a)$ is an ideal, it contains $b$. $(b)$ is the smallest such ideal. Thus $(b)\subseteq (a)$.
+	\tabout
+	($3\implies 1$):
+	\tabin
+		$(a) = aR = \{ar:r\in R\}$. 
+		$(b)\subseteq (a), b\in (a),$ so $b=ar$ for some $r\in R$. 
+	\tabout
+\end{proof}
+
+\begin{defn}
+	We say $a, b\in R$ (commutative ring with a \one) are \kw{commensurate} if $(a) = (b)$.
+
+	(By proposition, $a\divides b$ and $b\divides a$)
+\end{defn}
+
+\begin{proposition}
+	Suppose $R$ is an ID.
+	Then, $a,b\in R$ are commensurate iff there exists a unit $u$ such that $a=ub$.
+\end{proposition}
+\begin{proof}
+	(Commensurate $\implies \exists u$):
+	\tabin
+		Fix $r, s\in R$ such that $ar = b$, $bs = a$.
+		So $(ar)s = a \implies a(rs) = a$ So, $a(rs-\one) = \zero$
+		If $a = \zero$ then $b= \zero$ so $\zero=\one\zero$.
+		Otherwise, $rs - \one = \zero \implies rs = 1$ so $s$ is a unit.
+	\tabout
+	($\exists u \implies$ commensurate):
+	\tabin
+		Suppose $a=ub$, $b\divides a$ $u$ a unit, $\exists v\in R$ $vu = uv = \one$. Hence $va = vub = \one b = b$ Thus $a\divides b$. Hence $a, b$ are commensurate.
+	\tabout
+\end{proof}
+
+\begin{defn}
+	Work in commutative ring $R$ with a \one. We say $d$ is a \kw{gcd} of the nonzero elements $a,b\in R$ 
+	if 
+	\begin{enumerate}
+		\item $d\divides a$ and $d\divides b$
+		\item If $c\divides a$ and $c\divides b$ then $c\divides d$
+	\end{enumerate}
+\end{defn}
+
+Note that if $d$ and $d'$ are both gcds of the same pair $a,b$. $d\divides d'$ and $d'\divides d$, so $d$ and $d'$ are commensurate and thus, in an ID, $\exists u$ unit such that $d = ud'$.
+
+\begin{theorem}
+	If $R$ is a principal ideal domain, then gcds exists. (If $a,b\in R$ nonzero, $\exists d\in R$ such that $d$ is a gcd of $a, b$.) Moreover, this gcd $d$ has the form $d=ax+by$ for some $x, y\in R$.
+\end{theorem}
+\begin{proof}
+	Note that it is enough to show that there exists a gcd of the form $ax+by$
+
+	Let $I$ be the ideal $(a) + (b) = \{r + s : r\in (a), s\in (b)\}$.
+
+	This ideal is principal as $R$ is a PID, so say $I = (d)$.
+
+	$d\in (d)$ so $d = r + s$ for some $r\in (a), s\in (b)$, so $d = ax+by$ for some $x,y\in R$. 
+
+	\begin{claim}
+		$d$ is a gcd of $a, b$.
+	\end{claim}
+	\begin{proof}
+		$a\in (a)$, hence $a = a + \zero\in (a) + (b) = I$.
+		$a\in (d)$, so $d\divides a$.
+		Similarly, $d\divides b$.\qedhere(Claim)
+	\end{proof}
+
+	Next, suppose $c\in R$ such that $c\divides a$ and $c\divides b$.
+
+	% Need $c\in (a) + (b)$.
+
+	Fix $r,s\in R$ such that $a=rc, b=sc$ $a\in (c)$, $b\in (c)$. Thus, $d = ax + by \in (c)$ so $c\divides d$.\qedhere(Thm)
+\end{proof}
+
+In particular, polynomials, over a field always have gcds.
+
+Next time we'll prove polynomials admit unique factorizations.
+\end{document}
