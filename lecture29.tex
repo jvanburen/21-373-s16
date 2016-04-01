@@ -126,4 +126,13 @@ Looking back at proving unique factorization of integers, we see that we used pr
 	A ring $R$ is a \kw{Noetherian Ring} if there is no strictly increasing sequence  $I_0\subsetneq I_1\subsetneq I_2\subsetneq \ldots$ of ideals.
 \end{defn}
 
+\begin{proposition}
+	If $R$ is a PID, then $R$ is Noetherian.
+\end{proposition}
+\begin{proof}
+	Towards a contradiction, say we have a sequence $I_0\subsetneq I_1\subsetneq I_2\subsetneq \ldots$ of ideals.
+
+	On Homework: $I = \bigcup_{n\in\NN}I_n$ is also an ideal. $R$ is a PID, so $I$ is principal, so $I = (c)$ for some $c\in I = \bigcup_{n\in\NN}I_n$. Fix $n$ such that $c\in I_n$. So $(c) \subseteq I_n$. But $I_{n+1} \subseteq \bigcup_{n\in\NN}I_n = (c) \subseteq I_n$. Hence $I_n = I_{n+1}$. This is a contradiction, so $R$ is Noetherian.
+\end{proof}
+
 \end{document}
