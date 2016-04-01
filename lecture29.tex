@@ -1,0 +1,129 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{29}{2016--04--01}
+\begin{classnote}{orange!10}{orange!25}
+	Homework 10 is now due Friday April 8 at any time.
+
+	Midterm 2 will still be on Monday April 11.
+
+	No homework will be due exam week.
+\end{classnote}
+
+\begin{remark}
+	``Commensurate'' also called ``associate''.
+	Sometimes we'll even write $a\sim b$.
+\end{remark}
+
+Story so far: 
+\begin{center}
+	Fields $\subseteq$ Euclidean domains $\subseteq$ Principal ideal domains $\subseteq$ Integral domains % $\subseteq$ Commutative rings $\subseteq$ Rings $\subseteq$ Groups
+\end{center}
+
+\begin{proposition}
+	Suppose $R$ is a PID and $I\subseteq R$ is a nonzero ideal. Then, $I$ is a prime ideal iff $I$ is a maximal ideal.
+\end{proposition}
+
+\begin{proof}
+	Maximal $\implies$ Prime ($R$ commutatvive with a $\one\ne\zero$) was already done. 
+ 
+	Next we want to show Prime $\implies$ Maximal.
+	So suppose $I$ is a nonzero prime. Pick a generator $p\ne\zero$ with $I = (p)$. Now suppose $J$ is another ideal with $I\subseteq J \subseteq R$. We want to prove that $J=I$ or $J=R$.
+
+	Fix a generator $a\ne\zero$for $J$ so that $(a) = J$.
+
+	$(p)\subseteq (a)$ so $a\divides p$ Fix $r\in R$ such that $p = ar$. 
+	$ar\in (p) = I$. As $I$ is prime, either $a\in I$, or $r\in I$.
+
+	Case 1 ($a\in I$):
+	\tabin
+		This means $(a) \subseteq I$. So $J\subseteq I$, thus $J=I$
+	\tabout
+
+	Case 2 ($r\in I$):
+	\tabin
+		$r\in (p)$ so $p\divides r$.
+		Say $r=bp$ for some $b\in R$.
+		$p=ar=abp$.
+		$p-abp = \zero$, $(\one-ab)p=\zero$.
+
+		Thus, $\one-ab = \zero$ or $\one = ab \in (a)$. Hence $J = (a) = R$
+	\tabout
+\end{proof}
+
+What does (maximal = prime) say about ring \emph{elements}?
+
+\begin{defn}
+	Let $R$ be an ID. We say $p\in R$ is \kw{prime} when:
+	\begin{itemize}
+		\item $p\ne\zero$
+		\item $p$ is not a unit
+		\item $\forall a,b\in R$ if $p\divides ab$ then $p\divides a$ or $p\divides b$.
+	\end{itemize}
+\end{defn}
+
+\begin{exercise}
+	$R$ is an ID. Prove that $p\ne\zero$ is prime iff $(p)$ is a prime ideal.
+\end{exercise}
+
+$R$ an ID.
+
+\begin{defn}
+	We say that $r=ab$ is a \kw{proper factorization} if neither $a$ nor $b$ is a unit.
+\end{defn}
+
+\begin{defn}
+	We sat $r\in R$ is \kw{irreducible} if:
+	\begin{itemize}
+		\item $r\ne\zero$
+		\item $r$ is not a unit
+		\item $r$ admits no proper factorization.
+		($\forall a,b\in R$, if $ab = r$ then either $a$ or $b$ is a unit)
+	\end{itemize}
+\end{defn}
+
+\begin{proposition}
+	Suppose $r\ne\zero$ and $r=ab$ is a proper factorization of $r$. Then $(r)\subseteq (a)\subseteq R$ and $(a) \ne (r), (a)\ne R$.
+	Particularly, $(r)$ is not maximal.
+\end{proposition}
+\begin{proof}
+	$(r)\subseteq (a)\subseteq R$ is clear since $a\divides r$.
+
+	\paragraph{$(a)\ne (r)$:} Towards a contradiction, suppose $(a) = (r)$. So, $a,r$ are associative. Thus, as $R$ is an ID, $\exists \text{ a unit } u\in R (r=au)$.
+	$a(u-b) = au-ab = r-r=\zero$
+	$a\ne \zero$ since $ab = r \ne \zero$. So $u-b = \zero,$ so $b=u$. This is a contradiction since $b$ is not a unit.
+
+	\paragraph{$(a)\ne R$:} $(a) = R$ would imply $a$ is a unit. But it isn't. 
+	\qedhere(prop)
+\end{proof}
+
+\begin{proposition}
+	In a PID $r\ne \zero$ is irreducable iff $(r)$ is a maximal ideal.
+\end{proposition}
+
+\begin{proof}
+	Maximal $\implies$ Irreducible:
+
+	Note that $(r)$ maximal means $(r)\ne R$. so $r$ is not a unit.
+	Now suppose $r$ has a proper factorization $r = ab$. We would have $(r)\subsetneq(a)\subsetneq R$. This would contradict maximality. Thus, $r$ has no proper factorization, so it is irreducible.
+
+	Irreducible $\implies$ Maximal:
+
+	Suppose $r$ is irreducible. Towards a contradiction suppose $(r)$ is not maximal. I.e., $\exists \text{ an ideal } I\subseteq R$ with $(r) \subsetneq I \subsetneq R$. Since $R$ is a PID, fix $a\in R$ with $(a) = I$. \emph{Check: any facorization $r = ab$ is proper.}
+	This contradicts irreducibility. Hence $r = ab$ is proper.
+\end{proof}
+
+\begin{corollary}
+	In a PID, an element $r$ is prime iff $r$ is irreducible.
+\end{corollary}
+\begin{proof}
+	Look at $(r)$.
+\end{proof}
+
+Looking back at proving unique factorization of integers, we see that we used primeness coinciding with irreducibility.
+
+\begin{defn}
+	A ring $R$ is a \kw{Noetherian Ring} if there is no strictly increasing sequence  $I_0\subsetneq I_1\subsetneq I_2\subsetneq \ldots$ of ideals.
+\end{defn}
+
+\end{document}
