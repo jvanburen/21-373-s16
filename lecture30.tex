@@ -1,0 +1,114 @@
+\documentclass[notes.tex]{subfiles}
+\newtcolorbox{digression}{colback=gray!10,colbacktitle=gray!25,coltitle=black,boxrule=.5pt,parbox=false,oversize,title=Digression}
+\begin{document}
+\lecture{30}{2016--04--04}
+\begin{classnote}{orange!10}{orange!25}
+This lecture is the cutoff for midterm 2 material. No material after this lecture will be on the exam.
+\end{classnote}
+\begin{digression}
+	A \kw{tree} is a set of \kw{nodes} (or \kw{vertices}) with a binary relation ``is a child of'' such that
+	\begin{itemize}
+		\item There is a special \kw{root node} that is the 
+		\item Every node but the root node is the child of exactly one other node. (The root is not a child.)
+		\item Every node is a \kw{descendant} of the root node
+	\end{itemize}
+
+	\begin{defn}
+		$y$ is a \kw{descendant} of $x$ if:
+		\begin{itemize}
+			\item $y=x$ or
+			\item $y$ is a child of $x$ or
+			\item $y$ is a child of a child of $x$ or
+			\item $\ldots$
+		\end{itemize}
+		Write $\mathrm{desc}(x)$ for the set of descendants of $x$.
+		\begin{defn}
+			A node is \kw{terminal} (or is a \kw{leaf}) if $\mathrm{desc}(x) =\{x\}$
+		\end{defn}
+		\begin{defn}
+			A branch through a tree is a sequence $(x_n)_{n\in\NN}$ such that 
+			\begin{itemize}
+				\item $x_0$ is the root
+				\item $x_{n+1}$ is a child of $x_n$
+			\end{itemize}
+		\end{defn}
+	\end{defn}
+	\begin{defn}
+		A tree is \kw{locally finite} if every node has finitely many (immediate) children.
+	\end{defn}
+	Note that a locally finite tree can still have an infinite number of nodes in total.
+	\begin{lemma}[K\"onig]
+		\label{Konig}
+		Suppose that $T$ is a locally finite tree with infinitely many nodes. Then $T$ has a branch
+	\end{lemma}
+	\begin{proof}
+		Note that if $x$ is a node with $\mathrm{desc}(x)$ infinite, then $x$ has a child $y$ with $\mathrm{desc}(y)$ infinite.
+		\[
+			\mathrm{desc}(x) = \{x\}\cup \bigcup_{i=1}^n\mathrm{desc}(y_i)
+		\]
+		where $y_i$ are the children of $x$. If all of the $\mathrm{desc}(y_i)$ were finite, $\mathrm{desc}(x)$ would also be finite, so there must be at least one $y_i$ with infinitely many descendants.
+
+		Note: The root (by hypothesis) has infinitely many descendants. We build a branch as follows:
+		$x_0 = \mathrm{root}$. Build $x_{n+1}$ a child of $x_n$ such that $\mathrm{desc}(x_{n+1})$ is infinite.
+	\end{proof}
+\end{digression}
+
+So how are we going to use \nameref{Konig}'s lemma? Unique factorization!
+
+\begin{theorem}[Unique Factorization]
+	\label{uniquefact}
+	Suppose that $R$ is a Principal Ideal Domain, and $r\in R$ is a non-zero element that is not a unit. Then:
+	\begin{enumerate}
+		\item There exists a sequence $p_1, \ldots, p_m$ of irreducibles in $R$ such that $r=p_1p_2\ldots p_m$
+		\item This factorization is ``unique up to associates''
+		i.e., if $r = q_1\ldots q_n$ is another factorization into irreducibles, then $m=n$ and $\exists\sigma\in S_n$ such that $p_i\sim q_{\sigma(i)}$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}\leavevmode
+	\begin{enumerate}
+	\item 
+		Build a ``factorization tree'' $T$ with a root $r$ such that:
+		\begin{itemize}
+			\item If a node is reducible, it has two children which form a proper factorization
+			\item If a node is irreducible, it is terminal.
+		\end{itemize}
+		\begin{claim}
+			$T$ has no branch.
+		\end{claim}
+		\begin{proof}[Proof of claim]
+			If $T$ had a branch, $x_0=r,x_1, \ldots$ then $\forall n\in \NN, (x_n) \subsetneq (x_{n+1})$. So $(x_0) \subsetneq (x_1)\subsetneq (x_2)\subsetneq \ldots$, is a strictly increasing sequence of ideals of $R$, contradicting Noetherianness.\qedhere(Claim)
+		\end{proof}
+		Thus, by \nameref{Konig}'s Lemma, the tree is finite. So, the tree lies above some finite level. From here, we see $r$ is the product of the irreducibles on the terminal nodes.
+	\item 
+		Suppose $r=p_1p_2\ldots p_m = q_1\ldots q_n$ are factorizations into irreducibles. (Recall that in PIDs, irreducibles $\equiv$ primes.)
+
+		We'll proceed by induction on $m$. 
+		(The reader can check $m=1$.)
+
+		We know that $p_m \divides q_1\ldots q_n$ and $p_m$ is prime, so $\exists i\le n$ such that $p_m\divides q_i$.
+
+		Say that $p_mu = q_i$ for $u\in P$. Note that $u$ is a unit. Thus, $p_m\sim q_i$. Also, we have $p_1p_2\ldots p_m = q_1\ldots \underbrace{(p_mu)}_{=q_i}\ldots q_n$.
+		Thus, $p_1p_2\ldots p_{m-1} = \underbrace{uq_1}_{:=q_1'}\ldots q_{i-1}q_{i+1}\ldots q_n$.
+
+		Now that we've reduced $m$ by 1, induction handles the rest.\qedhere(Thm.)
+	\end{enumerate}
+\end{proof}
+
+\begin{defn}
+	A \kw{UFD} (\kw{Unique Factorization Domain}) is an ID satisfying \nameref{uniquefact}.
+\end{defn}
+
+\begin{remark}
+	In UFDs, primeness $\equiv$ irreducibility, in IDs, primeness $\implies$ irreducibility.
+
+	Thus, so far,
+	\begin{center}
+		Fields $\subset$ EDs $\subset$ PIDs $\subset$ UFDs $\subset$ IDs
+	\end{center}
+\end{remark}
+
+\begin{corollary}
+	If $F$ is a field, then $F[x]$ is a UFD. Moreover, if $p(x)\in F[x]$ is monic, there is a unique factorization of $p(x)$ into irreducible monic polynomials.
+\end{corollary}
+
+\end{document}
