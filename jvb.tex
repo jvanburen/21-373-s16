@@ -110,8 +110,8 @@
 \def \CC {\mathbb{C}}
 \def \vs {\emptyset}
 \def \pset {\mathbb{P}}
-\def \tabin {\begin{adjustwidth}{1cm}{0pt}}
-\def \tabout {\end{adjustwidth}}
+% \def \begin{tabin} {\begin{adjustwidth}{1cm}{0pt}}
+% \def \end{tabin} {\end{adjustwidth}}
 \def \divides {\ensuremath{\mkern2mu|\mkern1mu}}
 \def \ndivides {\ensuremath{\mkern1mu{\not{|}}\mkern3mu}}
 
@@ -170,8 +170,9 @@
 
 \def\tr#1{{#1}^\mathrm{T}}
 \def\inv#1{{#1}^{-1}}
-\def \tabin {\begin{adjustwidth}{1cm}{0pt}}
-\def \tabout {\end{adjustwidth}}
+\newenvironment{tabin}[1][1cm]{\begin{adjustwidth}{#1}{0pt}}{\end{adjustwidth}}
+% \def \begin{tabin} {\begin{adjustwidth}{1cm}{0pt}}
+% \def \end{tabin} {\end{adjustwidth}}
 
 
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}

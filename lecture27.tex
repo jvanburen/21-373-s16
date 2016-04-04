@@ -59,11 +59,11 @@ Questions: Can we factor them? Uniquely? Can we ``solve'' polynomial equations, 
 	Suppose the theorem is true for all $a'$ (with the same $b$) with $\deg(a') < m$.
 
 	Case 1 ($\deg a < \deg b$):
-	\tabin
+	\begin{tabin}
 		$a = \zero b + a$
-	\tabout
+	\end{tabin}
 	Case 2 ($\deg a \ge \deg b$):
-	\tabin
+	\begin{tabin}
 		Denote by $n$ the degree of $b$.
 		Fix leading terms $a_mx^m$ of $a(x)$ and $b_nx^n$ of $b(x)$.
 
@@ -88,7 +88,7 @@ Questions: Can we factor them? Uniquely? Can we ``solve'' polynomial equations, 
 			&= q'(x)b(x) + r'(x) + \frac{a_m}{b_n}x^{m-n}b(x)\\
 			&= \underbrace{\big(q'(x) + \frac{a_m}{b_n}x^{m-n}\big)}_{q(x)}b(x) + r'(x)
 		\end{align*}.
-	\tabout
+	\end{tabin}
 \end{proof}
 
 We needed $F$ to be a field. Consider $a(x) = 3x+1, b(x) = 2$ in $\ZZ[x]$.

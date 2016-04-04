@@ -35,18 +35,18 @@ Let's go back to EDs. EDs are PIDs in particular $F[x]$ with $F$ a field.
 
 \begin{proof}
 	($1\implies 2$):
-	\tabin
+	\begin{tabin}
 		$a\divides b$ $\exists r\in R$ $ar=b$, $ar\in I$ for all ideals $I$ with $a\in I$. Hence $b=ar \in (a)$.
-	\tabout
+	\end{tabin}
 	($2\implies 3$):
-	\tabin
+	\begin{tabin}
 		$(a)$ is an ideal, it contains $b$. $(b)$ is the smallest such ideal. Thus $(b)\subseteq (a)$.
-	\tabout
+	\end{tabin}
 	($3\implies 1$):
-	\tabin
+	\begin{tabin}
 		$(a) = aR = \{ar:r\in R\}$. 
 		$(b)\subseteq (a), b\in (a),$ so $b=ar$ for some $r\in R$. 
-	\tabout
+	\end{tabin}
 \end{proof}
 
 \begin{defn}
@@ -61,16 +61,16 @@ Let's go back to EDs. EDs are PIDs in particular $F[x]$ with $F$ a field.
 \end{proposition}
 \begin{proof}
 	(Commensurate $\implies \exists u$):
-	\tabin
+	\begin{tabin}
 		Fix $r, s\in R$ such that $ar = b$, $bs = a$.
 		So $(ar)s = a \implies a(rs) = a$ So, $a(rs-\one) = \zero$
 		If $a = \zero$ then $b= \zero$ so $\zero=\one\zero$.
 		Otherwise, $rs - \one = \zero \implies rs = 1$ so $s$ is a unit.
-	\tabout
+	\end{tabin}
 	($\exists u \implies$ commensurate):
-	\tabin
+	\begin{tabin}
 		Suppose $a=ub$, $b\divides a$ $u$ a unit, $\exists v\in R$ $vu = uv = \one$. Hence $va = vub = \one b = b$ Thus $a\divides b$. Hence $a, b$ are commensurate.
-	\tabout
+	\end{tabin}
 \end{proof}
 
 \begin{defn}
