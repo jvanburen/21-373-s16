@@ -5,6 +5,7 @@
 \usepackage{cancel}
 \usepackage{subfiles}
 \usepackage{tcolorbox}
+\usepackage{textcomp}
 \usepackage[margin=1in]{geometry}
 
 \input{algebra.tex}
@@ -12,6 +13,7 @@
 \newcommand{\lecture}[2]{\section*{Lecture #1 (#2)}}
 \setlength\parindent{0pt}
 \newtcolorbox{classnote}[2]{colback=#1,colbacktitle=#2,coltitle=black,boxrule=.5pt,parbox=false,oversize,title=Class Note}
+\newtcolorbox{digression}{colback=gray!10,colbacktitle=gray!25,coltitle=black,boxrule=.5pt,parbox=false,oversize,title=Digression}
 \makeindex
 
 \begin{document}
@@ -50,6 +52,7 @@
 	\subfile{lecture28.tex}
 	\subfile{lecture29.tex}
 	\subfile{lecture30.tex}
+	\subfile{lecture31.tex}
 	\newpage
 	\printindex
 \end{document}

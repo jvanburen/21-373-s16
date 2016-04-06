@@ -1,0 +1,106 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{31}{2016--04--06}
+\begin{digression}
+	$\ZZ[\iu]$, the ring of Gaussian integers. 
+
+	First, a refresher regarding the complex numbers ($\CC$):
+	\begin{tabin}
+		Basic properties of $\CC = \{a + b\iu: a,b\in\RR\}$, $\iu^2=-1$
+		$\cong \RR[x]/(x^2+1)$ (exercise).
+
+		We'll use greek letters to denote complex numbers.
+		\begin{itemize}
+			\item $\CC$ is a commutative ring with a 1 (in particular, an ID)
+			\item $\CC$ is a Field 
+			\item Conjugation $\alpha\mapsto \bar\alpha$ where $\overline{a+b\iu} = a-b\iu$
+			\item Note that $\overline{\alpha \beta} = \overline \alpha\overline \beta$ and $\overline{\alpha+\beta} = \overline{\alpha} + \overline{\beta}$, so conjugation is a ring homomorphism from $\CC\to\CC$.
+			\item ``Norm'' function $N:\CC\to\RR, N(\alpha)=\alpha\overline\alpha$ so $N(a+b\iu) = a^2 + b^2$
+			\item $N(\alpha \beta) = N(\alpha)N(\beta)$
+		\end{itemize}
+	\end{tabin}
+
+	\begin{defn}
+		$\ZZ[\iu]\subset\CC$ is the subring $\{a+b\iu:a,b\in\ZZ\}$.
+		Called the \kw{Gaussian Integers}.
+	\end{defn}
+	Facts about $\ZZ[\iu]$:
+	\begin{itemize}
+		\item It is a commutative ring with a 1
+		\item It is an integral domain
+		\item $(\ZZ[\iu])^\times = \{\pm1, \pm\iu\}$ (the set of units)
+
+			(Pf sketch: If $u$ is a unit then $1 = N(1) = N(\inv uu) = N(\inv u)N(u)$, then case)
+		\item It is a Euclidean Domain with the norm $N$.
+	\end{itemize}
+	\begin{proposition}
+		$\ZZ[\iu]$ is a Euclidean Domain with the norm N. $N(a+b\iu) = a^2+b^2$
+	\end{proposition}
+	\begin{proof}
+		Fix $\alpha,\beta\in \ZZ[\iu]$ with $\beta\ne 0$. Want $\chi, \rho\in\ZZ[\iu]$ such that $\alpha=\chi \beta + \rho$ and $N(\rho) < N(\beta)$ (or $\rho=0$)
+
+		Let's look at all possible numbers $\{\chi \beta : \chi\in\ZZ[\iu]\} = \ZZ[\iu]\beta$.
+
+		If $\beta=a+b\iu$, then $\iu \beta = -b + a\iu$. (In geometric terms, this equates to rotating the vector $\beta$ 90\textdegree\xspace CCW)
+
+		$N(\alpha - \chi \beta)< N(\beta)$ So, $\alpha=\chi \beta+\rho$
+	\end{proof}
+
+	\begin{corollary}
+		Since $\ZZ[\iu]$ is a Euclidean Domain, it is also a PID and a UFD, so the set of primes is equal to the set of irreducibles.
+	\end{corollary}
+	Question: What are the irreducibles?
+
+	Let's try prime $p\in\ZZ$.
+	$2 = (1+\iu)(1-\iu), 5 = (2+\iu)(2-\iu), 7 \checkmark $ 
+
+	\begin{proposition}
+		If $p\in\ZZ$ is prime (in $\ZZ$) and $p\equiv 3\pmod4$ then $p$ is still prime (irreducible) in $\ZZ[\iu]$.
+	\end{proposition}
+	\begin{proof}
+		Towards a contradiction, suppose that $p=\alpha \beta$ for non-units $\alpha, \beta\in\ZZ[\iu]$.
+
+		$N(p) = p^2 = N(\alpha)N(\beta)$. Also, $N(\alpha), N(\beta)\ne 1$. So, $N(\alpha) = N(\beta) = p$. Say $\alpha = a+b\iu$. So $p=N(\alpha)= a^2+b^2.$ Hence $a^2 +b^2\cong3\pmod4$, which is a contradiction. The remainder of the proof is homework.
+	\end{proof}
+
+	Next goal: show all other primes \emph{are} reducible.
+	\begin{proposition}
+		Suppose $p$ is prime in $\ZZ$, $p\equiv 1\pmod4$. Then $\exists n\in \NN$ such that $n^2 \equiv -1\pmod p$.
+	\end{proposition}
+	\begin{proof}
+		We work in the field $\mathbb F=(\ZZ/p\ZZ, +, \times)$ and the multiplicative group $G = (\mathbb F\setminus\{0\}, \times)$.
+		So $|G| = p-1 \equiv 0\pmod4$ So $4=2^2$ divides $|G|$
+		By Sylow, $\exists H\le G$ with $|H| = 4$. So $\forall h\in H$, $|h|\in\{1,2,4\}$
+		\begin{claim}
+			If $g^2 = 1$ then $g=\pm 1$
+		\end{claim}
+		\begin{proof}[Proof of claim]
+			Fix such a $g$, work in $\mathbb F$.
+			$(g+1)(g-1) = g^2 - 1 = 0$. Thus, $g=\pm 1$.
+		\end{proof}
+		Hence, $\exists h\in H$ of order 4 $h^2\ne 1$ but $(h^2)^2 = h^4 = 1$. So $h^2 = -1$ in $\mathbb F$. Now fix $n\in\NN$ such that $n\equiv h\pmod p$. Then $n^2\equiv -1\pmod p$.
+	\end{proof}
+
+	\begin{proposition}
+		Suppose $p$ is prime (in $\ZZ$) and $p\equiv 1\pmod 4$. Then $p$ is \emph{not} prime (irreducible) in $\ZZ[\iu]$
+	\end{proposition}
+	\begin{proof}
+		Fix $n\in\NN$ such that $n^2 \equiv -1\pmod p$ (i.e., $p\divides (n^2 + 1)$). Factor $1+n^2 = (1+n\iu)(1-n\iu) $ so $p\divides (1+n\iu)(1-n\iu)$ (in $\ZZ[\iu]$).
+		Suppose towards a contradiction that $p$ is prime. Then $p$ divides a factor. Say $p\divides(1+n\iu)$.
+		\begin{claim}
+			$p\divides (1-n\iu)$ as well.
+		\end{claim}
+		\begin{proof}
+			We know that $p = \bar p \divides \overline{(1+n\iu)} = (1-n\iu)$. 
+		\end{proof}
+
+		Hence, $p\divides (1+\pm n\iu)$. So $p\divides (1+n\iu) + (1-ni)$, so $p\divides 2$, contradiction ($N(p) > N(2)$)
+	\end{proof}
+
+	\begin{theorem}[Fermat]
+		$p$ prime, $p\equiv 1\pmod 4$. Then, $\exists a, b\in\NN$ such that $a^2 + b^2 = p$ \emph{and} $a, b$ are unique.	
+	\end{theorem}
+\end{digression}
+
+\end{document}
