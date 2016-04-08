@@ -1,0 +1,91 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{32}{2016--04--08}
+
+Suppose $R$ is an ID. When is $R[x]$ a UFD?
+It is when $R$ is a field. If $R[x]$ is a UFD. $R$ ``$\subseteq$'' $R[x]$ as constant polynomials. The units of $R[x]$ are the units of $R$. So $R[x]$ is a UFD $\implies R$ is a UFD.
+
+\begin{theorem}
+	If $R$ is a UFD, so is $R[x]$.
+\end{theorem}
+\begin{corollary}
+	$\ZZ$ is a UFD, so $\ZZ[x]$ is a UFD.
+	Also, $(\ZZ[x])[y] = \ZZ[x, y]$ is a UFD.
+\end{corollary}
+
+Some basic facts about UFDs:
+
+Fix UFD $R$ with field of fractions $F$ (Think $R= \ZZ, F=\QQ$). Abuse notation and say $R\subseteq F$ with $r = \frac{r}{1}$.
+
+Facts (when we say $\gcd = 1$, we mean any unit):
+\begin{enumerate}
+	\item If $a, b\in R$ nonzero, then $\gcd(a,b)$ exists (collect common irreducible factors).
+	Similarly, $\gcd(a,b,c) = \gcd(a, \gcd(b,c)) = \gcd (\gcd(a,b), c)$
+	\item In the field of fractions $F$, we can represent an $f\in F$ as $\frac{a}{b}$ with $\gcd(a,b) = 1$.
+	\item Given $f_1, \ldots, f_n\in F$ nonzero, can find $d\in R$ such that $\gcd(d, df_1, df_2, \ldots, df_n) = 1$ and each $df_1, \ldots, df_n\in R$ ($d$ is the lowest common denominator).
+	\item If $c\divides ab$ and $\gcd(a,c) = 1$ then $c\divides b$.
+\end{enumerate}
+
+\begin{eg} [Annoying example]
+	$2x+4$ is irreducible in $\QQ[x]$.
+
+	But, $2x+4$ is reducible in $\ZZ[x]$ as $2(x+2)$ is a proper factorization (as $2$ is not a unit in $\ZZ$)
+\end{eg}
+
+Next, some definitions. Let $f(x) = \sum^n_{i=0} a_ix^i\in R[x]$.
+\begin{defn}
+	We define the \kw{content} of $f$ \kw{$c(f)$}, to be $\gcd\{a_0, a_1, \ldots, a_n\}$.
+
+	For example, $c(2x+4) = 2$
+\end{defn}
+\begin{defn}
+	If $c(f) = 1$, we say $f$ is \kw{primitive}.
+\end{defn}
+
+\begin{lemma}[Gauss]
+	If $R$ is a UFD and $f, g\in R[x]$ are primitive, then $fg$ is also primitive.
+\end{lemma}
+\begin{proof}
+	Towards a contradiction, suppose $c(fg)$ is not a unit. Fix any irreducible $p\in R$ with $p\divides c(fg)$. Let $P = (p) = pR$. $p$ irreducible $\implies p$ prime (because UFD). Thus $P$ is a prime ideal. So, $R/P$ is an ID, hence so too is $(R/P)[x]$.
+
+	\begin{claim}
+		If $\vp:R\to S$ is a ring homomorphism, then $\psi:R[x]\to S[x]$ defined by $\psi(a_nx^n + \ldots + a_0) = \vp(a_n)x^n + \ldots + \vp(a_0)$
+	\end{claim}
+	The proof is left to the reader.
+
+	Build $\psi : R[x] \to(R/P)[x]$  by $\psi(a_nx^n + \ldots + a_n) = (a_n + P)x^n + \ldots + (a_0 + P)$. By the previous claim, $\psi$ is a ring homomorphism. Note $\psi(f)\psi(g) = \psi(fg) = (0 + P)$ (the constant zero polynomial in $(R/P)[x]$).
+
+	Thus, $\psi(f) = 0+P$ or $\psi(g) = 0+P$ If $\psi(f) = 0,$ then $p\divides c(f)$ contradicts $f$ being primitive. The same argument applies to $g$.\qedhere(Lem.)
+\end{proof}
+\begin{corollary}
+	For $f, g\in R[x],$ $c(fg) = c(f)c(g)$. 
+\end{corollary}
+\begin{proof}
+	Fix primitive $f_0, g_0\in R[x]$ such that $f=c(f)f_0$ and $g=c(g)g_0$.
+
+	Then, \[
+		fg = c(f)f_0 c(g)g_0 = \underbrace{c(f)c(g)}_{\in R} \cdot \underbrace{f_0g_0}_{\substack{\in R[x]\\\text{primitive}}}
+	\]\qedhere(Cor.)
+\end{proof}
+
+\begin{proposition}
+	If $f\in R[x]$ is primitive, $f$ is reducible in $R[x]$ iff $f$ is reducible in $F[x].$
+\end{proposition}
+\begin{proof}
+	$R[x]$ reducible $\implies$ $F[x]$ reducible.
+	\begin{tabin}
+		If $f(x) = g(x)h(x)$ is a proper factorization in $R[x]$. Then neither $g$ nor $h$ is constant. So, both have degree at least 1. Thus, neither is a unit in $F[x]$.
+	\end{tabin}
+
+	$F[x]$ reducible $\implies R[x]$ reducible.
+	\begin{tabin}
+		If $f(x) = g(x)h(x)$ is a proper factorization in $F[x]$.
+		We may take $\tilde g, \tilde h \in R[x]$ such that 
+			$f=\tilde g\tilde h$ and $g\sim\tilde g$ and $h\sim\tilde h$ in $F[x]$ 
+
+		The remainder of the proof will be typed up soon.
+		% TODO: refer to pics of blackboard to finish proof
+	\end{tabin}
+\end{proof}
+\end{document}
