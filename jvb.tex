@@ -72,7 +72,44 @@
 \newcommand{\xor}{\oplus}
 \DeclareMathOperator{\sgn}{\mathrm{sgn}}
 
-\theoremstyle{plain}
+\newlength{\thmspacing}
+\setlength{\thmspacing}{8.0pt plus 2.0pt minus 4.0pt}
+\newtheoremstyle{boldplain}
+  {\thmspacing}   % ABOVESPACE
+  {\thmspacing}   % BELOWSPACE
+  {\itshape}  % BODYFONT
+  {0pt}       % INDENT (empty value is the same as 0pt)
+  {\bfseries} % HEADFONT
+  {.}         % HEADPUNCT
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+  {}          % CUSTOM-HEAD-SPEC
+
+\newtheoremstyle{bolddef}
+  {\thmspacing}   % ABOVESPACE
+  {\thmspacing}   % BELOWSPACE
+  {\normalfont}  % BODYFONT
+  {0pt}       % INDENT (empty value is the same as 0pt)
+  {\bfseries} % HEADFONT
+  {.}         % HEADPUNCT
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+  {}          % CUSTOM-HEAD-SPEC
+
+
+\newtheoremstyle{boldremark}
+  {0.5\thmspacing}   % ABOVESPACE
+  {0.5\thmspacing}   % BELOWSPACE
+  {\normalfont}  % BODYFONT
+  {0pt}       % INDENT (empty value is the same as 0pt)
+  {\itshape} % HEADFONT
+  {.}         % HEADPUNCT
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+  {}          % CUSTOM-HEAD-SPEC
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\itshape#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
+\makeatother
+
+\theoremstyle{boldplain}
 \newtheorem{theorem}{Theorem}
 \newtheorem*{theorem*}{Theorem}
 \newtheorem{thm}[theorem]{Theorem}
@@ -82,12 +119,12 @@
 \newtheorem{proposition}[theorem]{Proposition}
 
 
-\theoremstyle{definition}
+\theoremstyle{bolddef}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{defn}[theorem]{Definition}
 \newtheorem{property}[theorem]{Property}
 
-\theoremstyle{remark}
+\theoremstyle{boldremark}
 \newtheorem*{claim}{Claim}
 \newtheorem*{notation}{Notation}
 \newtheorem*{remark}{Remark}

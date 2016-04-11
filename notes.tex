@@ -1,4 +1,5 @@
-\documentclass[openany,oneside,12pt]{amsbook}
+\documentclass[openany,oneside,12pt,final]{amsbook}
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 \usepackage[utf8]{inputenc}
 \usepackage{enumerate}
 \usepackage{hyperref}
@@ -10,7 +11,7 @@
 
 \input{algebra.tex}
 
-\newcommand{\lecture}[2]{\section*{Lecture #1 (#2)}}
+\newcommand{\lecture}[2]{\subsection*{\underline{Lecture #1 (#2)}}\leavevmode\vspace{0.2em}}
 \setlength\parindent{0pt}
 \newtcolorbox{classnote}[2]{colback=#1,colbacktitle=#2,coltitle=black,boxrule=.5pt,parbox=false,oversize,title=Class Note}
 \newtcolorbox{digression}{colback=gray!10,colbacktitle=gray!25,coltitle=black,boxrule=.5pt,parbox=false,oversize,title=Digression}
