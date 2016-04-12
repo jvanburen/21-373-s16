@@ -7,11 +7,15 @@
 \usepackage{subfiles}
 \usepackage{tcolorbox}
 \usepackage{textcomp}
+% \usepackage{makeidx}
+\usepackage{titlesec}
 \usepackage[margin=1in]{geometry}
-
+\titleformat{\chapter}[hang]{\stepcounter{chapter}\large\bfseries}{\thechapter.}{1ex}{\large\bfseries\centering\thechapter.\hspace{1ex}}
+\titleformat{\subsection}[hang]{}{}{0pt}{\hfill$\blacktriangleleft$\hspace{1ex}\bfseries}
+\titleformat{\subsubsection}[hang]{}{}{0pt}{\bfseries}
 \input{algebra.tex}
 
-\newcommand{\lecture}[2]{\subsection*{\underline{Lecture #1 (#2)}}\leavevmode\vspace{0.2em}}
+\newcommand{\lecture}[2]{\subsection*{Lecture #1 (#2)}}
 \setlength\parindent{0pt}
 \newtcolorbox{classnote}[2]{colback=#1,colbacktitle=#2,coltitle=black,boxrule=.5pt,parbox=false,oversize,title=Class Note}
 \newtcolorbox{digression}{colback=gray!10,colbacktitle=gray!25,coltitle=black,boxrule=.5pt,parbox=false,oversize,title=Digression}
@@ -23,6 +27,7 @@
 	\tableofcontents
 	\clearpage
 	\mainmatter
+	\setcounter{chapter}{0}
 	\subfile{lecture01.tex}
 	\subfile{lecture02.tex}
 	\subfile{lecture03.tex}
