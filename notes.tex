@@ -10,9 +10,10 @@
 % \usepackage{makeidx}
 \usepackage{titlesec}
 \usepackage[margin=1in]{geometry}
-\titleformat{\chapter}[hang]{\stepcounter{chapter}\large\bfseries}{\thechapter.}{1ex}{\large\bfseries\centering\thechapter.\hspace{1ex}}
+\titleformat{\chapter}[hang]{\large\bfseries}{\thechapter.}{1ex}{\large\bfseries\centering}
 \titleformat{\subsection}[hang]{}{}{0pt}{\hfill$\blacktriangleleft$\hspace{1ex}\bfseries}
 \titleformat{\subsubsection}[hang]{}{}{0pt}{\bfseries}
+\renewcommand{\chaptername}{}
 \input{algebra.tex}
 
 \newcommand{\lecture}[2]{\subsection*{Lecture #1 (#2)}}
@@ -27,7 +28,6 @@
 	\tableofcontents
 	\clearpage
 	\mainmatter
-	\setcounter{chapter}{0}
 	\subfile{lecture01.tex}
 	\subfile{lecture02.tex}
 	\subfile{lecture03.tex}
