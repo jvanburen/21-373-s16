@@ -5,7 +5,7 @@
 \begin{remark}
 	$R$ commutative ring, $a\in R$.
 
-	The map $\mathit{eval}_a:R[x]\to R$ $p(x) \mapsto p(a)$ is a homomorphism of rings.
+	The map $\mathit{eval}_a:R[x]\to R$, $p(x) \mapsto p(a)$ is a homomorphism of rings.
 \end{remark}
 
 Let's go back to EDs. EDs are PIDs in particular $F[x]$ with $F$ a field.
@@ -14,7 +14,7 @@ Let's go back to EDs. EDs are PIDs in particular $F[x]$ with $F$ a field.
 	$\ZZ[x]$ is \emph{NOT} a PID. We'll show this by contradiction.
 
 	Look at $I = \{p(x)\in\ZZ[x] : \text{ constant term is even}\}$ $I = \mathit{eval}_0^{-1}(2\ZZ)$ hence an ideal.
-	Suppose $I$ were principal, say $I = (p(x))$. First $2\in I$ (constant 2 polynomial. 2 is a multiple of $p(x)$) $p(x)$ cannot be $\pm 1$ as otherwise $(p(x)) = \ZZ[x]$ so $p(x) = \pm 2$. We also know $x \in I$. But there is no $q(x)$ such that $x = 2q(x)$. Thus $\pm2$ can't generate it. Thus $I$ is not principle.
+	Suppose $I$ were principal, say $I = (p(x))$. First $2\in I$ (constant 2 polynomial. 2 is a multiple of $p(x)$) $p(x)$ cannot be $\pm 1$ as otherwise $(p(x)) = \ZZ[x]$ so $p(x) = \pm 2$. We also know $x \in I$. But there is no $q(x)$ such that $x = 2q(x)$. Thus $\pm2$ can't generate it. Thus $I$ is not principal.
 
 	Variant: if $R[x]$ is a PID, then $R$ is a field.
 \end{eg}
@@ -44,8 +44,8 @@ Let's go back to EDs. EDs are PIDs in particular $F[x]$ with $F$ a field.
 	\end{tabin}
 	($3\implies 1$):
 	\begin{tabin}
-		$(a) = aR = \{ar:r\in R\}$. 
-		$(b)\subseteq (a), b\in (a),$ so $b=ar$ for some $r\in R$. 
+		$(a) = aR = \{ar:r\in R\}$.
+		$(b)\subseteq (a), b\in (a),$ so $b=ar$ for some $r\in R$.
 	\end{tabin}
 \end{proof}
 
@@ -74,8 +74,8 @@ Let's go back to EDs. EDs are PIDs in particular $F[x]$ with $F$ a field.
 \end{proof}
 
 \begin{defn}
-	Work in commutative ring $R$ with a \one. We say $d$ is a \kw{gcd} of the nonzero elements $a,b\in R$ 
-	if 
+	Work in commutative ring $R$ with a \one. We say $d$ is a \kw{gcd} of the nonzero elements $a,b\in R$
+	if
 	\begin{enumerate}
 		\item $d\divides a$ and $d\divides b$
 		\item If $c\divides a$ and $c\divides b$ then $c\divides d$
@@ -94,7 +94,7 @@ Note that if $d$ and $d'$ are both gcds of the same pair $a,b$. $d\divides d'$ a
 
 	This ideal is principal as $R$ is a PID, so say $I = (d)$.
 
-	$d\in (d)$ so $d = r + s$ for some $r\in (a), s\in (b)$, so $d = ax+by$ for some $x,y\in R$. 
+	$d\in (d)$ so $d = r + s$ for some $r\in (a), s\in (b)$, so $d = ax+by$ for some $x,y\in R$.
 
 	\begin{claim}
 		$d$ is a gcd of $a, b$.
