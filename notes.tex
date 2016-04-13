@@ -1,13 +1,15 @@
 \documentclass[openany,oneside,12pt,final]{amsbook}
-\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+\microtypecontext{spacing=nonfrench}
 \usepackage{enumerate}
 \usepackage{hyperref}
 \usepackage{cancel}
 \usepackage{subfiles}
 \usepackage{tcolorbox}
 \usepackage{textcomp}
-% \usepackage{makeidx}
 \usepackage{titlesec}
 \usepackage[margin=1in]{geometry}
 \titleformat{\chapter}[hang]{\large\bfseries}{\thechapter.}{1ex}{\large\bfseries\centering}
@@ -60,6 +62,7 @@
 	\subfile{lecture30.tex}
 	\subfile{lecture31.tex}
 	\subfile{lecture32.tex}
+	\subfile{lecture33.tex}
 	\newpage
 	\printindex
 \end{document}
