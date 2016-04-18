@@ -1,0 +1,101 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{33}{2016--04--18}
+\begin{classnote}{orange!15}{orange!25}
+	There will be a final exam on Monday, May 9th.
+	
+	Homework 11 will be due Wednesday April 20th.
+
+	Homework 12 will be due Wednesday April 27th.
+
+	Homework 13 will not be due.
+\end{classnote}
+
+\begin{eg}
+	Show that $\QQ[x]/(x^2 - 2x^2 - x + 387)$ is a field.
+
+	First off, denote by $p(x)$ the polynomial $x^2 - 2x^2 - x + 387$.
+
+	Several steps:
+	\begin{enumerate}
+		\item Since $\QQ[x]$ is commitative with $1\ne 0$, it's enough to show that $I = (p(x))$ is maximal.
+		\item Since $\QQ[x]$ is a PID, it's enough to show that $p(x)$ is irreducible in $\QQ[x]$.
+		\item Since $p(x)$ is primitive in $\ZZ[x]$, by Gauss' Lemma, it is sufficient to show that $p(x)$ is irreducible in $\ZZ[x]$.
+		\item By reducing mod $2\ZZ$, it's sufficient to show that $\overline{p(x)}$ is irreducible in $(\ZZ/2\ZZ)[x]$. If we had a factorization $p = ab$ in $\ZZ,$ we would still have a factorization in $\ZZ/2\ZZ$ of $\overline p = \overline a\overline b$
+		Note that $\overline{p(x)} \equiv {x^3 + x + 1}$ in $(\ZZ/2\ZZ)[x]$
+		\item As $\deg(\bar{p})\le 3$, It's sufficient to show that $\bar p$ has no root in $\Zn 2$. So we try both things in $\Zn 2$. $\bar p(\bar 0) = \bar 1\ne 0$ and $\bar p(\bar 1) = \bar1 \ne 0$
+	\end{enumerate}
+	Hence, $\QQ[x]/(p(x))$ is a field.\qed
+\end{eg}
+
+Question: What is $\QQ[x]/(p(x))$?
+Typical elements have the form $f(x) + (p(x))$.
+By the division algorithm, for any $f(x) \in \QQ[x]$, we can find $a,b,c\in \QQ$ such that $f(x) = ax^2 + bx + c \pmod{p(x)}$
+
+Put $\xi = x + (p(x))\in \QQ[x]/(p(x))$.
+All elements of $F = \QQ[x]/p(x)$ have the form $a \chi^2 + b \chi + c$.
+\begin{claim}
+	$p(\chi) = 0 + (p(x))\in F$
+\end{claim}
+\begin{proof}[Pf]
+	$p(x + (p(x))) = p(x) + (p(x)) = 0 + (p(x))$.
+\end{proof}
+
+Note now that $\QQ$ (the constant polynomials) is a subfield of $F$.
+So $F$ is a \kw{field extension} of $\QQ$.
+But now $F$ contains a root $\chi$ of $p(x)$ 
+.
+The key observation here is that the non-zero elements of $F$ are still invertible. 
+\begin{eg}
+	What is $\inv\chi$?
+
+	First step: $\chi(-\chi^2 + 2 \chi + 1) = -\chi^3 + 2 \chi^2 + \chi = -(2 \chi + \chi - 387) + 2 \chi^2 + \chi = 387$ 
+	Thus, $\chi^{-1} \frac{-1}{387}\chi^2+ \frac{2}{387}\chi + \frac{1}{387}$
+\end{eg}
+\begin{eg}
+	$\CC = \RR[x]/(x^2 + 1)$
+\end{eg}
+
+\begin{lemma}[Wimpy Lemma]
+	\label{wimpylemma}
+	Suppose $R$ is an ID, $p(x), q(x)\in R[x]$ such that $p(x)q(x) = cx^n$ (their product is a monomial). Then, both $p(x)$ and $q(x)$ are both monomials. 
+\end{lemma}
+\begin{proof}[Pf]
+	Let $i, j$ be the indicies of the last non-zero coeffs in $p, q$ respectively. I.e.,
+	$p(x) = a_{\ell}x^{\ell} + \ldots + a_ix^i + 0 + 0 + \ldots$ and
+	$q(x) = b_{m}x^{m} + \ldots + a_jx^j + 0 + 0 + \ldots$.
+
+	Then,
+	$p(x)q(x) = a_{\ell}b_mx^{\ell + m} + \ldots + \underbrace{a_ib_jx^{i+j}}_{\ne 0}$. Thus, $\ell = i$ and $m = j$\qedhere(Lem.) 
+\end{proof}
+\begin{theorem}[Eisenstein Criterion]
+\label{eisenstein}
+Let $R$ be an ID, $P\subseteq R$ a prime ideal.
+
+If $p(x) = x^n + a_{n-1}x^{n-1} + \ldots + a_1x+a_0$ in $R[x]$ with all $a_i\in P$ ($0\le i \le n-1$) and $a_0\notin P^2$ (i.e., $\nexists r,s\in P$ s.t. $a_0 = rs$). Then $p(x)$ is irreducible in $R[x]$.	
+\end{theorem}
+\begin{proof}
+	$R$ is an ID, $P\subseteq R$ is a prime ideal. $p(x) = x^n + a_{n-1}x^{n-1} + \ldots + a_1x + a_0$. Reduce everything mod $P$. $R/P$ is an ID. $(R/P)[x]$ is also an ID.
+	$p(x)\equiv x^n\pmod P$.
+
+	Towards a contradiction, assume $p(x) = f(x)g(x)$ is a proper factorization in $R[x]$. (This implies $\deg(f), \deg(g)<\deg(p)$.)
+
+	In $(R/p)[x], x^n = \overline{p(x)} = \overline{f(x)}\overline{g(x)}$. Thus, by the \nameref{wimpylemma}, both $\overline{f(x)}$ and $\overline{g(x)}$ are monomials in $(R/P)[x]$.
+
+	Say $\overline{f(x)} = bx^{\ell}$ and $\overline{g(x)} = cx^m$ in $(R/P)[x]$.
+
+	So $f(x) = b_{\ell }x^{\ell} + b_{\ell-1}x^{\ell-1} + \ldots + b_0$
+	and $g(x) = c_m x^m + c_{m-1}x^{m-1} + \ldots + c_0$
+	In particular $b_0\in P$ and $c_0\in P$. Thus, $a_0 = b_0c_0\in P^2$, which is a contradiction.
+\end{proof}
+
+\begin{eg}
+	Eisenstein for $\ZZ[x]$:
+
+	If $f(x) = x^n + a_{n-1}x^{n-1} + \ldots + a_1x + a_0\in\ZZ[x]$,
+	if there exists a prime $p$ such that $p\divides a$ for all $0\le i \le n-1$
+	and $p^2\ndivides a_0$, then $f(x)$ is irreducible in $\ZZ[x].$
+
+\end{eg}
+\end{document}
