@@ -1,0 +1,63 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{33}{2016--04--13}
+
+Intuition: We want to show that if $R$ is a UFD, then $R[x]$ is a UFD.
+We're going to do this by ``sandwiching'' $R[x]$ between two UFDs as $R \subset R[x] \subset F[x]$, where $F$ is the field of fractions of $R$.
+
+Criteria for determining whether polynomials are irreducible.
+
+Let $F$ field, $a\in F$, $f\in F[x]$. 
+As $f = (x-a)q + r$ for a unique $q, r$.
+Substituting $x=a$, $r = f(a)$. In particular $f(a) = 0 \iff x-a$ divides $f$ in $F[x]$.
+
+The units of $F[x]$ are the non-zero constants.
+
+Polynomials of degree 1 are irreducible. (Might not be all of them).
+In any ID, an associate of an irreducible element is also irreducible. Similarly, associates of prime elements are also prime.
+
+As associate-ness is an equivalence relation, we'll choose the irreducible elements as equivalence class representatives.
+
+If $cx + d$, $c, d\in R$, $c\ne 0$ is a degree 1 polynomial, there is a unique monic associate $\inv c(cx = d) = x + d\inv c$
+
+\begin{proposition}
+	If $F$ is a field, $f\in F[x]$ and $2\le \deg(f) \le 3$, $f$ is irreducible in $F[x] \iff f$ has no roots in $F$.
+\end{proposition}
+\begin{proof}
+	If $f$ is irreducible, then it has no roots, because $a$ is a root $\implies (x-a)\divides f \implies f = (x-a )g$ with $\deg(g) = \deg(f)-1 > 0$
+
+	If $f=gh$, then $\deg(f) = \deg(g) + \deg(h)$.
+	If $g, h$ are not units, $\deg(g) > 0, \deg(h)>0$, so $\deg(f)\le 3$ as at least one of $g, h$ has degree 1.
+\end{proof}
+
+Given $f\in \QQ[x]$ with $\deg(f) > 1$, is it irreducible in $\QQ[x]$?
+
+Note: If $f\in \QQ[x], f\ne 0$, we can find nonzero $c\in \ZZ$ such that $cf \in \ZZ[x]$.
+
+Rational roots of an integer polynomial?
+
+Let $f = a_nx^n + \ldots + a_n \in\ZZ[x]$
+$\deg(f)=n$. We may assume that $a_0\ne 0$ and $a_n \ne 0$ because $\deg(f) = n$.
+
+Suppose that $f$ has a rational root $\alpha$. Write $\alpha=\frac{r}{s}, s\ne 0, s, r\in \ZZ, \gcd(r, s) = 1$.
+
+$f(\alpha) = 0 = a_n\frac{r^n}{s^n} + a_{n-1}\frac{r^{n-1}}{s^{n-1}} + \ldots + a_0\frac{r^0}{s^0} = 0$. Thus, multiply $f$ by $s^n$ and we obtain $a_nr^ns^0 + a_{n-1}r^{n-1}s^1 + \ldots + a_0s^n = 0$.
+$a_nr^n = -a_{n-1}r^{n-1}s^1 - \ldots - a_0 s^n$. $s$ divides the right hand side. Thus, $s \divides a_nr^n$. As $\gcd(r, s) = 1$, $s\divides a_n$.
+Symmetrically, $r\divides a_0s^n \implies r\divides a_0$. 
+
+``Here is a deeply stupid algorithm for determining what the rational roots might be:''
+
+Look at all $r\in$ factors of $a_0$, the factors of $s\in$ factors of $a_n$. look at all pairs of $r, s$ with $\gcd(r, s) = 1$
+
+Next: Let $\vp:R\to S$ be a ring homomorphism. We can define $\vp^*:R[x]\to S[x]$ 
+\[
+	\vp^*\left(\sum_{i=0}^Nr_ix^i\right) = \sum_{i=0}^N\vp(r_i)x^i
+\]
+Fact: $\vp^*$ is a ring homomorphism.
+
+Moreover, if we want it to preserve $\vp^*(x) = \vp(x)$  and $\vp^*(r) = \vp(r)$ for $r\in R$, then the $\vp^*$ is the only such ring homomorphism.
+
+Key point: If $fg = h$ in $R[x], \vp^*(f)\vp^*(g) = \vp^*(h)$ in $S[x]$.
+
+\end{document}
