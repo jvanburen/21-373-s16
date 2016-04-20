@@ -1,0 +1,117 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\chapter{Field Theory}
+\lecture{35}{2016--04--20}
+\begin{classnote}{orange!10}{orange!25}
+	The midterm 2 average was an 82.
+
+	Also, Sylow's theorems will definitely be on the final exam.
+\end{classnote}
+
+\begin{defn}
+	If $F\subseteq K$ are both fields (with the same operation), we say that $F$ is a \kw{subfield} of $K$, or $K$ is a \kw{extension} (or \kw{field extension}) of $F$.
+
+	Note: when $F\subseteq K, \zero_F = \zero_K $ and $\one_F = \one_K$.
+\end{defn}
+
+\begin{defn}
+	A (finite) \kw{basis for $K$ over $F$} is a set $B = \{\beta_1, \ldots \beta_n\}\subseteq K$ such that for all $k\in K, \exists!$ sequence $f_1, f_2, \ldots, f_n\in F$ such that $k = f_1 \beta_1 + f_2 \beta_2 + \ldots f_n \beta_n$.
+\end{defn}
+
+\begin{eg}\leavevmode
+	\begin{enumerate}
+		\item $\RR\subset\CC$, a good basis is $\{1, \iu\}$. Another one is $\{1+\iu, 1-\iu\}$. (Thus, bases are not unique).
+		\item If $F$ is a field and $p(x) \in F[x]$ is an irreducible polynomial of degree $n$, then if $k = F[x]/(p(x))\supseteq F$, then $B = \{1, \alpha, \alpha^2, \ldots \alpha^{n-1}\}$ (just apply the division algorithm)
+	\end{enumerate}
+	Note that this is similar to the concept of a basis in linear algebra.
+\end{eg}
+	
+\begin{proposition}
+	\label{basisiffzerothing}
+	Suppose $F\subseteq K$ and $B = \{\beta_1, \ldots, \beta_n\}\subseteq K$. Then $B$ is a basis if and only if:
+	\begin{enumerate}[(a)]
+		\item $\forall k\in K, \exists f_1, \ldots, f_n\in F$ s.t., $k = \sum_{i=1}^n f_i \beta_i$, and
+		\item If $\sum_{i=1}^n f_i \beta_i = 0$ then $f_i = 0$ for $1\le i \le n$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	The forward direction holds, as there is a unique representation for everything in terms of linear combinations of basis elements (this includes 0).
+
+	The backward direction is as follows:
+
+	We only need to establish uniqueness. Suppose toward a contradiction that $\exists k\in K$ such that $k = \sum_{i=1}^nf_i\beta_i$ and $k =\sum_{i=1}^ng_i\beta_i $ with not all $f_i = g_i$.
+
+	Then $0 = k-k = \sum_{i=1}^n(f_i - g_i)\beta_i$. Since $f_k\ne g_k$ for some $k,$ this contradicts (b).
+\end{proof}
+
+\begin{theorem}
+	\label{thm:basisdim}
+	Suppose $F\subseteq K$ are fields, $A = \{\alpha_i\}_{i=1}^m\subseteq K$
+	and $B = \{\beta_i\}_{i=1}^n \subseteq K$ are both bases for $K$ over $F$. Then $|A| = |B|$ (i.e., $m = n$).
+\end{theorem}
+
+\begin{lemma}[Switcheroo Lemma]
+	\label{lem:switcheroo}
+	Suppose $F\subseteq K$ are fields. Suppose $B = \{\beta_i\}_{i=1}^n$ is a basis for $K$ over $F$. Suppose $k\in K$ exists with $k = \sum_{i=1}^nf_i \beta_i$ with $f_i\in F$ for all $i$.
+
+	Now fix any $i$ for which $f_i\ne 0$.
+	
+	Then, $(B\setminus\{\beta_i\})\cup\{k\}$ is also a basis for $K$ over $F$.
+\end{lemma}
+\begin{proof}
+	WLOG, assume $i=1$.
+	We know that $k = f_1 \beta_1\ldots f_n \beta_n$.
+	Solving for $\beta_1$ gives $f_1 \beta_1 = k - \sum_{j=2}^nf_j \beta_j$. As $f_1\ne 0$, we can divide by it.
+	$\beta_1 = \frac{1}{f_1}k - \sum_{j=2}^n\frac{f_j}{f_1} \beta_j$.
+
+	Now we show that $B' = \{k, \beta_2, \ldots, \beta_n\}$ is a basis for $K$ over $F$.
+
+	Use proposition \ref{basisiffzerothing}.
+	\begin{enumerate}[(a)]
+		\item $\forall \ell\in K, \exists h_1, \ldots, h_n\in F$ such that $\ell = hk + h_2 \beta_2 + \ldots + h_n \beta_n$
+		\item $0=h_1k + h_2 \beta_2 + \ldots h_n \beta_n$ then $h_1 = f_2 = \ldots = h_n = 0$. Use that $0$ has a unique representation in the $\beta$s. (Left to the reader)
+	\end{enumerate}
+	\qedhere(Lem.)
+\end{proof}
+
+Now we prove theorem \ref{thm:basisdim}.
+
+\begin{proof}
+	We follow an algorithm described as follows:
+
+	We have $m$ boxes, box $i$ contains $\alpha_i$. There is a ``bank,'' which contains all the $\beta$s.
+
+	We halt when every box has a $\beta$ in it, or the bank is empty.
+
+	While we have not halted, we use the \nameref{lem:switcheroo} to remove some $\beta_i$ from the bank and replace some $\alpha_j$ with it. 
+
+	
+	However, we need to be assured that $\beta_k = \sum_{\text{boxes with } \alpha}f_i \alpha_i + \sum_{j\in \text{boxes with }\beta}g_j \beta_{i_j}$
+	\begin{claim}
+		Some $f_i$ is non-zero.
+
+		Otherwise, $B$ is not a basis.
+	\end{claim}
+	Thus, the \nameref{lem:switcheroo} means that at each step, we still have a basis in the boxes.
+
+	After we halt, there are two possible states.
+
+	Case 1 (The $\beta$s in the boxes ($B'$) are a subset of $B$):
+	\begin{proof}[Pf of case 1]
+		Towards a contradiction, suppose $\beta\in B\setminus B'$.
+		The unique representation of $\beta$ in $B$ is $\beta$. But that representation isn't in $B'$. Thus, $B'$ is not a basis. It follows that no such $\beta$ exists, so $B = B'$.
+	\end{proof}
+
+	Case 2 (The bank is empty at the end, so the items in the boxes ($B''\supseteq B$)
+	\begin{proof}[Pf of case 2]
+		If $n\ne m$, there is some $\alpha\in B''\setminus B$. Since $B$ is a basis, we know $\alpha = f_1 \beta_1 + \ldots + f_n \beta_n$. This is therefore another representation of $\alpha$ in $B''$, contradicting uniqueness.
+	\end{proof}
+
+
+\end{proof}
+
+
+
+\end{document}
