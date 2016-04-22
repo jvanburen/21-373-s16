@@ -1,0 +1,93 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{36}{2016--04--22}
+\begin{classnote}{orange!10}{orange!25}
+	Homework 12 is now due Friday, April 29th
+\end{classnote}
+
+Let $F\subseteq K$ be fields.
+
+\begin{defn}
+	If $F\subseteq K$ admits a basis of cardinality $n < \infty$, the extension has \kw{degree} $n$, written \kw{$[K:F]$}$=n$
+\end{defn}
+
+\begin{defn}
+	If $F\subseteq K$ admits a finite basis, we say that $K$ is a \kw{finite-degree extension} of $F$.
+\end{defn}
+
+\begin{eg}\leavevmode
+	\begin{itemize}
+		\item $[\CC:\RR] = 2$ as $\{1, \iu\}$ is a basis
+		\item $[\RR:\QQ]$ is not finite, and it apparently has only horrible bases.
+	\end{itemize}
+\end{eg}
+More generally, if $p(x)\in F[x]$ is irreducible, and $\deg(p) =n$, then 
+	\[
+		\left[F[x]/(p(x)):F\right] = n
+	\]
+
+\begin{remark}
+	(From homework): If $F$ is a finite field, (say $|F| = q$) and $F\subseteq K$, with $[K:f=n]$ then $|K| = q^n$.
+\end{remark}
+
+\begin{proposition}
+	If $F\subseteq K$ are fields and $[K : F] = 1$ then $F = K$.
+\end{proposition}
+\begin{proof}
+	Fix a basis $B = \{\beta\}$ for $K$ over $F$.
+	I.e., $\forall k\in K(\exists! f\in F(k=F \beta))$.
+	In particular, $\exists f\in F$ such that $f \beta = 1 = \inv \beta \beta$.
+	Since $\beta\ne 0$ and fields are integral domains, we conclude $\inv\beta = f\in F$. Thus, $\beta\in F$, so $K\subseteq F$.
+\end{proof}
+
+\begin{proposition}
+	\label{prop:lindep}
+	Suppose $[K:F] = m$, $n>m,$ and $\gamma_1, \ldots, \gamma_n$ is a sequence of elements of $K$. Then, we may take $\ell < n$ and $f_1, \ldots, f_{\ell-1}\in F$ such that $\gamma_\ell = \sum_{i=1}^{\ell-1}f_i \gamma_i$.
+\end{proposition}
+\begin{proof}
+	Fix a basis $B = \{\beta_1, \ldots, \beta_m\}$ for $K$ over $F$.
+
+	We apply the algorithm from theorem \ref{thm:basisdim} with $B$ in the boxes, and $\gamma_i$ in the bank, replacing a $\beta$ with $\gamma_i$ for the least $i$ left in the bank, halting when we can no longer replace any $\beta$ with $\gamma_i$.
+
+	At this last stage, we know that \[
+	\gamma_i = \sum_{\text{box }j \text{ with }\beta}g_j \beta_j + \sum_{\text{box }k\text{ with }\gamma}f_k \gamma_{z_k}
+	\]
+	If some $g_i \ne 0$ then use the \nameref{lem:switcheroo}. Otherwise, $g_i=0,$ then we have $\gamma_i = \sum_{j<i}f_j \gamma_j$ 
+\end{proof}
+
+\begin{corollary}
+	Suppose $[K:F]=n$. Then for all $\theta\in K$ there is a nonzero polynomial $p(x)\in F[x]$ such that $p(\theta) = 0$ in $K$.
+\end{corollary}
+\begin{proof}
+	Consider the sequence $1, \theta, \theta^2, \ldots, \theta^n$ of length $n+1>n = [K:F]$. By proposition \ref{prop:lindep}, $\exists \ell\le n$ and $f_i\in F$ such that $\theta^\ell = \sum_{i=0}^{\ell-1}f_i\theta^i$. Choose $p(x)\in F[x]$ with $p(x) = x^\ell - \sum_{i=0}^{\ell-1}f_ix^i$.
+	$p(\theta) = 0.$
+\end{proof}
+
+\begin{defn}
+	In fields $F\subseteq K$, we say $\theta\in K$ is \kw{algebraic} over $F$ if it is the root (in $K$) of some nonzero polynomial $p(x)\in F[x]$.
+\end{defn}
+
+\begin{eg}\leavevmode
+	\begin{itemize}
+		\item In $\CC\supset\QQ$, $\iu$ is algebraic, since it is the root of $x^2 +1 = f(x)\in \QQ[x]$.
+		\item In $\RR\supset\QQ, \pi$ is \emph{not} algebraic, but it's a pain to prove.
+		\item In $\RR\supset\QQ$, $3^{1/3} +3^{2/3}$ is algebraic.
+
+		Put $\alpha = 3^{1/3},$ so $\alpha^3 = 3$. Put $\theta = \alpha^2 + \alpha$. Grind through $1, \theta, \theta^2$ until we can express one in terms of the other. We get to $\theta^3 = \theta^2\theta = 9 \alpha^2 + 9 \alpha + 12 = 9 \theta + 12$, hence, $\theta$ is a root of $x^3-9x-12\in \QQ[x]$.
+	\end{itemize}
+\end{eg}
+
+\begin{proposition}
+	Suppose $F\subseteq K$ and $\theta\in K$ is algebraic over $F$. Then there exists a unique monic (nonzero) irreducible polynomial $m(x)\in F[x]$ with $m(\theta)=0$ (in $K$).
+	Moreover, $\forall p(x)\in F[x],$ if $p(\theta) = 0$ in $K$, then $m(x)\divides p(x)$ in $F[x]$.
+\end{proposition}
+\begin{defn}
+	$m(x)$ is called the \kw{minimal polynomial} of $\theta$ in $F[x].$
+\end{defn}
+\begin{proof}
+	Define $\mathrm{ev}_\theta:F[x]\to K, p(x)\mapsto p(\theta)$.
+
+	$I = \Ker(\mathrm{ev}_\theta)\subseteq F[x]$ is an ideal, and $m(x)$ is the unique monic polynomial such that $I = (m)$.
+\end{proof}
+\end{document}
