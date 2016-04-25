@@ -1,0 +1,112 @@
+\documentclass[notes.tex]{subfiles}
+
+
+\begin{document}
+\lecture{37}{2016--04--25}
+
+\begin{defn}
+	If $F\subseteq K$ are fields, and $\theta\in K$, let $F(\theta)$ be the smallest subfield of $K$ with $F\subseteq\theta$ and $\theta\in F(\theta)$.
+
+	Formally, $F(\theta) = \bigcap_{\substack{L\subseteq K\text{ a field}\\F\subseteq L\\\theta\in L}} L$.
+\end{defn}
+
+\begin{quote}
+	
+\end{quote}
+
+You're in $F$, some alien who sees more dimensions and stuff sees $K$. It gives you an element $\theta$ from $K$ as a gift. If $\theta$ is algebraic over $F$, then you've gained nothing \frownie.
+
+\begin{proposition}
+	Suppose $F\subseteq K$ are fields, $\theta\in K$ is algebraic over $F$. 
+	Then $F(\theta)\cong F[x]/(m(x))$ where $m(x)\in F[x]$ is the minimal polynomial of $\theta$.
+\end{proposition}
+\begin{proof}
+	Consider the map $\vp:F[x]\to K$, $\vp(p(x)) = p(\theta)$ (i.e., $\vp = \mathrm{eval}_\theta$). We know that $\Ker(vp) = (m(x))$.
+
+	By the first isomorphism theorem, we know $\im(\vp)\cong F[x]/(m(x))$.
+	It only remains to show that $\im(\vp) = F(\theta)$.
+	\begin{claim}[1]
+		$F(\theta)\subseteq \im(\vp)$.
+		Need to check 
+		\begin{enumerate}
+			\item $\im(\vp)\subseteq K$ \checkmark 
+
+			(It's a field, since it's $\cong F[x]/(m(x))$)
+			\item $F\subseteq \im(\vp),$ since $\forall x\in F$
+			$\vp(x) = x$
+			\item $\theta\in \im(\vp)$. $\vp(x) = \theta$.
+		\end{enumerate}
+
+		Hence $F(\theta)\subseteq \im(\vp)$
+	\end{claim}
+	\begin{claim}[2]
+		Fix $k\in \im(\vp)$ So $\exists f_0, \ldots, f_n\in F$.
+		such that $k = f_n\theta^n + f_{n-1}\theta^{n-1} + \ldots + f_1\theta+f_0$. So $k\in F(\theta.)$
+	\end{claim}
+	\qedhere(Prop.)
+\end{proof}
+
+\begin{eg}
+	Consider $\QQ\subseteq\CC$.
+	Put $\theta_1 = \sqrt[3]{2}$, $\theta_1 = (\frac{-1}{2} + \frac{\sqrt{3}}{2}\iu)\sqrt[3]{2} = \sqrt[3]{2}\eu^{\iu 2\pi/3}$
+
+	$\QQ(\theta_1)\ne \QQ(\theta_2)$ since $\QQ(\theta_1)\subset \RR$ but $\QQ(\theta_2)\nsubseteq\RR$.
+	But, $\QQ(\theta_1)\cong\QQ(\theta_2)$ as fields. $\theta_1, \theta_2$ both have minimal polynomial $x^3 - 2$.
+\end{eg}
+
+\section*{Iterated Extensions}
+\begin{theorem}
+	Suppose $F\subseteq K\subseteq L$ are fields with $[K:F] = m < \infty$ and $[L:K] = n < \infty$.
+	Then $[L:F] = [L:K][K:F] = mn$.
+\end{theorem}
+
+\begin{proof}
+	In the finite case, if $|F| = q < \infty$ then $|K| = q^m$ and $|L| = |K|^n = (q^m)^n = q^{mn} = |F|^{mn}$
+
+	Fix a basis $B = \{\beta_1,\ldots, \beta_m\}$ for $K$ over $F$ and $C = \{\gamma_1,\ldots, \gamma_n\}$ for $L$ over $K$.
+
+	Put $A = \{\beta_i\gamma_j, : i \in[m], j\in[n]\}$
+
+	\begin{claim}
+		$A$ is a basis for $L$ over $F$.
+	\end{claim}
+	\begin{proof}[Pf of Claim]
+		We need to show that $\forall\ell\in L,$ there is a unique sequence $(f_{i, j})_{\substack{i\in[m]\\j\in[m]}}$ of elements from $F$ such that
+		\[
+			\ell 
+			= \sum_{\substack{i\in[m]\\j\in[n]}}f_{i, j}\beta_i \gamma_j
+			= \sum_{j\in[n]}\gamma_j\underbrace{\left(\sum_{i\in[m]} f_{i, j}\beta_i \right)}_{\text{denote by }k_j\in K}
+		\]
+		So, $\ell = \sum_{j\in[n]}k_j \gamma_j$.
+
+		There exists a unique $k_1, \ldots, k_n$ making this true, since $C$ is a basis for $L$ over $K$. Thus, $A$ is a basis for $L$ over $F$, as desired.\qedhere(Claim)
+	\end{proof}\qedhere(Thm.)
+\end{proof}
+
+\begin{defn}
+	Let $F\subseteq K$ be fields $, \theta_1, \theta_2\in K$.
+	Let $F(\theta_1, \theta_2)$ be the smallest subfield of $K$ containing $F, \theta_1, \theta_2$ . So, $F(\theta_1, \theta_2) = (F(\theta_1))(\theta)_2$. 
+\end{defn}
+\begin{corollary}
+	If $\theta_1$ and $\theta_2$ are algebraic, 
+	\[
+		[F(\theta_1, \theta_2):F] 
+		= \underbrace{[F(\theta_1, \theta_2):F(\theta_1)]}_{\substack{\text{deg of min'l poly}\\ \text{of }\theta_2\text{ in }F(\theta_1)}} \underbrace{[F(\theta_1):F]}_{\substack{\text{deg of min'l poly}\\\text{of }\theta_1 \text{ in }F}}
+	\]
+\end{corollary}
+
+\begin{eg}
+	$[\QQ(\theta_1, \theta_2):\QQ] = 6$
+	Note $\sqrt{3}\iu\in\QQ(\theta_1, \theta_2)$.
+
+	$\frac{\theta_2}{\theta_1} = \frac{-1}{2} + \frac{\sqrt{3}}{2}\iu$. Has minimal polynomial $x^2+3$
+
+	$\QQ\subseteq \QQ(\sqrt{3}\iu)\subseteq\QQ(\theta_1, \theta_2)$.
+	Hence $[\QQ(\theta_1, \theta_2):\QQ]$ is even.
+
+	To compute the 6, we need $[\QQ(\theta_1, \theta_2):\QQ(\theta_1)] = 2$
+
+	$x^3 -2 = (x-\theta_1)(x^2+\theta_1x+\theta_1^2)$
+\end{eg}
+
+\end{document}
