@@ -1,0 +1,103 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{38}{2016--04--27}
+
+Tips and tricks for computing degrees of field extensions.
+
+Recall if $F\subseteq K$ are both fields, $\theta\in K$ is algebraic iff
+$[F(\theta):F]$ is finite, which is equivalent to $\theta$ being the root of some polynomial in $F[x]$
+
+Moreover, $[F(\theta):F]=\deg(m_\theta(x))$ where $m_\theta(x)\in F[x]$ is the minimal polynomial of $\theta$ in $F[x]$.
+
+Work in the rationals $\QQ, \theta\in \CC$.
+What's the degree of $\theta$ over $\QQ$
+
+One strategy: Compute $m_\theta(x)$ by checking powers of $\theta$, and report the degree of $m_\theta(x)$.
+
+\begin{eg}
+	$\theta = \frac{1}{2+\sqrt[3]{6}}$ What is $[\QQ(\theta):\QQ]$?
+
+	Sneakier approach:
+	\begin{claim}
+		$\QQ(\theta)=\QQ(\sqrt[3]{6})$
+	\end{claim}
+	\begin{proof}
+		$\QQ \subseteq \QQ(\theta)$ and $\QQ\subseteq\QQ(\sqrt[3]{6})$
+
+		Note that $\theta \in \QQ(\sqrt[3]{6})$
+		Hence $\QQ(\theta)\subseteq \QQ(\sqrt[3]{6})$
+
+		Analogously $\sqrt[3]{6} = \frac{1}{\theta}-2\in\QQ(\theta)$. 
+		Thus, $\QQ(\sqrt[3]{6})\subseteq\QQ(\theta)$.
+	\end{proof}
+
+	Thus, since $\sqrt[3]{6}$ has minimal polynomial $x^3-6$, both $\theta$ and $\sqrt[3]{6}$ have degree 3.
+\end{eg}
+
+\begin{eg}
+	$$\theta = \frac{\sqrt[7]{2} - \sqrt[7]{8}}{1 + \sqrt[7]{16}+\sqrt[7]{4}}$$
+
+	Look at $[\QQ(\sqrt[7]{2}):\QQ] = 7$
+
+	We know that $\theta\in \QQ(\sqrt[7]{2})$.
+
+	Hence $\QQ\subseteq \QQ(\theta) \subseteq \QQ(\sqrt[7]{2})$
+	and so $[\QQ(\theta):\QQ]$ divides $[\QQ(\sqrt[7]{2}):\QQ] = 7$
+
+	We claim it isn't 7.
+
+	Toward a contradiction, if $[\QQ(\theta):\QQ] = 1$
+	Then $\QQ(\theta)=\QQ,$ so $\theta$ is rational.
+	Say $\theta = q\in \QQ$ Put $y=\sqrt[7]{2}$
+	$q = \theta = \frac{y-y^3}{1+y^4+y^2}$, so $q(1+y^4+y^2) = y-y^3$, 
+	or $qy^4 + y^3 + qy^2 - y + q= 0$. It follows that $\sqrt[7]{2}$ is a root of a degree 4 polynomial, but $x^7-2$ is minimal, RAA.
+\end{eg}
+
+\section*{Straight Edge and Compass Constructions}
+
+\paragraph{Idea:}Start with two ``marked'' points on a plane. 
+\subparagraph{Allowable Moves:} \leavevmode
+	\begin{itemize}
+		\item Draw a straight line between two marked points
+		\item Draw a circle centered at a marked point whose radius is the distance between two (possibly unrelated) marked points
+		\item Mark a point that is the intesection of two (disjoint) drawn so far.
+	\end{itemize}
+
+We declare the starting points to be $(0, 0)$ and $(1, 0)$
+
+%TODO: pics of geometry?
+
+More formally, a ``construction'' is a sequence $\{(0, 0), (1, 0)\} = P_0\subseteq P_1\subseteq \ldots \subseteq P_n$. Each $P_i$ is a finite set of points in the plane.
+
+$P_{i+1} = P_i \cup Q_i$, where $Q_i$ is a the inresection of two distinct lines/circles built out of $P_i$.
+
+Let's say a real number $r\in R$ is \kw{constructable} if it appears as either the $x$ or $y$-coordinate of some point in $P_n$, for some construction.
+
+We know that all $z\in\ZZ$ is constructable, all $q\in\QQ$ is constructable, and all
+$\{\sqrt{q} : q\in \QQ\}$ are all constructable.
+
+Next time: 
+
+\begin{theorem}
+	\label{thm:non-constructable}
+	Suppose $P_0\subseteq P_1\subseteq \ldots\subseteq P_n$ is a construction.
+
+	Then there is a field $K$ with $\QQ\subseteq K\subseteq \RR$ such that
+	$\{x\text{ and }y\text{ coordinates of } P_n\}\subseteq K$ and $[K:\QQ]= 2^\ell$ for some $\ell\in\NN$.
+\end{theorem}
+
+Why is this useful?
+\begin{proposition}
+	$\sqrt[3]{2}$ is \emph{not} constructable.
+\end{proposition}
+\begin{proof}
+	Supoose it were, fix a construction $P_0 \subseteq \ldots\subseteq P_n$ with $(\sqrt[3]{2}, y)\in P_n$.
+
+	Fix also $K$ as in the theorem such that $\sqrt[3]{2}\in K$. Hence, $\QQ(\sqrt[3]{2})\subseteq K$
+	So $\QQ\subseteq \QQ(\sqrt[3]{2})\subseteq K$.
+
+	Hence $\underbrace{[K:\QQ]}_{=2^\ell} = [K:\QQ(\sqrt[3]{2})]\underbrace{[\QQ(\sqrt[3]{2}) : \QQ]}_{=3}$
+\end{proof}
+
+\end{document}
