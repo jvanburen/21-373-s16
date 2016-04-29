@@ -1,0 +1,107 @@
+\documentclass[notes.tex]{subfiles}
+
+\begin{document}
+\lecture{39}{2016--04--29}
+
+Now we will prove theorem \ref{thm:non-constructible} by induction on $n$.
+\begin{proof}
+	We proceed by induction on $n$, the length of the construction.
+
+	Base Case: $F = \QQ$ works, ${0, 1}\subseteq F$, $[F:\QQ] = 1 = 2^0$ \checkmark
+
+	Inductive Step: Assume true for constructions of length $\le n$.  We want to handle $\underbrace{P_0\subseteq P_1\subseteq \ldots \subseteq P_n}_{\text{Construction of length }n}\subseteq P_{n+1}$.
+	By induction hypothesis, there exists a field $F_n$ with $\QQ\subseteq F_n\subseteq \RR$ such that $\{x, y \text{ coords of } P_n\}\subseteq F_n$ and $[F_n:\QQ] = 2^\ell$.
+
+	\begin{claim}[1]
+		Any line through two points of $P_n$ is given by an equation of the form $ax+by+c = 0$ for some $a, b, c\in F_n$.
+	\end{claim}
+	\begin{proof}[Pf (C1)]
+		Say that $(x_0, y_0), (x_1, y_1)$ are the points in $P_n$.
+		Then $(x, y)$ is on the line if $(x_1-x_0)(y-y_0) = (x-x_0)(y_1-y_0)$
+
+		$-(y_1 - y_0)x + (x_1 - x_0)y + \text{blah} = 0$, where each of those terms is in $F_n$.
+	\end{proof}
+	\begin{claim}[2]
+		Any circle determined by three points in $P_n$ has equation $(x-h)^2 + (y-k)^2 + r = 0$ for some $h, k , r\in F_n$.
+	\end{claim}
+	\begin{proof}[Pf (C2)]
+		Center point $(x_0, y_0)$, radius points $(x_1, y_1), (x_2, y_2)\in P_n$
+
+		The Radius = $\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$
+		The equation for the circle becomes 
+		\[
+			(x-x_0)^2 + (y-y_0)^2 - ((x_2 - x_1)^2  + (y_2-y_1)^2)
+		\]
+		Where all terms are in $F_n$
+	\end{proof}
+	There are three cases for the move $P_n\to P_{n+1}$.
+
+	Case 1 (Two lines intersecting at one point):
+	\begin{tabin}
+		Solve $\begin{cases}
+			a_1x + b_1y + c_1 &= 0\\
+			a_2x + b_2y + c_2 &= 0
+		\end{cases}$ for $(x', y')$ and we leave it to the reader to verify we obtain $x', y' \in F_n$. Thus, $F_{n+1} = F_n$ so we still have $\{x, y \text{ coords of} P_{n+1}\}$ and $[F_{n+1}:Q] = 2^\ell$.
+	\end{tabin}
+	Case 2 (Line and a circle):
+	\begin{tabin}
+		Say the line is 
+		$ax+by + c = 0\quad\text{(A2)}$ 
+
+		and the circle is
+		$(x-h)^2 + (y-k)^2 + r = 0 \qquad\text{(B2)}$.
+
+		Call the simultaneous solutions $(x', y')$ and $(x'', y'')$.
+
+		Solve (A2) for one variable. WLOG, $y = dx + e$.
+
+		Substitute into (B2) to obtain 
+		\[
+			(x-h)^2 + (dx+e-k)^2 + r =0
+		\]
+		$x'$ is a root of a degree 2 polynomial $f(x)\in F_n[x]$.
+
+		So $[F_n(x'):F_n]\le 2$, so it's either 1 or 2.
+		Hence, $[F_n(x'):\QQ]=[F_n(x'):F_n]\times[F_n:\QQ] = 2^\ell$ or $2^{\ell+1}$ 
+
+		\begin{claim}[3]
+			$\{x', y', x'', y''\}\subseteq F_n(x')$ (so $F_{n+1} = F_n(x')$)
+		\end{claim}
+		\begin{proof}[Pf (C3)]
+			$x''\in F_n(x')$\checkmark.
+			Why? $x''$ is also a root of $f(x)$. Over $F_n(x'),$ we know that $(x-x')\divides f(x).$ Say $(x-x')\cdot g(x) = f(x)$. Thus, $\deg(g(x)) =1, g(x)\in (F_n(x'))[x]$ So $x''$ is a root of $g(x)\implies x''\in F_n(x')$. 
+
+			But $y' = dx' +e, y'' = dx'' + e \in F_n(x')$\qedhere(C3)
+		\end{proof}
+		This also completes Case 2
+	\end{tabin}
+	Case 3 (Two Circles):
+	\begin{tabin}
+		Fix the two equations A3 and B3. If we subtract B3 from A3, then we get equation C3 $ax+by+c=0$.
+		This is handled in a previous case
+	\end{tabin}
+	This completes the proof.\qedhere(Theorem)
+\end{proof}
+
+\begin{corollary}
+	Angle trisection cannot be performed by a straight-edge and compass construction.
+\end{corollary}
+\begin{proof}
+	We consider the angle $60^\degree$.
+	It suffices to show that $\cos(20^\degree)$ is not constructible
+
+	Why does this rule out trisection?
+
+	Well we can construct $60^\degree$, so if we could trisect it, we could construct  the point $(\cos(20^\degree), \sin(20^\degree))$.
+
+	Why isn't $\cos(20^\degree)$ constructible? 
+	We want its minimal polynomial. $\frac{1}{2} = \cos(60^\degree) = \cos 40 \cos 20 - \sin 40 \sin 20$
+	Denote $s = \sin 20, c = \cos 20$
+	$(2c^2-1)c -2scs = 2c^3 - c - 2c(1-c^2)=4c^3-3c$.
+	Hence $c$ is a root of $8x^3 - 6x - 1$.
+
+	Exercise: This polynomial is irreducible in $\QQ[x]$.
+
+	Hence $[\QQ(\cos 20^\degree):\QQ]$ is not a power of 2, so $\cos20$ is not constructible.
+\end{proof}
+\end{document}
