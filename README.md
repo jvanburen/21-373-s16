@@ -2,7 +2,7 @@
 
 ### Spring 2016
 
-######Transcribed by Jacob Van Buren (jvanburen@cmu.edu)
+###### Transcribed by Jacob Van Buren (jvanburen@cmu.edu)
 
 
 Notes for Algebraic Structures, taught Spring 2016 at Carnegie Mellon University, by Professor Clinton Conley.
